@@ -34,6 +34,12 @@
 					"name": "influence",
 					"pathName": "pages/influence/influence",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "recom",
+					"pathName": "pages/home/join/join",
+					"query": ""
 				}
 			]
 		}

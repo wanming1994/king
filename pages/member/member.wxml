@@ -55,8 +55,8 @@
     </view>
   </view>
 
-  <view class="memberRadius f14" bindtap='toInfo'>
-    <view class="lineItem lineItem_access borderA">
+  <view class="memberRadius f14">
+    <view class="lineItem lineItem_access borderA" bindtap='toInfo'>
       <view class="left">个人资料</view>
       <view class="right"></view>
     </view>
