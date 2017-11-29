@@ -7,16 +7,11 @@
     "pages/home/productDetails/productDetails",
     "pages/pay/success",
     "pages/pay/pay",
-    "pages/member/coupon/list",
-    "pages/member/password/password",
-    "pages/member/favorite/favorite",
     "pages/member/member",
-    "pages/member/bind/bind",
-    "pages/member/bank/bank",
+    "pages/member/info/info",
     "pages/member/order/order",
     "pages/member/order/logistics/logistics",
     "pages/member/order/orderDetails/orderDetails",
-    "pages/member/order/orderEvaluate/orderEvaluate",
     "pages/include/captcha/captcha"
   ],
   "tabBar": {

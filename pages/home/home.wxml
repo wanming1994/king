@@ -1,3 +1,6 @@
 <view class="container">
-    1452121
+  <view class='head'>
+    <image src='../../resources/images/home/logo.png' class='fl logo'></image>
+    <image src='../../resources/images/home/title_right.png' class='fr title_right'></image>
+  </view>
 </view>
