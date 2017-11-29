@@ -1,137 +1,72 @@
 <view class="container">
-  <view class="pageTop">
+  <view class="head f16" style="background-image:url(../../resources/images/member/headBg.jpg);">
+    <view class="headImg">
+      <image src="../../resources/images/usernone.png"></image>
+    </view>
     <view class="details">
-      <view class="head">
-        <image src="{{userInfo?userInfo.avatarUrl:memberInfo.headImg?memberInfo.headImg:'/resources/images/usernone.png'}}"></image>
-      </view>
+      <view>鱼鱼鱼鱼</view>
+      <view>白银天使</view>
+    </view>
+  </view>
+
+  <view class="memberRadius lineItem flex f14">
+    <view class="flex-item lineItem lineItem_access">
       <view>
-        <view class="name">{{userInfo?userInfo.nickName:memberInfo.displayName}}</view>
-        <view class="label">
-          <text wx:if="{{memberInfo.partner}}">合伙人</text>
-        </view>
+        <view>积分兑换</view>
+        <view>0</view>
       </view>
-      <view class="myWallet" bindtap="purse">
-        <text class="iconfont icon-qianbao f20"></text>我的钱包
-        <text class="iconfont icon-icon"></text>
-      </view>
+      <view class="right"></view>
     </view>
-    <view class="pageTopBottom f16">
-
-
-
-
-      <view bindtap='goFavorite'>
-        <view class="f14">{{favoriteProductCout}}</view>
-        <view>收藏</view>
+    <view class="flex-item lineItem lineItem_access">
+      <view>
+        <view>我的影响力</view>
+        <view>0</view>
       </view>
-      <!-- <view bindtap='goCoupon'>
-        <view class="f14">{{couponLength}}</view>
-        <view>券包</view>
-      </view> -->
-      <view bindtap='goMemberCard'>
-        <view class="f14">{{cardLength}}</view>
-        <view>卡包</view>
-      </view>
-      <view bindtap='goMessage'>
-        <view class="f14">{{count}}</view>
-        <view>消息</view>
-      </view>
+      <view class="right"></view>
     </view>
   </view>
 
-  <view class="item">
-    <view class="lineItem" data-current="0" bindtap="toOrder">
-      <view class="left">
-        <text class="iconfont icon-wodedingdan clr_orange"></text>
-      </view>
-      <view class="center ">
-        <view>我的订单</view>
-      </view>
-      <view class="right">
-        <view>查看全部订单
-          <text class="iconfont icon-icon f12"></text>
-        </view>
-      </view>
-    </view>
+  <view class="memberRadius lineItem lineItem_access f14">
+    <view class="center">分享推广</view>
+    <view class="clr_lightGray">您的口碑价值百万</view>
+    <view class="right"></view>
+  </view>
 
-    <view class="itemBottom">
-      <view data-current="1" bindtap="toOrder">
-        <image src='../../resources/images/member/unpay.png' class='orderImg'></image>
-        <text class="orderType">待付款</text>
-        <text class="tips baseBg" wx:if="{{memberInfo.unpaid}}">{{memberInfo.unpaid}}</text>
-      </view>
-      <view data-current="2" bindtap="toOrder">
-       <image src='../../resources/images/member/unshipped.png' class='orderImg'></image>
-        <text class="orderType">待发货</text>
-        <text class="tips baseBg" wx:if="{{memberInfo.unshipped}}">{{memberInfo.unshipped}}</text>
-      </view>
-      <view data-current="3" bindtap="toOrder">
-        <image src='../../resources/images/member/unreceived.png' class='orderImg'></image>
-        <text class="orderType">待收货</text>
-        <text class="tips baseBg" wx:if="{{memberInfo.unreciver}}">{{memberInfo.unreciver}}</text>
-      </view>
-      <view data-current="4" bindtap="toOrder">
-        <image src='../../resources/images/member/complete.png' class='orderImg'></image>
-        <text class="orderType">已完成</text>
-        <text class="tips baseBg" wx:if="{{memberInfo.unreview}}">{{memberInfo.unreview}}</text>
-      </view>
-      <view data-current="4" bindtap="toOrder">
-        <image src='../../resources/images/member/all.png' class='orderImg'></image>
-        <text class="orderType">全部订单</text>
-        <text class="tips baseBg" wx:if="{{memberInfo.unreview}}">{{memberInfo.unreview}}</text>
-      </view>
+  <view class="memberRadius flex itemCenter tc f14 padding2">
+    <view class="flex-item">
+      <image class="iconImg" src="../../resources/images/member/unpay.png"></image>
+      <view>待付款</view>
+    </view>
+    <view class="flex-item">
+      <image class="iconImg" src="../../resources/images/member/unpay.png"></image>
+      <view>待付款</view>
+    </view>
+    <view class="flex-item">
+      <image class="iconImg" src="../../resources/images/member/unpay.png"></image>
+      <view>待付款</view>
+    </view>
+    <view class="flex-item">
+      <image class="iconImg" src="../../resources/images/member/unpay.png"></image>
+      <view>待付款</view>
+    </view>
+    <view class="flex-item">
+      <image class="iconImg" src="../../resources/images/member/unpay.png"></image>
+      <view>待付款</view>
     </view>
   </view>
 
-
-  <view class="content">
-    <view class="lineItem lineItem_access" bindtap="chooseAddress">
-      <view class="left">
-        <text class="iconfont icon-hehuoren"></text>
-      </view>
-      <view class="center">
-        <view>收货地址</view>
-      </view>
-      <view class="right">
-      </view>
+  <view class="memberRadius f14">
+    <view class="lineItem lineItem_access borderA">
+      <view class="left">个人资料</view>
+      <view class="right"></view>
     </view>
-
-    <view class="lineItem lineItem_access" bindtap="password">
-      <view class="left">
-        <text class="iconfont icon-yinhangqiabangding"></text>
-      </view>
-      <view class="center">
-        <view>修改支付密码</view>
-      </view>
-      <view class="right">
-      </view>
+    <view class="lineItem lineItem_access borderA">
+      <view class="center">帮助中心</view>
+      <view class="right"></view>
     </view>
-
-    <view class="lineItem" bindtap="bindPhone">
-      <view class="left">
-        <text class="iconfont icon-bangdingshouji"></text>
-      </view>
-      <view class="center">
-        <view>绑定手机号</view>
-      </view>
-      <view class="right">
-        <view wx:if="{{memberInfo.bindMobile == 'none'}}">未绑定</view>
-        <view wx:elif="{{memberInfo.bindMobile == 'binded'}}">已绑定</view>
-        <view wx:elif="{{memberInfo.bindMobile == 'unbind'}}">已解绑</view>
-      </view>
+    <view class="lineItem lineItem_access ">
+      <view class="center">当前版本</view>
+      <view class="right"></view>
     </view>
-
-     <view class="lineItem border_none" bindtap="callUs">
-      <view class="left">
-        <text class="iconfont icon-lianxiwomen"></text>
-      </view>
-      <view class="center">
-        <view>联系我们</view>
-      </view>
-      <view class="right">
-        <view></view>
-      </view>
-    </view>
-
   </view>
 </view>
