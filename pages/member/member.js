@@ -139,14 +139,6 @@ Page({
     try {
       wx.chooseAddress({
         success: function (res) {
-
-
-
-
-
-
-
-
         },
         fail: function (err) {
 
