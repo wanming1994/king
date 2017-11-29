@@ -1,3 +1,7 @@
+.container{
+  background: #fff;
+  height: 100%;
+}
 .head{
   padding: 20rpx 0
 }
@@ -10,4 +14,69 @@
 }
 .head .title_right{
   margin-right: 10px;
+}
+.controls {
+  position: relative;
+  top: 50%;
+  height: 50px;
+  margin-top: -25px;
+  display: flex;
+}
+.play,.pause,.time {
+  flex: 1;
+  height: 100%;
+}
+.time {
+  text-align: center;
+  background-color: rgba(0, 0, 0, .5);
+  color: white;
+  line-height: 50px;
+}
+.img {
+  width: 40px;
+  height: 40px;
+  margin: 5px auto;
+}
+#myVideo{
+  width: 100vw;
+  height: 56vw;
+}
+
+.productList image{
+  width: 100%;
+  display: block
+}
+.productList .word{
+  background: #2963ad;
+}
+.productList .word text{
+  margin: 10px 0;
+  color: #2963ad;
+  background: #fff;
+  padding: 5px 0;
+  border-radius: 20px;
+  display: inline-block;
+  width: 56vw;
+  
+}
+
+.imageTwo .word{
+  background: #fa29a1;
+}
+.imageTwo .word text{
+  color: #fa29a1;
+}
+
+.imageThree .word{
+  background: #a9db82;
+}
+.imageThree .word text{
+  color: #a9db82;
+}
+
+.break{
+  background: #f4f4f4;
+  height: 20px;
+  margin: 2% 0;
+  
 }

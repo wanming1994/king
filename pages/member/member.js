@@ -1,3 +1,5 @@
+let app = getApp(),
+  util = require("../../utils/util.js")
 Page({
   data: {
     
@@ -10,5 +12,15 @@ Page({
   },
   onShow: function () {
     
+  },
+  toInfo:function(){
+    util.navigateTo({
+      url: 'info/info',
+    })
+  },
+  toMyInfluence:function(){
+    util.navigateTo({
+      url: 'influence/influence',
+    })
   }
 })

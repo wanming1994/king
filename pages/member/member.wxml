@@ -10,14 +10,14 @@
   </view>
 
   <view class="memberRadius lineItem flex f14">
-    <view class="flex-item lineItem lineItem_access">
+    <view class="flex-item lineItem lineItem_access" style='border-right:1px solid #666;'>
       <view>
         <view>积分兑换</view>
         <view>0</view>
       </view>
       <view class="right"></view>
     </view>
-    <view class="flex-item lineItem lineItem_access">
+    <view class="flex-item lineItem lineItem_access" bindtap='toMyInfluence'>
       <view>
         <view>我的影响力</view>
         <view>0</view>
@@ -38,24 +38,24 @@
       <view>待付款</view>
     </view>
     <view class="flex-item">
-      <image class="iconImg" src="../../resources/images/member/unpay.png"></image>
-      <view>待付款</view>
+      <image class="iconImg" src="../../resources/images/member/unshipped.png"></image>
+      <view>待发货</view>
     </view>
     <view class="flex-item">
-      <image class="iconImg" src="../../resources/images/member/unpay.png"></image>
-      <view>待付款</view>
+      <image class="iconImg" src="../../resources/images/member/unreceived.png"></image>
+      <view>待收货</view>
     </view>
     <view class="flex-item">
-      <image class="iconImg" src="../../resources/images/member/unpay.png"></image>
-      <view>待付款</view>
+      <image class="iconImg" src="../../resources/images/member/complete.png"></image>
+      <view>已完成</view>
     </view>
     <view class="flex-item">
-      <image class="iconImg" src="../../resources/images/member/unpay.png"></image>
-      <view>待付款</view>
+      <image class="iconImg" src="../../resources/images/member/all.png"></image>
+      <view>全部</view>
     </view>
   </view>
 
-  <view class="memberRadius f14">
+  <view class="memberRadius f14" bindtap='toInfo'>
     <view class="lineItem lineItem_access borderA">
       <view class="left">个人资料</view>
       <view class="right"></view>

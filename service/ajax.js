@@ -28,6 +28,7 @@ module.exports = class Ajax {
         'Cookie': 'JSESSIONID=' + wx.getStorageSync('JSESSIONID')
       }, options.header),
       success(res) {
+        console.log(res)
         if (res.data.message && res.data.message.type == 'success') {
           _this.fn(res.data)
         } else if (res.data.message && (res.data.message.type == 'error' || res.data.message.type == 'warn')) {
@@ -40,6 +41,7 @@ module.exports = class Ajax {
         }
       },
       error(err) {
+        console.log(err)
         _this.errFn(err)
         wx.getNetworkType({
           success: function (res) {

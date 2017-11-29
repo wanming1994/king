@@ -17,6 +17,15 @@ Page( {
   data: {
   
   },
+  onReady() {
+    this.videoCtx = wx.createVideoContext('myVideo')
+  },
+  play() {
+    this.videoCtx.play()
+  },
+  pause() {
+    this.videoCtx.pause()
+  },
 
   /**
    * 生命周期函数--监听页面加载
