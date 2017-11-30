@@ -17,15 +17,6 @@ Page( {
   data: {
   
   },
-  onReady() {
-    this.videoCtx = wx.createVideoContext('myVideo')
-  },
-  play() {
-    this.videoCtx.play()
-  },
-  pause() {
-    this.videoCtx.pause()
-  },
 
   joinUs:function(){
     util.navigateTo({

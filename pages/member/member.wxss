@@ -15,7 +15,7 @@ page {
 .head {
   height: 211rpx;
   border: 1px solid #848484;
-  border-radius: 12rpx;
+  border-radius: 22rpx;
   position: relative;
   display: flex;
   align-items: stretch;

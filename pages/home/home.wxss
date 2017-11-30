@@ -3,7 +3,11 @@
   height: 100%;
 }
 .head{
-  padding: 20rpx 0
+  padding: 10rpx 0;
+  display: flex;
+}
+.head view{
+  flex: 1;
 }
 .head image{
   width: 28vw;
@@ -41,6 +45,53 @@
   width: 100vw;
   height: 56vw;
 }
+.circle{
+  position: relative;
+  height: 12.5vw;
+  color: #fff;
+  background: #f4f4f4;
+  margin-bottom: 2%;
+  overflow: hidden;
+}
+.circle>view{
+  text-align: center;
+  width: 25vw;
+  height: 12.5vw;
+  display: inline-block;
+  border-radius: 0 0 12.5vw 12.5vw;
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+}
+.circle>view image{
+  display: block;
+  width: 4vw;
+  height: 4vw;
+  margin: 0 auto;
+  margin-top: 3px;
+}
+
+.circle .circle1{
+  background: #2963ad;
+  left: -2vw;
+}
+.circle .circle2{
+  background: #fb27a0;
+  left: 18vw;
+}
+.circle .circle3{
+  background: #a9da81;
+  left: 38vw;
+}
+.circle .circle4{
+  background: #86cfef;
+  left: 58vw;
+}
+.circle .circle5{
+  background: #fbf722;
+  left: 78vw;
+}
+
 
 .productList image{
   width: 100%;

@@ -1,20 +1,45 @@
 <view class="container">
   <view class='head'>
-    <image src='../../resources/images/home/logo.png' class='fl logo'></image>
-    <image src='../../resources/images/home/title_right.png' class='fr title_right'></image>
+    <view>
+      <image src='../../resources/images/home/logo.png' class=' logo'></image>
+    </view>
+    <view class='tr'>
+      <image src='../../resources/images/home/title_right.png' class=' title_right'></image>
+    </view>
   </view>
+   <view class='circle'>
+    <view class='circle1 tc'>
+      <image src='../../resources/images/home/brand.png'></image>
+      <text class='f14 '>品牌</text>
+    </view>
+    <view class='circle2'>
+      <image src='../../resources/images/home/recommender.png'></image>
+      <text class='f14 '>推荐馆</text>
+    </view>
+    <view class='circle3'>
+      <image src='../../resources/images/home/video.png'></image>
+      <text class='f14 '>视频</text>
+    </view>
+    <view class='circle4'>
+      <image src='../../resources/images/home/contact.png'></image>
+      <text class='f14 '>联系我们</text>
+    </view>
+    <view class='circle5'>
+      <image src='../../resources/images/home/company.png'></image>
+      <text class='f14 '>公司介绍</text>
+    </view>
+  </view> 
+  
   <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-    controls="{{false}}" event-model="bubble">
+    controls="{{true}}" event-model="bubble">
     <cover-view class="controls">
-      <cover-view class="play" bindtap="play">
-        <!-- <cover-image class="img" src="/path/to/icon_play" /> -->
-      </cover-view>
-      <cover-view class="pause" bindtap="pause">
-        <!-- <cover-image class="img" src="/path/to/icon_pause" /> -->
-      </cover-view>
-      <!-- <cover-view class="time">00:00</cover-view> -->
     </cover-view>
   </video>
+
+
+
+
+
   <view class='break'></view>
   <view class='imageOne productList'>
     <image src='../../resources/images/home/pic1.png'></image>
