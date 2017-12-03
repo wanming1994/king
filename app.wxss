@@ -336,6 +336,15 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   margin-top: 5vw;
 }
 
+.radiusBtn {
+  width: 85%;
+  line-height: 2.5;
+  background: #000000;
+  color: #fff;
+  margin-top: 5vw;
+  border-radius:20vw;
+}
+
 .chatTriangleLeftTop {
   width: 0;
   height: 0;

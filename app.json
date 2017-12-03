@@ -10,6 +10,7 @@
     "pages/pay/pay",
     "pages/member/member",
     "pages/member/influence/influence",
+    "pages/member/share/share",
     "pages/member/info/info",
     "pages/member/order/order",
     "pages/member/order/logistics/logistics",

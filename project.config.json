@@ -46,6 +46,12 @@
 					"name": "商品详情",
 					"pathName": "pages/home/productDetails/productDetails",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "分享",
+					"pathName": "pages/member/share/share",
+					"query": ""
 				}
 			]
 		}
