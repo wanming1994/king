@@ -40,6 +40,12 @@
 					"name": "recom",
 					"pathName": "pages/home/join/join",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商品详情",
+					"pathName": "pages/home/productDetails/productDetails",
+					"query": ""
 				}
 			]
 		}

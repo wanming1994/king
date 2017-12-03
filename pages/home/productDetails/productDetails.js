@@ -44,9 +44,9 @@ Page(Object.assign({}, swiperAutoHeight, {
     return false;
   },
   onLoad: function (options) {
-    // let id = 20891
+    let id = 7793
     let that = this;
-    let id = options.id;
+    // let id = options.id;
     this.data.id = id;
     var extension = options.extension;
     if (extension) {

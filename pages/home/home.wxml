@@ -48,7 +48,7 @@
   <view class='break'></view>
 
 
-  <view class='imageTwo productList'>
+  <view class='imageTwo productList' bindtap='goProductDeatil'>
     <image src='../../resources/images/home/pic2.png'></image>
     <view class='word tc'>
       <text class='f14 '>购买大王天使纸尿裤</text>
@@ -56,7 +56,7 @@
   </view>
 
   <view class='break'></view>
-  <view class='imageThree productList'>
+  <view class='imageThree productList' bindtap='goProductDeatil'>
     <image src='../../resources/images/home/pic3.png'></image>
     <view class='word tc'>
       <text class='f14 '>购买大王维E纸尿裤</text>

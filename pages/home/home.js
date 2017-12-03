@@ -18,11 +18,21 @@ Page( {
   
   },
 
+  //邀请
   joinUs:function(){
     util.navigateTo({
       url: 'join/join'
     })
   },
+
+  //商品详情
+  goProductDeatil:function(){
+    util.navigateTo({
+      url: '/pages/home/productDetails/productDetails',
+    })
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
