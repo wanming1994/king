@@ -52,6 +52,12 @@
 					"name": "分享",
 					"pathName": "pages/member/share/share",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "积分兑换",
+					"pathName": "pages/member/exchange/exchange",
+					"query": ""
 				}
 			]
 		}

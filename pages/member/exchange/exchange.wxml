@@ -1,0 +1,49 @@
+<view class='container'>
+  <view class='imageTwo productList' bindtap='goProductDeatil'>
+    <image src='../../../resources/images/home/pic2.png'></image>
+    <view class='word tc'>
+      <text class='f14'>立即兑换<text class="clr_red" style='display:inline'>(需要50积分)</text></text>
+    </view>
+  </view>
+
+  <view class='break'></view>
+  <view class='imageTwo productList' bindtap='goProductDeatil'>
+    <image src='../../../resources/images/home/pic2.png'></image>
+    <view class='word tc'>
+      <text class='f14'>立即兑换<text class="clr_red" style='display:inline'>(需要50积分)</text></text>
+    </view>
+  </view>
+
+  <view class='break'></view>
+  <view class='imageTwo productList' bindtap='goProductDeatil'>
+    <image src='../../../resources/images/home/pic2.png'></image>
+    <view class='word tc'>
+      <text class='f14'>立即兑换<text class="clr_red" style='display:inline'>(需要50积分)</text></text>
+    </view>
+  </view>
+
+  <view class='break'></view>
+  <view class='imageTwo productList' bindtap='goProductDeatil'>
+    <image src='../../../resources/images/home/pic2.png'></image>
+    <view class='word tc'>
+      <text class='f14'>立即兑换<text class="clr_red" style='display:inline'>(需要50积分)</text></text>
+    </view>
+  </view>
+
+  <view class='break'></view>
+  <view class='imageTwo productList' bindtap='goProductDeatil'>
+    <image src='../../../resources/images/home/pic2.png'></image>
+    <view class='word tc'>
+      <text class='f14'>立即兑换<text class="clr_red" style='display:inline'>(需要50积分)</text></text>
+    </view>
+  </view>
+
+  <view class='break'></view>
+  <view class='imageTwo productList' bindtap='goProductDeatil'>
+    <image src='../../../resources/images/home/pic2.png'></image>
+    <view class='word tc'>
+      <text class='f14'>立即兑换<text class="clr_red" style='display:inline'>(需要50积分)</text></text>
+    </view>
+  </view>
+
+</view>

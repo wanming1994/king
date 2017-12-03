@@ -10,7 +10,7 @@
   </view>
 
   <view class="memberRadius lineItem flex f14">
-    <view class="flex-item lineItem lineItem_access" style='border-right:1px solid #666;'>
+    <view class="flex-item lineItem lineItem_access" style='border-right:1px solid #666;' bindtap='goExchange'>
       <view>
         <view>积分兑换</view>
         <view>0</view>
@@ -32,7 +32,7 @@
     <view class="right"></view>
   </view>
 
-  <view class="memberRadius lineItem lineItem_access f14" style='padding:3%;'>
+  <view class="memberRadius lineItem lineItem_access f14" style='padding:3%;' bindtap='goShare'>
     <view class="center">分享推广</view>
     <view class="clr_lightGray">您的口碑价值百万</view>
     <view class="right"></view>
@@ -70,14 +70,15 @@
       <view class="center">帮助中心</view>
       <view class="right"></view>
     </view>
-    <view class="lineItem lineItem_access ">
-      <view class="center">当前版本</view>
+    <view class=" lineItem lineItem_access borderA" bindtap='bindPhone'>
+      <view class="center">绑定手机号</view>
+      <view class="clr_lightGray f12">未绑定</view>
       <view class="right"></view>
     </view>
+     <view class="lineItem lineItem_access ">
+      <view class="center">当前版本</view>
+      <view class="right clr_lightGray f12">V1.1</view>
+    </view>
   </view>
-  <view class="memberRadius lineItem lineItem_access f14" style='padding:3%;'>
-    <view class="center">绑定手机号</view>
-    <view class="clr_lightGray">1232</view>
-    <view class="right"></view>
-  </view>
+
 </view>

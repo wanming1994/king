@@ -9,6 +9,8 @@
     "pages/pay/success",
     "pages/pay/pay",
     "pages/member/member",
+    "pages/member/bind/bind",
+    "pages/member/exchange/exchange",
     "pages/member/influence/influence",
     "pages/member/share/share",
     "pages/member/info/info",
@@ -34,7 +36,6 @@
         "iconPath": "/resources/images/tabBar/influence.png",
         "selectedIconPath": "/resources/images/tabBar/influence-sel.png"
       },
-
       {
         "pagePath": "pages/member/member",
         "text": "我的",

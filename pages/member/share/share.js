@@ -29,7 +29,7 @@ Page({
   },
 
   //分享
-  shareFriend: function (res) {
+  onShareAppMessage: function (res) {
     var that = this;
     if (res.from === 'button') {
       // 来自页面内转发按钮

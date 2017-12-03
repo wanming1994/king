@@ -141,7 +141,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 
 .clr_red {
-  color: red;
+  color: red!important;
 }
 
 .clr_gold {
