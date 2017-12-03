@@ -1,0 +1,270 @@
+page {
+  background: #fff;
+}
+
+.container {
+  padding-bottom: 100rpx;
+}
+
+.number {
+  width: 100%;
+  text-align: center;
+}
+
+.checkout {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.checkout>view {
+  flex: 1;
+  padding: 0 1%;
+  text-align: center;
+  line-height: 2;
+}
+
+.checkout>view view+view {
+  display: flex;
+  position: relative;
+}
+
+.checkout image {
+  display: block;
+  width: 50%;
+  margin: 0 0.25%;
+  height: 200rpx;
+}
+
+.address {
+  border: 1px solid #eee;
+  padding: 5% 2%;
+}
+
+.lineItem {
+  align-items: center;
+}
+
+.selected .left {
+  margin-right: 60rpx;
+}
+
+.selected .right.amount {
+  display: flex;
+  flex-direction: row;
+}
+
+.amount {
+  display: flex;
+  width: 180rpx;
+  position: relative;
+}
+
+.amount::after {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.amount button, .amount input {
+  width: 60rpx;
+  height: 60rpx !important;
+  min-height: 60rpx !important;
+  padding: 0;
+  margin: 0;
+  line-height: 60rpx !important;
+  background: #fff;
+  text-align: center;
+  background: transparent;
+  z-index: 999;
+}
+
+.amount button::after {
+  border: none !important;
+}
+
+.amount input {
+  display: block;
+  position: relative;
+}
+
+.amount input::after {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  overflow-x: scroll;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+}
+
+.buy {
+  background: #ff666a;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #fff;
+  text-align: center;
+}
+
+.actionMask {
+  /* position: absolute; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  box-sizing: border-box;
+}
+
+.actionContent {
+  /* position: absolute; */
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  left: 0;
+  bottom: 0;
+  z-index: 10002;
+}
+
+.actionTitle {
+  padding: 0 20rpx;
+}
+
+view {
+  overflow: visible;
+}
+
+.actionTitle .left image {
+  width: 160rpx;
+  height: 160rpx;
+  position: relative;
+  top: -40rpx;
+}
+
+.actionTitle .center {
+  padding-left: 20rpx;
+}
+
+.actionTitle .right image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.actionSpecifications {
+  padding: 2% 20rpx;
+}
+
+.actionItemBtn {
+  padding: 20rpx 0;
+}
+
+.actionItemBtn text {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  margin: 0 20rpx 20rpx 0;
+  white-space: nowrap;
+  background: #efeff4;
+  color: #999;
+  border-radius: 12rpx;
+}
+
+.actionItemBtn text.active {
+  background: #ffa73d !important;
+  color: #fff !important;
+}
+
+.actionItemBtn text.canTap {
+  color: #000;
+}
+
+.actionNumber {
+  padding: 2% 20rpx;
+}
+
+.actionNumber .amount {
+  display: flex;
+  width: 210rpx;
+  position: relative;
+}
+
+.actionNumber .amount::after {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.actionNumber .amount input {
+  display: block;
+  position: relative;
+}
+
+.actionNumber .amount input::after {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  overflow-x: scroll;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+}
+
+.actionNumber .amount button, .amount input {
+  width: 70rpx;
+  height: 70rpx !important;
+  min-height: 70rpx !important;
+  padding: 0;
+  margin: 0;
+  line-height: 70rpx !important;
+  background: #fff;
+  text-align: center;
+  background: transparent;
+  z-index: 999;
+}
+
+.actionNumber .amount button::after {
+  border: none !important;
+}
+
+.defaultBtn {
+  margin: 20rpx auto 60rpx;
+}

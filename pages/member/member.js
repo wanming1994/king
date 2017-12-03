@@ -13,6 +13,11 @@ Page({
   onShow: function () {
     
   },
+  getGoods(){
+    util.navigateTo({
+      url: 'getGoods/getGoods',
+    })
+  },
   //个人资料
   toInfo:function(){
     util.navigateTo({

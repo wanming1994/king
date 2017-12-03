@@ -26,7 +26,7 @@
     </view>
   </view>
 
-  <view class="memberRadius lineItem lineItem_access f14" style='padding:3%;'>
+  <view class="memberRadius lineItem lineItem_access f14" style='padding:3%;' bindtap="getGoods">
     <view class="center">商品提货</view>
     <view class="clr_lightGray">点击商品提货</view>
     <view class="right"></view>

@@ -1,0 +1,103 @@
+<view class="container">
+  <view class="number f20 padding2 border_bottom">
+    共有200包可提
+  </view>
+  <view class="checkout">
+    <view>
+      <view>自行购买</view>
+      <view>
+        <image src="/resources/images/member/nbs.jpg"></image>
+        <image src="/resources/images/member/nbs.jpg"></image>
+      </view>
+    </view>
+    <view>
+      <view>会员赠送</view>
+      <view>
+        <image src="/resources/images/member/nbs.jpg"></image>
+        <image src="/resources/images/member/nbs.jpg"></image>
+      </view>
+    </view>
+    <view>
+      <view>分红赠送</view>
+      <view>
+        <image src="/resources/images/member/nbs.jpg"></image>
+        <image src="/resources/images/member/nbs.jpg"></image>
+      </view>
+    </view>
+  </view>
+  <view class="address padding2 border_bottom overtwo">
+    地址：安徽省合肥市中绿广场
+  </view>
+  <view class="selectedList">
+    <view class="selected lineItem border_bottom">
+      <view class="left clr_lightGray">
+        自行购买
+      </view>
+      <view class="center">
+        规格：XL
+      </view>
+      <view class="right amount">
+        <button>-</button>
+        <input value="0" class="f12" type="number" />
+        <button>+</button>
+      </view>
+    </view>
+  </view>
+  <view class="buy f16">
+    结算
+  </view>
+
+  <view class="actionMask" catchtouchmove="catchActionMask" hidden="{{!showAction}}" bindtap="toggleMask"></view>
+  <view class="actionContent" hidden="{{!showAction}}">
+    <view class="actionTitle border_bottom lineItem">
+      <view class="left">
+        <image src="{{selectData.thumbnail}}"></image>
+      </view>
+      <view class="center f14">
+        <view class="f16 clr_orange bold">￥{{selectData.price}}</view>
+        <view>库存{{selectData.availableStock}}件</view>
+        <view>已选
+          <text class="clr_orange">{{selectData.specifications[0].name}} {{selectData.specifications[1].name}}</text>
+        </view>
+      </view>
+      <view class="right" bindtap="toggleMask">
+        <image src="/resources/images/icon/close.png"></image>
+      </view>
+    </view>
+    <wxs module="canClickFn">
+      module.exports = function(arr, id, selectArr) {
+        if (selectArr.length == 1) {
+          return true;
+        }
+        if (!arr) {
+          return false;
+        }
+        for (var i = 0; i < arr.length; i++) {
+          if (arr[i] == id) {
+            return true;
+          }
+        }
+        return false;
+      }
+    </wxs>
+    <view class="actionSpecifications border_bottom">
+      <block wx:for="{{specification.all}}" wx:key="id" wx:for-index="idx">
+        <view class="actionItemTitle f16" data-id="{{item.id}}">{{item.name}}：</view>
+        <view class="actionItemBtn f16">
+          <block wx:for="{{item.specificationValues}}" wx:for-item="citem" wx:key="id">
+            <text bindtap="checkout" class="{{selectArr[idx] == citem.id?'active':''}} {{canClickFn(canClick[selectArr[1-idx]],citem.id,selectArr)?'canTap':'' }}" data-idx="{{idx}}" data-can="{{canClickFn(canClick[selectArr[1-idx]],citem.id,selectArr)}}" data-id="{{citem.id}}">{{citem.name}}</text>
+          </block>
+        </view>
+      </block>
+    </view>
+    <view class="actionNumber border_bottom lineItem" style="align-items:center;">
+      <view class="f16 ">购买数量:</view>
+      <view class="amount">
+        <button data-type="reduce" bindtap="revisenum">-</button>
+        <input class="f12 " type="number " data-type="input" bindchange="revisenum" value="{{selectData.quantity}}" />
+        <button data-type="add" bindtap="revisenum">+</button>
+      </view>
+    </view>
+    <button class="defaultBtn " bindtap="paySubmit">确认</button>
+  </view>
+</view>
