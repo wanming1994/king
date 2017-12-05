@@ -58,6 +58,12 @@
 					"name": "积分兑换",
 					"pathName": "pages/member/exchange/exchange",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商品提货",
+					"pathName": "pages/member/getGoods/getGoods",
+					"query": ""
 				}
 			]
 		}

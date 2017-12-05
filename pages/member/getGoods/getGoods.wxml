@@ -6,22 +6,22 @@
     <view>
       <view>自行购买</view>
       <view>
-        <image src="/resources/images/member/nbs.jpg"></image>
-        <image src="/resources/images/member/nbs.jpg"></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
       </view>
     </view>
     <view>
       <view>会员赠送</view>
       <view>
-        <image src="/resources/images/member/nbs.jpg"></image>
-        <image src="/resources/images/member/nbs.jpg"></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
       </view>
     </view>
     <view>
       <view>分红赠送</view>
       <view>
-        <image src="/resources/images/member/nbs.jpg"></image>
-        <image src="/resources/images/member/nbs.jpg"></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
       </view>
     </view>
   </view>
@@ -44,7 +44,8 @@
     </view>
   </view>
   <view class="buy f16">
-    结算
+    <view class='buyAmount'>实付款：8元</view>
+    <view class='buySubmit'>结算</view>
   </view>
 
   <view class="actionMask" catchtouchmove="catchActionMask" hidden="{{!showAction}}" bindtap="toggleMask"></view>
