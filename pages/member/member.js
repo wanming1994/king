@@ -47,5 +47,13 @@ Page({
     util.navigateTo({
       url: 'bind/bind',
     })
-  }
+  },
+
+    //我的订单
+    toOrder: function (e) {
+        var id = e.currentTarget.dataset.current
+        util.navigateTo({
+            url: 'order/order?id=' + id,
+        })
+    },
 })

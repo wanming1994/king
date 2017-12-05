@@ -34,7 +34,7 @@
             <view class="flex">
               <view>1231</view>
               <view class="star">
-                <image src="/resources/images/icon/sstar.png"></image>
+                <image src="/resources/images/influence/priased.png"></image>
               </view>
             </view>
           </view>

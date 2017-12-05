@@ -39,23 +39,23 @@
   </view>
 
   <view class="memberRadius flex itemCenter tc f12 padding2">
-    <view class="flex-item">
+    <view class="flex-item" data-current="1" bindtap="toOrder">
       <image class="iconImg" src="../../resources/images/member/unpay.png"></image>
       <view>待付款</view>
     </view>
-    <view class="flex-item">
+    <view class="flex-item" data-current="2" bindtap="toOrder">
       <image class="iconImg" src="../../resources/images/member/unshipped.png"></image>
       <view>待发货</view>
     </view>
-    <view class="flex-item">
+    <view class="flex-item" data-current="3" bindtap="toOrder" >
       <image class="iconImg" src="../../resources/images/member/unreceived.png"></image>
       <view>待收货</view>
     </view>
-    <view class="flex-item">
+    <view class="flex-item" data-current="4" bindtap="toOrder">
       <image class="iconImg" src="../../resources/images/member/complete.png"></image>
       <view>已完成</view>
     </view>
-    <view class="flex-item">
+    <view class="flex-item" data-current="0" bindtap="toOrder">
       <image class="iconImg" src="../../resources/images/member/all.png"></image>
       <view>全部</view>
     </view>
