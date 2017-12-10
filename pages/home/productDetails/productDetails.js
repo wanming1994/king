@@ -44,35 +44,20 @@ Page(Object.assign({}, swiperAutoHeight, {
     return false;
   },
   onLoad: function (options) {
-    let id = 7793
     let that = this;
-    // let id = options.id;
+    let id = options.id;
     this.data.id = id;
     var extension = options.extension;
-    if (extension) {
-      wx.setStorageSync('extension', extension)
-    }
     new Product((res) => {
       wx.setNavigationBarTitle({
-        title: res.data.name
+        title: res.data.info.name
       })
-      let select = res.data.specification,
-        all = res.data.specifications,
-        selectList = res.data.productSpecifications,
-        selectArr = []
-      if (select.length == 1) {
-        selectArr = [select[0].specificationValueId]
-      } else if (select.length == 2) {
-        selectArr = [select[0].specificationValueId, select[1].specificationValueId]
-      }
-
       // var attributes = res.data.attributes;
       var introduction = res.data.introduction;
       var attributesList = res.data.attributes;
       this.setData({
         title: res.data.name,
         productData: res.data,
-        selectArr: selectArr,
         specification: {
           select: res.data.specification,
           all: res.data.specifications,
@@ -85,29 +70,6 @@ Page(Object.assign({}, swiperAutoHeight, {
         attributesList: res.data.attributes
       })
 
-      if (res.data.review && res.data.review.anonym){
-        this.setData({
-          reviewName: res.data.review.nickName.replace(/^(.).*/, "$1***")
-        })
-      }else{
-        this.setData({
-          reviewName: res.data.review ? res.data.review.nickName:''
-        })
-      }
-      if (res.data.attributes.length < 1) {
-        that.setData({
-          showAttribute: false
-        })
-      } else {
-        that.setData({
-          showAttribute: true
-        })
-      }
-
-      this.getSpecifications();
-      // if (attributes.length != 0) {
-        // WxParse.wxParse('attributes', 'html', attributes, that, 5);
-      // }
       if (introduction != null) {
         WxParse.wxParse('introduction', 'html', introduction, that, 5);
       }
@@ -119,182 +81,18 @@ Page(Object.assign({}, swiperAutoHeight, {
     }).view({
       id: id
     })
-
-
-
-
-    //小店推荐商品
-    new Product((data) => {
-      this.setData({
-        tenantRecomList: data.data,
-        pageModel: data.pageModel
-      })
-    }).recommend({
-      id: this.data.id,
-      pageNumber: 1,
-      pageSize: 6
-    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    if (app.globalData.LOGIN_STATUS) {
-      //更新购物车数量
-      new Cart(function (data) {
-        that.setData({
-          cartCount: data.data
-        })
-      }).count({
-        tenantId: app.globalData.tenantId
-      })
-    } else {
-      app.loginOkCallback = res => {
-        //更新购物车数量
-        new Cart(function (data) {
-          that.setData({
-            cartCount: data.data
-          })
-        }).count({
-          tenantId: app.globalData.tenantId
-        })
-      }
-    }
+  
   },
-  //选择规格
-  checkout(e) {
-    let id = e.currentTarget.dataset.id,
-      idx = e.currentTarget.dataset.idx,
-      can = e.currentTarget.dataset.can
-    if (!can) return
-    this.data.selectArr[idx] = id
-    this.setData({
-      selectArr: this.data.selectArr
-    })
-    this.getSpecifications()
-  },
-  revisenum(e) {
-    let stype = e.currentTarget.dataset.type,
-      min = this.data.selectData.minReserve,
-      max = this.data.selectData.availableStock,
-      quantity = this.data.selectData.quantity
-
-    switch (stype) {
-      case 'input':
-        quantity = (!isNaN(e.detail.value) && e.detail.value >= min && e.detail.value <= max) ? e.detail.value : this.data.selectData.quantity
-        break;
-      case 'add':
-        quantity = quantity + 1 <= max ? (quantity < min ? min : ++quantity) : max
-        break;
-      case 'reduce':
-        quantity = quantity - 1 < min ? 0 : --quantity
-        break;
-    }
-    this.data.selectData.quantity = quantity
-    this.setData({
-      selectData: this.data.selectData
-    })
-  },
-  //可选组合判断并修改值
-  getSpecifications() {
-    let selectArr = this.data.selectArr,
-      selectList = this.data.specification.selectList,
-      canClick = {},
-      selectData = {},
-      len = selectArr.length
-    if (len === 0) {
-      selectData = this.data.specification.selectList[0]
-      selectData.quantity = selectData.cartItemQuantity == 0 ? selectData.minReserve : selectData.cartItemQuantity
-      this.setData({
-        selectData: selectData
-      })
-    } else if (len === 1) {
-
-      for (let i = 0, j = selectList.length; i < j; i++) {
-        if (selectList[i].specifications[0].specificationValueId == selectArr[0]) {
-          selectData = selectList[i]
-          break
-        }
-      }
-      selectData.quantity = selectData.cartItemQuantity == 0 ? selectData.minReserve : selectData.cartItemQuantity
-      this.setData({
-        selectData: selectData
-      })
-    } else if (len === 2) {
-      selectArr.forEach((val, idx) => {
-        selectList.forEach((vals, idxs) => {
-          if (
-            val == vals.specifications[idx].specificationValueId
-          ) {
-            if (
-              selectArr[1 - idx]
-              ==
-              vals.specifications[1 - idx].specificationValueId
-            ) {
-              selectData = vals
-            }
-            if (!canClick[val]) canClick[val] = []
-            canClick[val].push(vals.specifications[1 - idx].specificationValueId)
-          }
-        })
-      })
-      this.data.canClick = canClick
-      selectData.quantity = selectData.cartItemQuantity == 0 ? selectData.minReserve : selectData.cartItemQuantity
-      this.data.selectData = selectData
-      this.setData({
-        canClick: this.data.canClick,
-        selectData: this.data.selectData
-      })
-    }
-  },
-  //进入购物车
-  toCart() {
-    this.setData({
-      showAction: false
-    })
-    util.navigateTo({
-      url: '/pages/cart/index'
-    })
-  },
-  //收藏
-  favorite() {
-    if (this.data.productData.hasFavorite) {
-      new Product((res) => {
-        this.data.productData.hasFavorite = false;
-        wx.showToast({
-          title: '取消成功',
-          duration: 1000
-        })
-        this.setData({
-          productData: this.data.productData
-        })
-      }).delFavorite({
-        id: this.data.id
-      })
-    } else {
-      new Product((res) => {
-        this.data.productData.hasFavorite = true;
-        wx.showToast({
-          title: '收藏成功',
-          duration: 1000
-        })
-        this.setData({
-          productData: this.data.productData
-        })
-      }).favorite({
-        id: this.data.id
-      })
-    }
-  },
+ 
   //弹出框toggle
 
   toggleMask(e) {
-
-    // this.data._swiper.top.videoShow = !this.data.showAction;
-    this.data._swiper.top.videoShow = true;
-
     this.setData({
       showAction: !this.data.showAction,
       buyType: e.currentTarget.dataset.type,

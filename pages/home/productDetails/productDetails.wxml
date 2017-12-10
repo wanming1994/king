@@ -8,16 +8,21 @@
 <button loading="{{!pageLoad}}" hidden="{{pageLoad}}" class="f14 loadBtn clr_lightGray">加载中</button>
 
 <view hidden="{{!pageLoad}}"  style='padding-bottom:104rpx;'>
-  <template is="adSwiper" wx:if="{{productData.productImages}}" data="{{_swiper,showDot:productData.productImages.length>1,name:'top',data:productData.productImages,key:'source',videoCover:videoCover,videoUrl:videoUrl}}"></template>
+ <swiper circular indicator-active-color="rgba(255,255,255,0.6)" indicator-dots="{{showDot?showDot:false}}" autoplay="{{autoplay?autoplay:true}}" interval="{{interval?interval:2000}}" style="height:{{name?_swiper[name].height+'px':_swiper['swiper'].height+'px'}};"
+    class="adSwiper">
+      <swiper-item>
+        <image bindtap="{{fn?fn:'adSwiperTap'}}" data-linkId='{{item.linkId?item.linkId:""}}' data-name="{{name?name:'swiper'}}" bindload="_adswiperimageload" mode="widthFix" src="{{productData.info.primary_pic_url}}"></image>
+      </swiper-item>
+  </swiper>
+  <!-- <template is="adSwiper" wx:if="{{productData.info.primary_pic_url}}" data="{{_swiper,showDot:productData.info.primary_pic_url,name:'top',data:productData.info.primary_pic_url,key:'source',videoCover:videoCover,videoUrl:videoUrl}}"></template> -->
   <view class="title box-b clr_titleWhite f18 padding2">
-    <view>{{productData.name}}</view>
+    <view>{{productData.info.name}}</view>
     <view class="lineItem padding0">
       <view class="left lineH_two" style='align-items:center;'>
-        <text class="clr_orange f16">￥{{productData.price}}</text>
-        <text class="sumdel f14 clr_lightGray" hidden="{{productData.price>=productData.marketPrice}}">￥{{productData.marketPrice}}</text>
+        <text class="clr_orange f16">￥{{productData.info.retail_price}}</text>
       </view>
       <view class="center"></view>
-      <view class="right f14 clr_lightGray">{{productData.hits}}人访问 月销{{productData.monthSales}}件</view>
+      <view class="right f14 clr_lightGray"></view>
     </view>
   </view>
  

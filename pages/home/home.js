@@ -9,26 +9,27 @@ let swiperAutoHeight = require("../../template/swiper/swiper.js"),
   app = getApp(),
   util = require("../../utils/util.js")
 
-Page( {
+Page(Object.assign({}, {
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+
   },
 
   //邀请
-  joinUs:function(){
+  joinUs: function () {
     util.navigateTo({
       url: 'join/join'
     })
   },
 
   //商品详情
-  goProductDeatil:function(){
+  goProductDeatil: function (e) {
+    var id = e.currentTarget.dataset.id;
     util.navigateTo({
-      url: '/pages/home/productDetails/productDetails',
+      url: '/pages/home/productDetails/productDetails?id=' + id,
     })
   },
 
@@ -36,10 +37,25 @@ Page( {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-   
+  onLoad: function (options) {      
+    if (app.globalData.LOGIN_STATUS) {
+      this.getData()
+    } else {      
+      app.loginOkCallbackList.push(() => {
+        this.getData()
+      })
+    }
   },
 
+  getData: function () {
+    var that=this;
+    new Product(function (data) {
+      that.setData({
+        productHotList:data.data.hotGoodsList
+      })
+      console.log(data)
+    }).list()
+  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -70,4 +86,4 @@ Page( {
       }
     }
   }
-})
+}))

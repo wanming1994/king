@@ -7,7 +7,7 @@
       <image src='../../resources/images/home/title_right.png' class=' title_right'></image>
     </view>
   </view>
-   <view class='circle'>
+  <view class='circle'>
     <view class='circle1 tc'>
       <image src='../../resources/images/home/brand.png'></image>
       <text class='f14 '>品牌</text>
@@ -28,9 +28,10 @@
       <image src='../../resources/images/home/company.png'></image>
       <text class='f14 '>公司介绍</text>
     </view>
-  </view> 
+  </view>
 
-  <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" poster="http://cdn.tiaohuo.com/upload/image/201711/8daf57ca-f144-444d-a56f-5e5494de40a3.png@375w_1l">
+  <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
+    poster="http://cdn.tiaohuo.com/upload/image/201711/8daf57ca-f144-444d-a56f-5e5494de40a3.png@375w_1l">
   </video>
 
 
@@ -45,21 +46,14 @@
     </view>
   </view>
 
-  <view class='break'></view>
-
-
-  <view class='imageTwo productList' bindtap='goProductDeatil'>
-    <image src='../../resources/images/home/pic2.png'></image>
-    <view class='word tc'>
-      <text class='f14 '>购买大王天使纸尿裤</text>
+  <block wx:for="{{productHotList}}" wx:key="id" wx:for-item="item">
+    <view class='break'></view>
+    <view class='imageTwo productList' bindtap='goProductDeatil'  data-id="{{item.id}}">
+      <image src='{{item.primary_pic_url}}'></image>
+      <view class='word tc'>
+        <text class='f14 overone'>购买{{item.name}}</text>
+      </view>
     </view>
-  </view>
+  </block>
 
-  <view class='break'></view>
-  <view class='imageThree productList' bindtap='goProductDeatil'>
-    <image src='../../resources/images/home/pic3.png'></image>
-    <view class='word tc'>
-      <text class='f14 '>购买大王维E纸尿裤</text>
-    </view>
-  </view>
 </view>

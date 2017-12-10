@@ -1,6 +1,19 @@
 let Ajax = require('./ajax.js')
 
 module.exports = class Product extends Ajax {
+  
+
+  /**
+  * 商品热销列表
+  *
+  */
+  list(data) {
+    super.get({
+      url: 'index/index',
+      data: data
+    });
+  }
+
 
   /**
    * 商品详情
@@ -8,9 +21,8 @@ module.exports = class Product extends Ajax {
    */
   view(data) {
     super.get({
-      url: 'applet/product/view.jhtml',
+      url: 'goods/detail',
       data: data
-
     });
   }
 
