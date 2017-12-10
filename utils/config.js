@@ -12,5 +12,5 @@ module.exports = {
   //上传临时文件接口地址
   UPLOAD_TEMP_URL: "applet/file/upload_temp.jhtml",
   //小程序id
-  APPID: "wx441dd0c007894173"
+  APPID: "wxd32c6f0a8ce28e23"
 }

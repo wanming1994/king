@@ -13,29 +13,23 @@ App({
   loginOkCallbackList: [],
   onLaunch(opData) {
     let that = this
+    console.log('wx.log')
     wx.login({
       success(data) {
         // 用户登陆成功
-        tryLogin(data.code, (res) => {
-          that.globalData.LOGIN_STATUS = true
-          // new Member(res => {
-          //   that.globalData.memberInfo = res.data
-          //   wx.setStorageSync('memberInfo', res.data)
-          //   if (that.loginOkCallback) {
-          //     that.loginOkCallback()
-          //   }
-          //   if (that.loginOkCallbackList.length > 0) {
-          //     for (let i = 0; i < that.loginOkCallbackList.length; i++) {
-          //       if (typeof that.loginOkCallbackList[i] === 'function') {
-          //         that.loginOkCallbackList[i]()
-          //       }
-          //       continue
-          //     }
-          //   }
-          // }).view({
-          //   appid: config.APPID
-          // })
+        wx.getUserInfo({
+          withCredentials: true,
+          success: function (inf) {
+            var info = inf.userInfo
+            tryLogin(data.code,info, (res) => {
+              that.globalData.LOGIN_STATUS = true
+            })
+          },
+          fail: function (err) {
+            reject(err);
+          }
         })
+       
       }
     })
   }
@@ -44,7 +38,7 @@ App({
 //登陆，获取sessionid
 var tryLogin = (function () {
   let count = 0
-  return function (code, fn) {
+  return function (code, info, fn) {
     if (count >= config.LOGIN_ERROR_TRY_COUNT) {
       util.errShow('登陆超时')
       return
@@ -64,7 +58,8 @@ var tryLogin = (function () {
     }, function (err) {
       util.errShow('登陆失败', 1000)
     }).login({
-      code: code
+      code: code,
+      userInfo: info
     })
   }
 })()

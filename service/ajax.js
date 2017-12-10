@@ -24,7 +24,7 @@ module.exports = class Ajax {
       method: method,
       data: options.data,
       header: Object.assign({
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
         'Cookie': 'JSESSIONID=' + wx.getStorageSync('JSESSIONID')
       }, options.header),
       success(res) {
