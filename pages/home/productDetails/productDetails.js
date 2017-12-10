@@ -53,7 +53,7 @@ Page(Object.assign({}, swiperAutoHeight, {
         title: res.data.info.name
       })
       // var attributes = res.data.attributes;
-      var introduction = res.data.introduction;
+      var introduction = res.data.info.goods_desc;
       var attributesList = res.data.attributes;
       this.setData({
         title: res.data.name,
@@ -64,9 +64,7 @@ Page(Object.assign({}, swiperAutoHeight, {
           selectList: res.data.productSpecifications,
           // attributes: res.data.attributes,
         },
-        introduction: res.data.introduction,
-        videoCover: res.data.videoCover,
-        videoUrl: res.data.videoUrl,
+        introduction: res.data.info.goods_desc,
         attributesList: res.data.attributes
       })
 

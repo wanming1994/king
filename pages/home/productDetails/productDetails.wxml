@@ -7,12 +7,12 @@
 
 <button loading="{{!pageLoad}}" hidden="{{pageLoad}}" class="f14 loadBtn clr_lightGray">加载中</button>
 
-<view hidden="{{!pageLoad}}"  style='padding-bottom:104rpx;'>
- <swiper circular indicator-active-color="rgba(255,255,255,0.6)" indicator-dots="{{showDot?showDot:false}}" autoplay="{{autoplay?autoplay:true}}" interval="{{interval?interval:2000}}" style="height:{{name?_swiper[name].height+'px':_swiper['swiper'].height+'px'}};"
+<view hidden="{{!pageLoad}}" style='padding-bottom:104rpx;'>
+  <swiper circular indicator-active-color="rgba(255,255,255,0.6)" indicator-dots="{{showDot?showDot:false}}" autoplay="{{autoplay?autoplay:true}}" interval="{{interval?interval:2000}}" style="height:{{name?_swiper[name].height+'px':_swiper['swiper'].height+'px'}};"
     class="adSwiper">
-      <swiper-item>
-        <image bindtap="{{fn?fn:'adSwiperTap'}}" data-linkId='{{item.linkId?item.linkId:""}}' data-name="{{name?name:'swiper'}}" bindload="_adswiperimageload" mode="widthFix" src="{{productData.info.primary_pic_url}}"></image>
-      </swiper-item>
+    <swiper-item>
+      <image bindtap="{{fn?fn:'adSwiperTap'}}" data-linkId='{{item.linkId?item.linkId:""}}' data-name="{{name?name:'swiper'}}" bindload="_adswiperimageload" mode="widthFix" src="{{productData.info.primary_pic_url}}"></image>
+    </swiper-item>
   </swiper>
   <!-- <template is="adSwiper" wx:if="{{productData.info.primary_pic_url}}" data="{{_swiper,showDot:productData.info.primary_pic_url,name:'top',data:productData.info.primary_pic_url,key:'source',videoCover:videoCover,videoUrl:videoUrl}}"></template> -->
   <view class="title box-b clr_titleWhite f18 padding2">
@@ -25,12 +25,13 @@
       <view class="right f14 clr_lightGray"></view>
     </view>
   </view>
- 
 
-  <view class='product_introduction' wx:if="{{!productData.introduction}}">
+
+  <view class='product_introduction' wx:if="{{introduction}}">
     <view class='title f14 tc'>宝贝详情</view>
     <view class="wxParse content">
       <template is="wxParse" data="{{wxParseData:introduction.nodes}}" />
+      <!-- <template is="wxParse" data="{{wxParseData:introduction.nodes}}" /> -->
     </view>
   </view>
 </view>
@@ -41,10 +42,10 @@
       <image src="/resources/images/icon/kefu.png"></image>
       <view class="">客服</view>
     </button>
-    
+
   </view>
   <view class="clr-white f14 right">
-  
+
     <view style="background:#ff666a;" data-type="buy" bindtap="toggleMask">
       立即购买
     </view>

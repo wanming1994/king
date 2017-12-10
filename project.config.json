@@ -42,10 +42,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "商品详情",
 					"pathName": "pages/home/productDetails/productDetails",
-					"query": ""
+					"query": "id=1152101"
 				},
 				{
 					"id": -1,

@@ -19,6 +19,7 @@
 }
 .wxParse view{
     word-break:break-all; overflow:auto;
+    width: 100% !important;
 }
 .wxParse-inline{
     display: inline;
@@ -96,6 +97,7 @@
 .wxParse-img{
     /*background-color: #efefef;*/
     overflow: hidden;
+    display: block
 }
 
 .wxParse-blockquote {
