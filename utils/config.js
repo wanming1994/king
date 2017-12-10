@@ -2,7 +2,7 @@
 
 module.exports = {
   //ajax请求baseurl
-  BASE_URL: "https://dev.tiaohuo.com/",
+  BASE_URL: "http://47.104.102.54/platform-admin/api/",
   //登陆失败后尝试重复登陆次数
   LOGIN_ERROR_TRY_COUNT: 5,
   //登陆失败后多长时间间隔重新发起登陆请求

@@ -8,7 +8,7 @@ module.exports = class Member extends Ajax {
    */
   login(data) {
     super.post({
-      url: 'applet/login.jhtml',
+      url: 'auth/login_by_weixin',
       hideErrorTip: true,
       data: data
     })

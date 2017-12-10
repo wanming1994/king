@@ -15,29 +15,29 @@ App({
     let that = this
     wx.login({
       success(data) {
-        //用户登陆成功
-        // tryLogin(data.code, (res) => {
-        //   that.globalData.LOGIN_STATUS = true
-        //   that.globalData.tenantId = res.data.tenantId
-        //   wx.setStorageSync('tenantId', res.data.tenantId)
-        //   new Member(res => {
-        //     that.globalData.memberInfo = res.data
-        //     wx.setStorageSync('memberInfo', res.data)
-        //     if (that.loginOkCallback) {
-        //       that.loginOkCallback()
-        //     }
-        //     if (that.loginOkCallbackList.length > 0) {
-        //       for (let i = 0; i < that.loginOkCallbackList.length; i++) {
-        //         if (typeof that.loginOkCallbackList[i] === 'function') {
-        //           that.loginOkCallbackList[i]()
-        //         }
-        //         continue
-        //       }
-        //     }
-        //   }).view({
-        //     appid: config.APPID
-        //   })
-        // })
+        // 用户登陆成功
+        tryLogin(data.code, (res) => {
+          that.globalData.LOGIN_STATUS = true
+          that.globalData.tenantId = res.data.tenantId
+          wx.setStorageSync('tenantId', res.data.tenantId)
+          new Member(res => {
+            that.globalData.memberInfo = res.data
+            wx.setStorageSync('memberInfo', res.data)
+            if (that.loginOkCallback) {
+              that.loginOkCallback()
+            }
+            if (that.loginOkCallbackList.length > 0) {
+              for (let i = 0; i < that.loginOkCallbackList.length; i++) {
+                if (typeof that.loginOkCallbackList[i] === 'function') {
+                  that.loginOkCallbackList[i]()
+                }
+                continue
+              }
+            }
+          }).view({
+            appid: config.APPID
+          })
+        })
       }
     })
   }
@@ -64,11 +64,9 @@ var tryLogin = (function () {
         }, config.LOGIN_ERROR_TRY_TIMEOUT)
       }
     }, function (err) {
-      util.errShow('登陆失败', 50000)
+      util.errShow('登陆失败', 1000)
     }).login({
-      js_code: code,
-      cid: 1,
-      appid:config.APPID
+      code: code
     })
   }
 })()
