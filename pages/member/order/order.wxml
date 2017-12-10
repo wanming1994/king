@@ -5,7 +5,7 @@
     <view class="f14 swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-type="unpaid" data-current="1" bindtap="swichNav">待支付</view>
     <view class="f14 swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-type="unshipped" data-current="2" bindtap="swichNav">待发货</view>
     <view class="f14 swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-type="unreciver" data-current="3" bindtap="swichNav">待收货</view>
-    <view class="f14 swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-type="unreview" data-current="4" bindtap="swichNav">待评价</view>
+    <view class="f14 swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-type="unreview" data-current="4" bindtap="swichNav">已完成</view>
   </view>
   <swiper current="{{currentTab}}" bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove' class="swiper-box" duration="0" style="height:{{winHeight - 50}}px;" bindchange="bindChange">
     <swiper-item>

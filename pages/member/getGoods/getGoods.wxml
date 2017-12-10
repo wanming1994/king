@@ -6,35 +6,64 @@
     <view>
       <view>自行购买</view>
       <view>
-        <image src="/resources/images/member/nbs.jpg"></image>
-        <image src="/resources/images/member/nbs.jpg"></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
       </view>
     </view>
     <view>
       <view>会员赠送</view>
       <view>
-        <image src="/resources/images/member/nbs.jpg"></image>
-        <image src="/resources/images/member/nbs.jpg"></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
       </view>
     </view>
     <view>
       <view>分红赠送</view>
       <view>
-        <image src="/resources/images/member/nbs.jpg"></image>
-        <image src="/resources/images/member/nbs.jpg"></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
+        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
       </view>
     </view>
   </view>
   <view class="address padding2 border_bottom overtwo">
-    地址：安徽省合肥市中绿广场
+    收货地址：安徽省合肥市中绿广场
   </view>
   <view class="selectedList">
     <view class="selected lineItem border_bottom">
       <view class="left clr_lightGray">
-        自行购买
+        <image src='../../../resources/images/member/nbs.jpg'></image>
       </view>
       <view class="center">
-        规格：XL
+        <view class='f16'>规格：XL</view>
+        <view class='f12 clr_lightGray buyType'>自行购买</view>
+      </view>
+      <view class="right amount">
+        <button>-</button>
+        <input value="0" class="f12" type="number" />
+        <button>+</button>
+      </view>
+    </view>
+    <view class="selected lineItem border_bottom">
+      <view class="left clr_lightGray">
+        <image src='../../../resources/images/member/nbs.jpg'></image>
+      </view>
+      <view class="center">
+        <view class='f16'>规格：XL</view>
+        <view class='f12 clr_lightGray buyType'>会员赠送</view>
+      </view>
+      <view class="right amount">
+        <button>-</button>
+        <input value="0" class="f12" type="number" />
+        <button>+</button>
+      </view>
+    </view>
+    <view class="selected lineItem border_bottom">
+      <view class="left clr_lightGray">
+        <image src='../../../resources/images/member/nbs.jpg'></image>
+      </view>
+      <view class="center">
+        <view class='f16'>规格：XL</view>
+        <view class='f12 clr_lightGray buyType'>分红赠送</view>
       </view>
       <view class="right amount">
         <button>-</button>
@@ -44,7 +73,8 @@
     </view>
   </view>
   <view class="buy f16">
-    结算
+    <view class='buyAmount'>实付款：8元</view>
+    <view class='buySubmit'>结算</view>
   </view>
 
   <view class="actionMask" catchtouchmove="catchActionMask" hidden="{{!showAction}}" bindtap="toggleMask"></view>
@@ -91,7 +121,7 @@
       </block>
     </view>
     <view class="actionNumber border_bottom lineItem" style="align-items:center;">
-      <view class="f16 ">购买数量:</view>
+      <view class="f16 ">提货数量:</view>
       <view class="amount">
         <button data-type="reduce" bindtap="revisenum">-</button>
         <input class="f12 " type="number " data-type="input" bindchange="revisenum" value="{{selectData.quantity}}" />

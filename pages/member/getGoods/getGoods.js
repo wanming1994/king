@@ -15,6 +15,22 @@ Page({
   
   },
 
+
+  select: function () {
+    this.setData({
+      showAction: true
+    })
+  },
+
+  //弹出框toggle
+
+  toggleMask(e) {
+    this.setData({
+      showAction: !this.data.showAction,
+      buyType: e.currentTarget.dataset.type,
+      _swiper: this.data._swiper
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,6 +1,4 @@
-page {
-  background: #fff;
-}
+
 
 .container {
   padding-bottom: 100rpx;
@@ -9,12 +7,14 @@ page {
 .number {
   width: 100%;
   text-align: center;
+  background: #fff;
 }
 
 .checkout {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
+  background: #fff;
 }
 
 .checkout>view {
@@ -39,6 +39,7 @@ page {
 .address {
   border: 1px solid #eee;
   padding: 5% 2%;
+  background: #fff;
 }
 
 .lineItem {
@@ -48,7 +49,13 @@ page {
 .selected .left {
   margin-right: 60rpx;
 }
-
+.selected .left  image{
+  width: 20vw;
+  height: 20vw;
+}
+.selected .buyType{
+  margin-top: 2vw;
+}
 .selected .right.amount {
   display: flex;
   flex-direction: row;
@@ -125,6 +132,16 @@ page {
   line-height: 100rpx;
   color: #fff;
   text-align: center;
+  display: flex;
+}
+.buy .buyAmount{
+  flex:3;
+  background: #fff;
+  color:#ff666a;
+  text-align: center;
+}
+.buy .buySubmit{
+  flex:1
 }
 
 .actionMask {
