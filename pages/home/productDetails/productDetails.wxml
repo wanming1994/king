@@ -27,7 +27,7 @@
   </view>
  
 
-  <view class='product_introduction' wx:if="{{productData.introduction}}">
+  <view class='product_introduction' wx:if="{{!productData.introduction}}">
     <view class='title f14 tc'>宝贝详情</view>
     <view class="wxParse content">
       <template is="wxParse" data="{{wxParseData:introduction.nodes}}" />
@@ -54,10 +54,10 @@
 <view class="actionContent" hidden="{{!showAction}}">
   <view class="actionTitle border_bottom lineItem">
     <view class="left">
-      <image src="{{selectData.thumbnail}}"></image>
+      <image src="{{productData.info.primary_pic_url}}"></image>
     </view>
     <view class="center f14">
-      <view class="f16 clr_orange bold">￥{{selectData.price}}</view>
+      <view class="f16 clr_orange bold">￥{{productData.info.retail_price}}</view>
       <view>库存{{selectData.availableStock}}件</view>
       <view>已选
         <text class="clr_orange">{{selectData.specifications[0].name}} {{selectData.specifications[1].name}}</text>
@@ -83,7 +83,7 @@
       return false;
     }
   </wxs>
-  <view class="actionSpecifications border_bottom">
+  <!-- <view class="actionSpecifications border_bottom">
     <block wx:for="{{specification.all}}" wx:key="id" wx:for-index="idx">
       <view class="actionItemTitle f16" data-id="{{item.id}}">{{item.name}}：</view>
       <view class="actionItemBtn f16">
@@ -92,12 +92,12 @@
         </block>
       </view>
     </block>
-  </view>
+  </view> -->
   <view class="actionNumber border_bottom lineItem" style="align-items:center;">
     <view class="f16 ">购买数量:</view>
     <view class="amount">
       <button data-type="reduce" bindtap="revisenum">-</button>
-      <input class="f12 " type="number " data-type="input" bindchange="revisenum" value="{{selectData.quantity}}" />
+      <input class="f12 " type="number " data-type="input" bindchange="revisenum" value="1" />
       <button data-type="add" bindtap="revisenum">+</button>
     </view>
   </view>
