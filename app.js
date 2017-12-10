@@ -20,7 +20,8 @@ App({
         wx.getUserInfo({
           withCredentials: true,
           success: function (inf) {
-            var info = inf.userInfo
+            console.log(inf)
+            var info = inf
             tryLogin(data.code,info, (res) => {
               that.globalData.LOGIN_STATUS = true
             })
@@ -46,7 +47,9 @@ var tryLogin = (function () {
     new Member(function (res) {
       if (res.data.login || res.data.sessionId !== null) {
         //设置请求session到本地
-        wx.setStorageSync('JSESSIONID', res.data.sessionId)
+        // wx.setStorageSync('JSESSIONID', res.data.sessionId)
+        wx.setStorageSync('token', res.data.token)
+
 
         fn ? fn(res) : ''
       } else {

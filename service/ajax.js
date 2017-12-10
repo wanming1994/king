@@ -25,7 +25,8 @@ module.exports = class Ajax {
       data: options.data,
       header: Object.assign({
         'Content-Type': 'application/json',
-        'Cookie': 'JSESSIONID=' + wx.getStorageSync('JSESSIONID')
+        // 'Cookie': 'JSESSIONID=' + wx.getStorageSync('JSESSIONID'),
+        'X-Nideshop-Token': wx.getStorageSync('token')
       }, options.header),
       success(res) {
         console.log(res)
