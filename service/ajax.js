@@ -30,9 +30,9 @@ module.exports = class Ajax {
       }, options.header),
       success(res) {
         console.log(res)
-        if (res.data.message && res.data.message.type == 'success') {
+        if (res.data.errno=='0') {
           _this.fn(res.data)
-        } else if (res.data.message && (res.data.message.type == 'error' || res.data.message.type == 'warn')) {
+        } else if (res.data.errno == '1') {
           _this.errFn(res.data)
           !options.hideErrorTip ? util.errShow(res.data.message.content) : ''
           // !options.hideErrorTip ? util.noHideShow(res.data.message.content) : ''
