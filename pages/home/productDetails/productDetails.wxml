@@ -65,10 +65,10 @@
     </view>
     <view class="center f14">
       <view class="f16 clr_orange bold">￥{{productData.info.retail_price}}</view>
-      <view>库存{{selectData.availableStock}}件</view>
-      <view>已选
+      <view>库存{{productData.info.goods_number}}{{productData.info.goods_unit}}</view>
+      <!-- <view>已选
         <text class="clr_orange">{{selectData.specifications[0].name}} {{selectData.specifications[1].name}}</text>
-      </view>
+      </view> -->
     </view>
     <view class="right" bindtap="toggleMask">
       <image src="/resources/images/icon/close.png"></image>
@@ -104,7 +104,7 @@
     <view class="f16 ">购买数量:</view>
     <view class="amount">
       <button data-type="reduce" bindtap="revisenum">-</button>
-      <input class="f12 " type="number " data-type="input" bindchange="revisenum" value="1" />
+      <input class="f12 " type="number " data-type="input" bindchange="revisenum" value="{{goodsAmount}}" />
       <button data-type="add" bindtap="revisenum">+</button>
     </view>
   </view>

@@ -29,6 +29,7 @@ Page(Object.assign({}, swiperAutoHeight, {
    * 页面的初始数据
    */
   data: {
+    goodsAmount: 1,
     sys: app.globalData.sys,//系统信息
     productData: {},//数据
     showAction: false,//显示弹窗
@@ -37,10 +38,10 @@ Page(Object.assign({}, swiperAutoHeight, {
     canClick: [],
     selectArr: [],
     pageLoad: false,//页面加载完成
-    videoShow:false,
-    showShortcut:false
+    videoShow: false,
+    showShortcut: false
   },
-  catchActionMask(e){
+  catchActionMask(e) {
     return false;
   },
   onLoad: function (options) {
@@ -85,9 +86,9 @@ Page(Object.assign({}, swiperAutoHeight, {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
- 
+
   //弹出框toggle
 
   toggleMask(e) {
@@ -102,22 +103,22 @@ Page(Object.assign({}, swiperAutoHeight, {
     let stype = e.currentTarget.dataset.type,
       min = 1,
       max = 10,
-      quantity ='20'
-
+      goods_number = this.data.productData.info.goods_number,
+      goodsAmount = this.data.goodsAmount
     switch (stype) {
       case 'input':
-        quantity = (!isNaN(e.detail.value) && e.detail.value >= min && e.detail.value <= max) ? e.detail.value : quantity
+        goodsAmount = (!isNaN(e.detail.value) && e.detail.value >= min && e.detail.value <= goods_number) ? e.detail.value : goodsAmount
         break;
       case 'add':
-        quantity = quantity + 1 <= max ? (quantity < min ? min : ++quantity) : max
+        goodsAmount = goodsAmount + 1 <= goods_number ? goodsAmount + 1 : goods_number
         break;
       case 'reduce':
-        quantity = quantity - 1 < min ? 0 : --quantity
+        goodsAmount = goodsAmount - 1 < min ? 1 : --goodsAmount
         break;
     }
-    this.data.selectData.quantity = quantity
+
     this.setData({
-      selectData: this.data.selectData
+      goodsAmount: goodsAmount
     })
   },
   // 评价
@@ -164,18 +165,18 @@ Page(Object.assign({}, swiperAutoHeight, {
     let that = this;
     //立即购买
     if (that.data.buyType == 'buy') {
-      new Cart(function () {
-        that.setData({
-          showAction: false
-        })
-        util.navigateTo({
-          url: '/pages/pay/pay'
-        })
-      }).add({
-        id: that.data.selectData.id,
-        quantity: that.data.selectData.quantity,
-        type: 'buy'
-      })
+      // new Cart(function () {
+      //   that.setData({
+      //     showAction: false
+      //   })
+      //   util.navigateTo({
+      //     url: '/pages/pay/pay'
+      //   })
+      // }).add({
+      //   id: that.data.selectData.id,
+      //   quantity: that.data.selectData.quantity,
+      //   type: 'buy'
+      // })
       //加入购物车
     } else if (that.data.buyType == 'cart') {
       new Cart(function () {
@@ -227,19 +228,19 @@ Page(Object.assign({}, swiperAutoHeight, {
   },
 
   //快捷导航点击事件
-  openShortcut:function(){
+  openShortcut: function () {
     this.setData({
       showShortcut: !this.data.showShortcut
     })
   },
-  toggleshowShortcut:function(){
+  toggleshowShortcut: function () {
     this.setData({
       showShortcut: false
     })
   },
 
   //店铺首页
-  goHome:function(){
+  goHome: function () {
     util.navigateTo({
       url: '/pages/home/index',
     })
