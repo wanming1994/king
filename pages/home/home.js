@@ -37,10 +37,10 @@ Page(Object.assign({}, {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {      
+  onLoad: function (options) {
     if (app.globalData.LOGIN_STATUS) {
       this.getData()
-    } else {      
+    } else {
       app.loginOkCallbackList.push(() => {
         this.getData()
       })
@@ -48,10 +48,10 @@ Page(Object.assign({}, {
   },
 
   getData: function () {
-    var that=this;
+    var that = this;
     new Product(function (data) {
       that.setData({
-        productHotList:data.data.hotGoodsList
+        productHotList: data.data.hotGoodsList
       })
       console.log(data)
     }).list()
@@ -73,7 +73,7 @@ Page(Object.assign({}, {
     }
     return {
       title: that.data.tenantData.name,
-      path: 'pages/home/home?&extension=' + app.globalData.memberInfo.username,
+      path: 'pages/home/home?&extension=' + app.globalData.memberInfo.userId,
       success: function (res) {
         // 转发成功
         wx.showToast({
