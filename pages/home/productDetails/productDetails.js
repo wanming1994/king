@@ -97,6 +97,29 @@ Page(Object.assign({}, swiperAutoHeight, {
       _swiper: this.data._swiper
     })
   },
+
+  revisenum(e) {
+    let stype = e.currentTarget.dataset.type,
+      min = 1,
+      max = 10,
+      quantity ='20'
+
+    switch (stype) {
+      case 'input':
+        quantity = (!isNaN(e.detail.value) && e.detail.value >= min && e.detail.value <= max) ? e.detail.value : quantity
+        break;
+      case 'add':
+        quantity = quantity + 1 <= max ? (quantity < min ? min : ++quantity) : max
+        break;
+      case 'reduce':
+        quantity = quantity - 1 < min ? 0 : --quantity
+        break;
+    }
+    this.data.selectData.quantity = quantity
+    this.setData({
+      selectData: this.data.selectData
+    })
+  },
   // 评价
   ecaluate: function (e) {
     util.navigateTo({
