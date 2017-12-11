@@ -55,7 +55,7 @@ var tryLogin = (function () {
       util.errShow('登陆失败', 1000)
     }).login({
       code: code,
-      extension: extension
+      userId: extension
     })
   }
 })()
