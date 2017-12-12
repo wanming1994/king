@@ -114,7 +114,7 @@
   <image class="nextClose" bindtap="closeMask" src="/resources/images/icon/close.png"></image>
   <view>
     <view class="nextTitle">小计:</view>
-    <view>12323元</view>
+    <view>{{actual_price}}元</view>
   </view>
   <view>
     <view class="nextTitle">使用积分:</view>
@@ -124,7 +124,8 @@
   </view>
   <view>
     <view class="nextTitle">实付金额:</view>
-    <view>￥123</view>
+    <view>￥{{trueAmount}}元</view>
+    <view><text class='f12 clr_red'>（积分抵{{scoreMoney}}元）</text></view>
   </view>
   <view bindtap="toBuyConfirm" class="nextBtn f16">去付款</view>
 </view>

@@ -114,16 +114,29 @@ Page(Object.assign({}, swiperAutoHeight, {
   //立即购买确认按钮
   paySubmit: function () {
     let that = this;
-    //立即购买
     wx.showLoading()
+    //创建订单submit
     new order(function (res) {
       wx.hideLoading()
       that.setData({
-        scoreMax: res.data.userScore,
+        userScoreInput:res.data.userScore,
+        scoreMax: parseInt(res.data.userScore),
         showBuyDetail: true,
         showAction: false,
-        actual_price: res.data.orderInfo.actual_price
+        actual_price: res.data.orderInfo.actual_price,
+        orderId: res.data.orderInfo.id
       })
+
+      //计算初始积分抵扣现金（默认使用最大积分来抵现）
+      new order(function(data){
+        that.setData({
+          scoreMoney: data.data.scoreMoney < that.data.actual_price ? data.data.scoreMoney : that.data.actual_price,
+          trueAmount: res.data.orderInfo.actual_price - data.data.scoreMoney >= 0 ? res.data.orderInfo.actual_price - data.data.scoreMoney:0
+        })
+      }).calPoint({
+        useScore: res.data.userScore
+      })
+
     }).submit({
       goodsId: that.data.productData.info.id,
       goodsAmount: that.data.goodsAmount,
@@ -132,10 +145,18 @@ Page(Object.assign({}, swiperAutoHeight, {
   },
   //去付款
   toBuyConfirm() {
-    this.setData({
-      showBuyDetail: false,
-      showAction: false,
+    let that=this;
+    //发起支付接口
+    new order(function(){
+      this.setData({
+        showBuyDetail: false,
+        showAction: false,
+      })
+    }).goPay({
+      orderId: that.data.orderId,
+      userScore: that.data.userScoreInput
     })
+    
   },
   closeMask(){
     this.setData({
@@ -145,11 +166,20 @@ Page(Object.assign({}, swiperAutoHeight, {
   },
   //付款输入积分
   userScoreInput(e) {
-    let val = e.detail.value
+    let that=this;
+    let val = parseInt(e.detail.value)
     let userScoreInput = val > this.data.scoreMax ? this.data.scoreMax : val
-    this.setData({
-      userScoreInput: userScoreInput
+    new order(function (data) {
+      that.setData({
+        scoreMoney: data.data.scoreMoney,
+        userScoreInput: userScoreInput ? userScoreInput : 0,
+        // trueAmount: userScoreInput ? this.data.actual_price - userScoreInput : this.data.actual_price,
+        trueAmount: that.data.actual_price - data.data.scoreMoney >= 0 ? that.data.actual_price - data.data.scoreMoney : 0
+      })
+    }).calPoint({
+      useScore: userScoreInput ? userScoreInput:0
     })
+  
   },
   toggleshowShortcut: function () {
     this.setData({

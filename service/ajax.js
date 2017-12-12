@@ -32,7 +32,7 @@ module.exports = class Ajax {
         console.log(res)
         if (res.data.errno=='0') {
           _this.fn(res.data)
-        } else if (res.data.errno == '1') {
+        } else if (res.data.errno == '1' || res.data.errno == '400') {
           _this.errFn(res.data)
           !options.hideErrorTip ? util.errShow(res.data.errmsg) : ''
         } else {

@@ -19,7 +19,9 @@ module.exports = class Order extends Ajax {
   
 
   /**
-   * 
+   * 订单提交
+   * 数量
+   * 商品id
    */
   submit(data) {
     super.post({
@@ -27,6 +29,31 @@ module.exports = class Order extends Ajax {
       data: data
     });
   }
+
+  /**
+   * 积分价格换算
+   * useScore 使用的分数
+   */
+  calPoint(data) {
+    super.post({
+      url: "user/bonusConvert",
+      data: data
+    });
+  }
+
+  /**
+   * 发起支付
+   * orderId, 订单id
+   * userScore使用的分数
+   */
+  goPay(data) {
+    super.post({
+      url:"pay/pay_prepay",
+      data: data
+    });
+  }
+
+
 
   /**
    * 订单明细
