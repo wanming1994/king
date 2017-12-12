@@ -38,6 +38,8 @@ Page(Object.assign({}, swiperAutoHeight, {
     specification: {},//商品规格
     canClick: [],
     pageLoad: false,//页面加载完成
+    userScoreInput: 0,//付款使用积分
+    scoreMax: 0,//可用积分
   },
   catchActionMask(e) {
     return false;
@@ -88,7 +90,7 @@ Page(Object.assign({}, swiperAutoHeight, {
   },
 
 
-//立即购买选择数量
+  //立即购买选择数量
   revisenum(e) {
     let stype = e.currentTarget.dataset.type,
       min = 1,
@@ -110,13 +112,13 @@ Page(Object.assign({}, swiperAutoHeight, {
       goodsAmount: goodsAmount
     })
   },
- 
+
 
   /**
   * 页面上拉触底事件的处理函数
   */
   onReachBottom: function () {
-  
+
   },
 
 
@@ -124,21 +126,39 @@ Page(Object.assign({}, swiperAutoHeight, {
   paySubmit: function () {
     let that = this;
     //立即购买
-    new order(function(){
-
+    wx.showLoading()
+    new order(function (res) {
+      wx.hideLoading()
+      that.setData({
+        scoreMax: res.data.userScore,
+        showBuyDetail: true,
+        showAction: false,
+        actual_price: res.data.orderInfo.actual_price
+      })
     }).submit({
       goodsId: that.data.productData.info.id,
       goodsAmount: that.data.goodsAmount,
       orderType: 0
     })
-   
   },
-
+  //去付款
+  toBuyConfirm() {
+    this.setData({
+      showBuyDetail: false,
+      showAction: false,
+    })
+  },
+  //付款输入积分
+  userScoreInput(e) {
+    let val = e.detail.value
+    let userScoreInput = val > this.data.scoreMax ? this.data.scoreMax : val
+    this.setData({
+      userScoreInput: userScoreInput
+    })
+  },
   toggleshowShortcut: function () {
     this.setData({
       showShortcut: false
     })
   }
-
-
 }))

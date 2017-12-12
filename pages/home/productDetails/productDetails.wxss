@@ -49,7 +49,6 @@ page {
   background: #fff;
 }
 
-
 .tab {
   display: flex;
   flex-direction: row;
@@ -111,11 +110,13 @@ page {
   align-items: center;
   line-height: 1.6;
 }
-.tab .left{
-  flex: 1
+
+.tab .left {
+  flex: 1;
 }
-.tab .right{
-  flex: 4
+
+.tab .right {
+  flex: 4;
 }
 
 .tab image {
@@ -145,6 +146,51 @@ page {
   bottom: 0;
   z-index: 10002;
 }
+
+.actionNext {
+  position: fixed;
+  width: 86vw;
+  height: 50vh;
+  background: #fff;
+  border-radius: 20px;
+  top: 16%;
+  left: 7vw;
+  z-index: 10003;
+  padding: 5%;
+  box-sizing: border-box;
+}
+
+.actionNext>view {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  line-height: 10vh;
+  justify-content: flex-start;
+}
+
+.actionNext input{
+  float: left;
+  width: 40vw;
+  height: 10vh;
+  line-height: 10vh;
+}
+
+.nextBtn {
+  background: #ff666a;
+  color: #fff;
+  display: block !important;
+  width: 50%;
+  padding: 5px 20px;
+  border-radius: 5px;
+  margin: 5vh auto 0;
+  text-align: center;
+  line-height: 2 !important;
+}
+
+.nextTitle {
+  min-width: 30vw;
+}
+
 
 .actionTitle {
   padding: 0 20rpx;
