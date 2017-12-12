@@ -57,7 +57,7 @@
     </view>
   </view>
 </view>
-<view class="actionMask" catchtouchmove="catchActionMask" hidden="{{!showAction&&!showBuyDetail}}"></view>
+<view class="actionMask" catchtouchmove="catchActionMask" hidden="{{!showAction&&!showBuyDetail}}" bindtap="closeMask"></view>
 <view class="actionContent" hidden="{{!showAction}}">
   <view class="actionTitle border_bottom lineItem">
     <view class="left">
@@ -111,6 +111,7 @@
   <button class="defaultBtn " bindtap="paySubmit">确认</button>
 </view>
 <view class="actionNext f22" hidden="{{!showBuyDetail}}">
+  <image class="nextClose" bindtap="closeMask" src="/resources/images/icon/close.png"></image>
   <view>
     <view class="nextTitle">小计:</view>
     <view>12323元</view>

@@ -71,16 +71,7 @@ Page(Object.assign({}, swiperAutoHeight, {
       id: id
     })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
   //弹出框toggle
-
   toggleMask(e) {
     this.setData({
       showAction: !this.data.showAction,
@@ -88,8 +79,6 @@ Page(Object.assign({}, swiperAutoHeight, {
       _swiper: this.data._swiper
     })
   },
-
-
   //立即购买选择数量
   revisenum(e) {
     let stype = e.currentTarget.dataset.type,
@@ -143,6 +132,12 @@ Page(Object.assign({}, swiperAutoHeight, {
   },
   //去付款
   toBuyConfirm() {
+    this.setData({
+      showBuyDetail: false,
+      showAction: false,
+    })
+  },
+  closeMask(){
     this.setData({
       showBuyDetail: false,
       showAction: false,
