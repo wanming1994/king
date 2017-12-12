@@ -16,6 +16,18 @@ module.exports = class Order extends Ajax {
     });
   }
 
+  
+
+  /**
+   * 
+   */
+  submit(data) {
+    super.post({
+      url: "order/submit",
+      data: data
+    });
+  }
+
   /**
    * 订单明细
    * id 子订单Id

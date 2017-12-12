@@ -34,8 +34,7 @@ module.exports = class Ajax {
           _this.fn(res.data)
         } else if (res.data.errno == '1') {
           _this.errFn(res.data)
-          !options.hideErrorTip ? util.errShow(res.data.message.content) : ''
-          // !options.hideErrorTip ? util.noHideShow(res.data.message.content) : ''
+          !options.hideErrorTip ? util.errShow(res.data.errmsg) : ''
         } else {
           _this.errFn(res)
           !options.hideErrorTip ? util.errShow('服务器错误') : ''
