@@ -1,3 +1,6 @@
+let order = require("../../../service/order.js"),
+  app = getApp(),
+  util = require("../../../utils/util.js")
 // pages/home/join/join.js
 Page({
 
@@ -7,7 +10,34 @@ Page({
   data: {
   
   },
-
+  clickImg:function(){
+    new order(function(res){
+      var orderId = res.data.orderInfo.id;
+      new order(function(data){
+        wx.requestPayment({
+          'timeStamp': data.data.timeStamp,
+          'nonceStr': data.data.nonceStr,
+          'package': data.data.package,
+          'signType': 'MD5',
+          'paySign': data.data.paySign,
+          'success': function (res) {
+            wx.showToast({
+              title: '支付成功',
+              icon: 'success',
+              duration: 1000
+            })
+          },
+          'fail': function (res) {
+          }
+        })
+      }).goPay({
+        orderId: orderId,
+        userScore:0
+      })
+    }).submit({
+      orderType:3
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
