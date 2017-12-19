@@ -9,39 +9,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    size:5
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that=this;
     new product(function(data){
-      console.log(data)
+      that.setData({
+        exchangeList: data.data.exchangeGoodsList,
+        size: that.data.size,
+        page: 1
+      });
     }).exchangeList({
       page:1,
-      size:5
-    })
-  },  
+      size: that.data.size
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
+    })
+  }, 
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
   
   },
 
@@ -56,14 +48,57 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    var that = this;
+    wx.showNavigationBarLoading();  //加载的状态
+    new product(function (data) {
+      var exchangeList = data.data.exchangeGoodsList
+      that.setData({
+        exchangeList: exchangeList,
+        size: that.data.size,
+        page:1
+      });
+      if (data.data.exchangeGoodsList.length == 0) {
+        that.setData({
+          tips: '没有更多啦~',
+          showtips: false
+        })
+      }
+      wx.stopPullDownRefresh()
+      wx.hideNavigationBarLoading()
+    }).exchangeList({
+      size: that.data.size,
+      page: 1
+    });
   },
-
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    var that = this;
+    wx.showNavigationBarLoading();
+    var page = this.data.page;
+    var exchangeList = this.data.exchangeList;
+    new product(function (data) {
+      wx.hideNavigationBarLoading() //完成停止加载
+      if (data.data.exchangeGoodsList.length < that.data.size) {
+        that.setData({
+          tips: '没有更多啦~',
+          showtips: false
+        })
+      } else {
+        exchangeList = exchangeList.concat(data.data.exchangeGoodsList)
+        that.setData({
+          exchangeList: exchangeList,
+          loading: false,
+          tips: '努力加载中',
+          showtips: false,
+          page:page
+        })
+      }
+    }).exchangeList({
+      size: that.data.size,
+      page: ++page
+    });
   },
 
   /**
