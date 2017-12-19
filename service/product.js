@@ -26,6 +26,19 @@ module.exports = class Product extends Ajax {
     });
   }
 
+
+  /**
+   * 兑换商品列表
+   * page, size
+   */
+  exchangeList(data) {
+    super.get({
+      url: 'goods/exchangeList',
+      data: data
+    });
+  }
+  
+
   /**
    * 商品详情页分享
    * id 商品Id

@@ -1,3 +1,7 @@
+
+var app = getApp()
+var product = require("../../../service/product.js")
+var util = require("../../../utils/util")
 // pages/member/exchange/exchange.js
 Page({
 
@@ -12,8 +16,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
-  },
+    new product(function(data){
+      console.log(data)
+    }).exchangeList({
+      page:1,
+      size:5
+    })
+  },  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
