@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -64,6 +64,17 @@
 					"name": "商品详情",
 					"pathName": "pages/home/productDetails/productDetails",
 					"query": "id=1153006"
+				},
+				{
+					"id": -1,
+					"name": "商品提货",
+					"pathName": "pages/member/getGoods/getGoods",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "添加地址",
+					"pathName": "pages/member/info/info"
 				}
 			]
 		}

@@ -53,6 +53,20 @@ module.exports = class Order extends Ajax {
     });
   }
 
+  /**
+   * 商品提货
+   * 
+   */
+  myEcoupons(data) {
+    super.post({
+      url: "ecoupons/myEcoupons",
+      data: data
+    });
+  }
+
+
+  
+
 
 
   /**

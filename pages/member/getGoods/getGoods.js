@@ -1,3 +1,8 @@
+var app = getApp();
+var util = require("../../../utils/util.js");
+var order = require('../../../service/order.js');
+var getPwd = require('../../../utils/getPassword.js');
+var password = require('../../../service/common.js');
 // pages/member/getGoods/getGoods.js
 Page({
 
@@ -12,7 +17,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+      new order(function(){
+
+      }).myEcoupons({
+
+      })
   },
 
 

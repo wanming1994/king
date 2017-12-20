@@ -22,7 +22,7 @@ module.exports = class Receiver extends Ajax {
      */
     save(data) {
         super.post({
-            url: 'applet/member/receiver/save.jhtml',
+          url: 'address/save',
             data: data
         });
     }
