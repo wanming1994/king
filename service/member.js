@@ -32,7 +32,7 @@ module.exports = class Member extends Ajax {
      */
     sendMsgToBindPhone(data) {
         super.post({
-            url: "applet/member/mobile/send_mobile.jhtml",
+          url: "user/smscode",
             data: data
         })
     }
