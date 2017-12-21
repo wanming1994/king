@@ -45,7 +45,7 @@ Page({
       new Member(function () {
         countdown(that);
       }).sendMsgToBindPhone({
-        mobile: that.data.formContent.phone
+        phone: that.data.formContent.phone
       })
     }
 
