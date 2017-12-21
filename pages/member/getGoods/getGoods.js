@@ -22,6 +22,11 @@ Page({
       }).myEcoupons({
 
       })
+      new order(function(){
+
+      }).goodsAttribute({
+        ecouponId:1
+      })
   },
 
 
