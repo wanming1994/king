@@ -1,27 +1,14 @@
 <view class="container">
   <view class="number f20 padding2 border_bottom">
-    共有200包可提
+    共有{{}}包可提
   </view>
   <view class="checkout">
-    <view>
-      <view>自行购买</view>
+    <view wx:for="{{data}}" wx:key="id">
+      <view>{{item.name}}</view>
       <view>
-        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
-        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
-      </view>
-    </view>
-    <view>
-      <view>会员赠送</view>
-      <view>
-        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
-        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
-      </view>
-    </view>
-    <view>
-      <view>分红赠送</view>
-      <view>
-        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
-        <image src="/resources/images/member/nbs.jpg" bindtap='select'></image>
+        <block wx:for="{{item.userECouponsInfoDtoList}}" wx:key="id" wx:for-item="zItem">
+          <image src="/resources/images/member/nbs.jpg" data-id="{{item.id+'_'+zItem.ecouponsId}}" data-name="{{item.name+'_'+zItem.ecouponsName}}" data-count="{{zItem.ecouponsCnt}}" bindtap="select"></image>
+        </block>
       </view>
     </view>
   </view>
@@ -29,48 +16,22 @@
     收货地址：安徽省合肥市中绿广场
   </view>
   <view class="selectedList">
-    <view class="selected lineItem border_bottom">
-      <view class="left clr_lightGray">
-        <image src='../../../resources/images/member/nbs.jpg'></image>
+    <block wx:for="{{selectList}}" wx:key="id">
+      <view class="selected lineItem border_bottom">
+        <view class="left clr_lightGray">
+          <image src='../../../resources/images/member/nbs.jpg'></image>
+        </view>
+        <view class="center">
+          <view class='f16'>规格：XL</view>
+          <view class='f12 clr_lightGray buyType'>自行购买</view>
+        </view>
+        <view class="right amount">
+          <button>-</button>
+          <input value="0" class="f12" type="number" />
+          <button>+</button>
+        </view>
       </view>
-      <view class="center">
-        <view class='f16'>规格：XL</view>
-        <view class='f12 clr_lightGray buyType'>自行购买</view>
-      </view>
-      <view class="right amount">
-        <button>-</button>
-        <input value="0" class="f12" type="number" />
-        <button>+</button>
-      </view>
-    </view>
-    <view class="selected lineItem border_bottom">
-      <view class="left clr_lightGray">
-        <image src='../../../resources/images/member/nbs.jpg'></image>
-      </view>
-      <view class="center">
-        <view class='f16'>规格：XL</view>
-        <view class='f12 clr_lightGray buyType'>会员赠送</view>
-      </view>
-      <view class="right amount">
-        <button>-</button>
-        <input value="0" class="f12" type="number" />
-        <button>+</button>
-      </view>
-    </view>
-    <view class="selected lineItem border_bottom">
-      <view class="left clr_lightGray">
-        <image src='../../../resources/images/member/nbs.jpg'></image>
-      </view>
-      <view class="center">
-        <view class='f16'>规格：XL</view>
-        <view class='f12 clr_lightGray buyType'>分红赠送</view>
-      </view>
-      <view class="right amount">
-        <button>-</button>
-        <input value="0" class="f12" type="number" />
-        <button>+</button>
-      </view>
-    </view>
+    </block>
   </view>
   <view class="buy f16">
     <view class='buyAmount'>实付款：8元</view>
@@ -84,10 +45,10 @@
         <image src="{{selectData.thumbnail}}"></image>
       </view>
       <view class="center f14">
-        <view class="f16 clr_orange bold">￥{{selectData.price}}</view>
-        <view>库存{{selectData.availableStock}}件</view>
+        <!-- <view class="f16 clr_orange bold">￥{{selectData.price}}</view> -->
+        <view>库存{{selectData.count}}件</view>
         <view>已选
-          <text class="clr_orange">{{selectData.specifications[0].name}} {{selectData.specifications[1].name}}</text>
+          <text class="clr_orange">{{selectData.name}} {{selectData.num}}包</text>
         </view>
       </view>
       <view class="right" bindtap="toggleMask">
@@ -124,7 +85,7 @@
       <view class="f16 ">提货数量:</view>
       <view class="amount">
         <button data-type="reduce" bindtap="revisenum">-</button>
-        <input class="f12 " type="number " data-type="input" bindchange="revisenum" value="{{selectData.quantity}}" />
+        <input class="f12 " type="number " data-type="input" bindchange="revisenum" value="{{selectData.num}}" />
         <button data-type="add" bindtap="revisenum">+</button>
       </view>
     </view>
