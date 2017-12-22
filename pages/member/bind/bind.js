@@ -66,24 +66,16 @@ Page({
           icon: 'success',
           duration: 2000,
           success: function () {
-            if(that.data.where=='paying'){
-              setTimeout(function () {
-                wx.redirectTo({
-                  url: '/pages/member/password/password',
-                })
-              }, 1000)
-            }else{
               setTimeout(function () {
                 wx.navigateBack({
                   delta: 1
                 })
               }, 1000)
-            }
           }
         })
       }).bindPhone({
-        captcha: form.code,
-        mobile: form.phone
+        smsCode: form.code,
+        phone: form.phone
       })
     }
   }

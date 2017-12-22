@@ -49,7 +49,7 @@
   <block wx:for="{{productHotList}}" wx:key="id" wx:for-item="item">
     <view class='break'></view>
     <view class='imageTwo productList' bindtap='goProductDeatil'  data-id="{{item.id}}">
-      <image src='{{item.primary_pic_url}}'></image>
+      <image src='{{item.primary_pic_url}}' mode="widthFix"></image>
       <view class='word tc'>
         <text class='f14 overone'>购买{{item.name}}</text>
       </view>

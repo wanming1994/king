@@ -39,12 +39,11 @@ module.exports = class Member extends Ajax {
 
     /**
      * 绑定手机号确定
-     * @param:
-     * captcha  验证码
+     *  phone  和 smsCode
      */
     bindPhone(data) {
         super.post({
-            url: "applet/member/mobile/binded.jhtml",
+          url: "user/bindMobile",
             data: data
         })
     }
