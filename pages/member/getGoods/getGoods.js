@@ -15,6 +15,7 @@ Page({
       name: '',
       num: 0
     },
+    selectDataList: [],
     sum: 0,
     data: []
   },
@@ -34,20 +35,32 @@ Page({
     new order(function () {
 
     }).goodsAttribute({
-      ecouponId: 1
+      ecouponId: 2
     })
   },
 
 
   select: function (e) {
-    const { id, count, name } = e.currentTarget.dataset
+    const { id, ecouponsid, ecouponsname, count, name, ecouponstype } = e.currentTarget.dataset
     if (Number(count) === 0) {
       util.errShow("该类型暂无可提")
       return
     }
-    this.setData({
-      showAction: true
+    const localSelect = this.data.selectDataList.filter(item => {
+      return item.id == id && item.ecouponsid == ecouponsid
     })
+    this.setData({
+      showAction: true,
+      selectData: {
+        count: count,
+        id: id,
+        ecouponsid: ecouponsid,
+        name: ecouponsname,
+        num: localSelect.length > 0 ? localSelect[0].num : 0,
+        ecouponstype: ecouponstype
+      }
+    })
+
   },
 
   //弹出框toggle
@@ -56,7 +69,65 @@ Page({
     this.setData({
       showAction: !this.data.showAction,
       buyType: e.currentTarget.dataset.type,
-      _swiper: this.data._swiper
+      _swiper: this.data._swiper,
+      selectData: {}
+    })
+  },
+
+  revisenum(e) {
+    let result
+    const { btype, ltype, index } = e.currentTarget.dataset
+    let { num, count } = ltype ? this.data.selectDataList[index] : this.data.selectData
+    num = Number(num)
+    switch (btype) {
+      case 'reduce':
+        result = num - 1
+        break
+      case 'input':
+        result = e.detail.value
+        break
+      case 'add':
+        result = num + 1
+        break
+      default:
+        result = 0
+    }
+    if (result >= 0 && result <= count) {
+      if (ltype) {
+        this.data.selectDataList[index].num = result
+        this.setData({
+          selectDataList: this.data.selectDataList
+        })
+        return
+      }
+      this.setData({
+        'selectData.num': result
+      })
+      return
+    }
+    ltype ? this.setData({
+      selectDataList: this.data.selectDataList
+    }) : this.setData({
+      'selectData.num': num
+    })
+  },
+  paySubmit() {
+    const selectData = this.data.selectData
+    const selectDataList = this.data.selectDataList || []
+    for (let i = 0; i < selectDataList.length; i++) {
+      if (selectDataList[i].id == selectData.id && selectDataList[i].ecouponsid == selectData.ecouponsid) {
+        selectDataList[i] = selectData
+        this.setData({
+          selectDataList: selectDataList,
+          showAction: false
+        })
+        return
+      }
+    }
+    selectDataList.push(selectData)
+    this.setData({
+      selectDataList: selectDataList,
+      showAction: false
     })
   },
   /**

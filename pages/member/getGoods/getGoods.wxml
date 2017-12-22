@@ -7,7 +7,8 @@
       <view>{{item.name}}</view>
       <view>
         <block wx:for="{{item.userECouponsInfoDtoList}}" wx:key="id" wx:for-item="zItem">
-          <image src="/resources/images/member/nbs.jpg" data-id="{{item.id+'_'+zItem.ecouponsId}}" data-name="{{item.name+'_'+zItem.ecouponsName}}" data-count="{{zItem.ecouponsCnt}}" bindtap="select"></image>
+          <image src="/resources/images/member/nbs.jpg" data-id="{{item.id}}" data-ecouponsid="{{zItem.ecouponsId}}" data-name="{{item.name}}" data-ecouponsname="{{zItem.ecouponsName}}" data-ecouponstype="{{zItem.ecouponsTypeName}}" data-count="{{zItem.ecouponsCnt}}"
+            bindtap="select"></image>
         </block>
       </view>
     </view>
@@ -16,19 +17,19 @@
     收货地址：安徽省合肥市中绿广场
   </view>
   <view class="selectedList">
-    <block wx:for="{{selectList}}" wx:key="id">
+    <block wx:for="{{selectDataList}}" wx:key="id">
       <view class="selected lineItem border_bottom">
         <view class="left clr_lightGray">
           <image src='../../../resources/images/member/nbs.jpg'></image>
         </view>
         <view class="center">
           <view class='f16'>规格：XL</view>
-          <view class='f12 clr_lightGray buyType'>自行购买</view>
+          <view class='f12 clr_lightGray buyType'>{{item.ecouponstype}}-{{item.name}}</view>
         </view>
         <view class="right amount">
-          <button>-</button>
-          <input value="0" class="f12" type="number" />
-          <button>+</button>
+          <button data-ltype='1' data-index="{{index}}" data-btype="reduce" bindtap="revisenum">-</button>
+          <input data-ltype='1' data-index="{{index}}" value="{{item.num}}" class="f12" type="number" data-btype="input" bindchange="revisenum"/>
+          <button data-ltype='1' data-index="{{index}}" data-btype="add" bindtap="revisenum">+</button>
         </view>
       </view>
     </block>
@@ -45,32 +46,16 @@
         <image src="{{selectData.thumbnail}}"></image>
       </view>
       <view class="center f14">
-        <!-- <view class="f16 clr_orange bold">￥{{selectData.price}}</view> -->
+        <view class="f16 clr_orange bold">{{selectData.name}}</view>
         <view>库存{{selectData.count}}件</view>
         <view>已选
-          <text class="clr_orange">{{selectData.name}} {{selectData.num}}包</text>
+          <text class="clr_orange">{{selectData.ecouponstype}} {{selectData.num}}包</text>
         </view>
       </view>
       <view class="right" bindtap="toggleMask">
         <image src="/resources/images/icon/close.png"></image>
       </view>
     </view>
-    <wxs module="canClickFn">
-      module.exports = function(arr, id, selectArr) {
-        if (selectArr.length == 1) {
-          return true;
-        }
-        if (!arr) {
-          return false;
-        }
-        for (var i = 0; i < arr.length; i++) {
-          if (arr[i] == id) {
-            return true;
-          }
-        }
-        return false;
-      }
-    </wxs>
     <view class="actionSpecifications border_bottom">
       <block wx:for="{{specification.all}}" wx:key="id" wx:for-index="idx">
         <view class="actionItemTitle f16" data-id="{{item.id}}">{{item.name}}：</view>
@@ -84,9 +69,9 @@
     <view class="actionNumber border_bottom lineItem" style="align-items:center;">
       <view class="f16 ">提货数量:</view>
       <view class="amount">
-        <button data-type="reduce" bindtap="revisenum">-</button>
-        <input class="f12 " type="number " data-type="input" bindchange="revisenum" value="{{selectData.num}}" />
-        <button data-type="add" bindtap="revisenum">+</button>
+        <button data-btype="reduce" bindtap="revisenum">-</button>
+        <input class="f12 " type="number" data-btype="input" bindchange="revisenum" value="{{selectData.num}}" />
+        <button data-btype="add" bindtap="revisenum">+</button>
       </view>
     </view>
     <button class="defaultBtn " bindtap="paySubmit">确认</button>
