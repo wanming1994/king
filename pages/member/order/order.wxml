@@ -10,7 +10,7 @@
   <swiper current="{{currentTab}}" bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove' class="swiper-box" duration="0" style="height:{{winHeight - 50}}px;" bindchange="bindChange">
     <swiper-item>
       <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower" bindscrolltoupper="upper">
-        <block wx:for="{{all}}" wx:key="id">
+        <block wx:for="{{501}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
         <view class="tips f12">{{allTips}}</view>
@@ -70,7 +70,7 @@
           </view>
           <view class="shopInfo">
             <view class="shopName f14 overone">{{orderItem.name}}</view>
-            <view class="orderNumber f14">订单号:{{item.sn}}</view>
+            <view class="orderNumber f14">订单号:{{item.order_sn}}</view>
             <view class="shopPrice f14 clr_orange">￥ {{orderItem.price}}</view>
           </view>
           <view class="shopNumber">

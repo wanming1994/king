@@ -11,7 +11,7 @@ module.exports = class Order extends Ajax {
    */
   list(data) {
     super.get({
-      url: "applet/member/order/list.jhtml",
+      url: "order/list",
       data: data
     });
   }
