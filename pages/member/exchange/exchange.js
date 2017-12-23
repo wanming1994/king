@@ -1,6 +1,7 @@
 
 var app = getApp()
 var product = require("../../../service/product.js")
+var order = require("../../../service/order.js")
 var util = require("../../../utils/util")
 // pages/member/exchange/exchange.js
 Page({
@@ -9,39 +10,62 @@ Page({
    * 页面的初始数据
    */
   data: {
-    size:5
+    size: 5
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that=this;
-    new product(function(data){
+    let that = this;
+    new product(function (data) {
       that.setData({
         exchangeList: data.data.exchangeGoodsList,
         size: that.data.size,
         page: 1
       });
     }).exchangeList({
-      page:1,
+      page: 1,
       size: that.data.size
 
     })
-  }, 
+  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
+  },
+
+  //兑换提交
+  goExchange: function (e) {
+    var that=this;
+    var id = e.currentTarget.dataset.id;
+    var price = e.currentTarget.dataset.price;
+    wx.showModal({
+      title: '兑换提示',
+      content: '确认花费' + price+'积分兑换商品吗?',
+      success:function(res){
+        if(res.confirm){
+          new order(function (res) {
+
+          }).submit({
+            goodsId: id,
+            goodsAmount: 1,
+            orderType: 1
+          })
+        }
+      }
+    })
+    
   },
 
   /**
@@ -55,7 +79,7 @@ Page({
       that.setData({
         exchangeList: exchangeList,
         size: that.data.size,
-        page:1
+        page: 1
       });
       if (data.data.exchangeGoodsList.length == 0) {
         that.setData({
@@ -92,7 +116,7 @@ Page({
           loading: false,
           tips: '努力加载中',
           showtips: false,
-          page:page
+          page: page
         })
       }
     }).exchangeList({
@@ -105,6 +129,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

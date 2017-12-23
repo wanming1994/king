@@ -3,7 +3,7 @@
   <block wx:for="{{exchangeList}}" wx:key="id" wx:for-item="item"> 
     <view class='imageTwo productList' bindtap='goProductDeatil'>
       <image src='{{item.primary_pic_url}}' mode="widthFix"></image>
-      <view class='word tc'>
+      <view class='word tc' bindtap='goExchange' data-id="{{item.id}}" data-price="{{item.retail_price}}">
         <text class='f14'>立即兑换<text class="clr_red" style='display:inline'>(需要{{item.retail_price}}积分)</text></text>
       </view>
     </view>  
