@@ -436,38 +436,38 @@ function paging(that, sType, direction, cb) {
     [sType + 'Tips']: '加载中...'
   })
   new Order(function (data) {
-    // that.pageModel[sType].totalPages = data.pageModel.totalPages
-    // if (data.pageModel.totalPages == 0) {
-    //   that.setData({
-    //     [sType + 'Tips']: '您还没有相关的订单！',
-    //     [sType]: []
-    //   })
-    //   cb ? cb() : ''
-    //   return
-    // }
+    that.pageModel[sType].totalPages = data.pageModel.totalPages
+    if (data.pageModel.totalPages == 0) {
+      that.setData({
+        [sType + 'Tips']: '您还没有相关的订单！',
+        [sType]: []
+      })
+      cb ? cb() : ''
+      return
+    }
     info = info.concat(data.data.data)
-    // if (data.pageModel.totalPages <= data.pageModel.pageNumber) {
+    if (data.pageModel.totalPages <= data.pageModel.pageNumber) {
       that.setData({
         [sType + 'Tips']: '没有更多啦~',
         [sType]: info
       })
-    //   if (data.pageModel.totalPages < data.pageModel.pageNumber) {
-    //     cb ? cb() : ''
-    //     return
-    //   }
-    // } else {
-    //   that.setData({
-    //     [sType + 'Tips']: "上拉加载",
-    //     [sType]: info
-    //   })
-    // }
-    // cb ? cb() : ''
+      if (data.pageModel.totalPages < data.pageModel.pageNumber) {
+        cb ? cb() : ''
+        return
+      }
+    } else {
+      that.setData({
+        [sType + 'Tips']: "上拉加载",
+        [sType]: info
+      })
+    }
+    cb ? cb() : ''
   }).list({
     type: sType,
-    page:10,
+    pageNumber:10,
     // page: direction == 'up' ? that.pageModel[sType].pageNumber = 1 : ++that.pageModel[sType].pageNumber,
     // size: that.pageModel[sType].pageSize
-    size:1
+    pageSize:1
   })
 }
 
