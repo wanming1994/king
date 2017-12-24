@@ -17,7 +17,8 @@ Page({
     },
     selectDataList: [],
     sum: 0,
-    data: []
+    data: [],
+    specifications: {}
   },
 
   /**
@@ -29,36 +30,53 @@ Page({
         data: res.data.data,
         sum: res.data.sum
       })
-    }).myEcoupons({
-
-    })
-    new order(function () {
-
-    }).goodsAttribute({
-      ecouponId: 2
-    })
+    }).myEcoupons()
   },
-
-
+  checkout(e) {
+    const { id, pid } = e.currentTarget.dataset
+    const selectData = this.data.selectData
+    const selectSpList = this.data.selectData.specifications
+    for (let i = 0; i < selectSpList.length; i++) {
+      if (selectSpList[i].specification_id == pid) {
+        for (let j = 0; j < selectSpList[i].valueList.length; j++) {
+          if (selectSpList[i].valueList[j].id == id) {
+            selectData.specificationsSelect[pid] = selectSpList[i].valueList[j]
+            this.setData({
+              selectData: selectData
+            })
+            break;
+          }
+        }
+      }
+      break;
+    }
+  },
   select: function (e) {
     const { id, ecouponsid, ecouponsname, count, name, ecouponstype } = e.currentTarget.dataset
-    if (Number(count) === 0) {
-      util.errShow("该类型暂无可提")
-      return
-    }
+    // if (Number(count) === 0) {
+    //   util.errShow("该类型暂无可提")
+    //   return
+    // }
     const localSelect = this.data.selectDataList.filter(item => {
       return item.id == id && item.ecouponsid == ecouponsid
     })
-    this.setData({
-      showAction: true,
-      selectData: {
-        count: count,
-        id: id,
-        ecouponsid: ecouponsid,
-        name: ecouponsname,
-        num: localSelect.length > 0 ? localSelect[0].num : 0,
-        ecouponstype: ecouponstype
-      }
+    this.getSpecifications(2).then(res => {
+      this.setData({
+        showAction: true,
+        selectData: {
+          count: count,
+          id: id,
+          ecouponsid: ecouponsid,
+          name: ecouponsname,
+          num: localSelect.length > 0 ? localSelect[0].num : 0,
+          ecouponstype: ecouponstype,
+          specifications: res,
+          specificationsSelect: {
+            [res[0].specification_id]: res[0].valueList[0]
+          }
+        },
+
+      })
     })
 
   },
@@ -116,12 +134,23 @@ Page({
     const selectDataList = this.data.selectDataList || []
     for (let i = 0; i < selectDataList.length; i++) {
       if (selectDataList[i].id == selectData.id && selectDataList[i].ecouponsid == selectData.ecouponsid) {
-        selectDataList[i] = selectData
-        this.setData({
-          selectDataList: selectDataList,
-          showAction: false
-        })
-        return
+        let ssSelect = selectDataList[i].specificationsSelect
+        let selectssSelect = selectData.specificationsSelect
+        let sign = true
+        for (let key in ssSelect) {
+          if (selectssSelect[key].id != ssSelect[key].id) {
+            sign = false
+            break;
+          }
+        }
+        if (sign) {
+          selectDataList[i] = selectData
+          this.setData({
+            selectDataList: selectDataList,
+            showAction: false
+          })
+          return
+        }
       }
     }
     selectDataList.push(selectData)
@@ -130,11 +159,22 @@ Page({
       showAction: false
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  getSpecifications(ecouponId) {
+    return new Promise((resolve, reject) => {
+      if (this.data.specifications[ecouponId]) {
+        resolve(this.data.specifications[ecouponId])
+      } else {
+        new order(res => {
+          this.data.specifications[ecouponId] = res.data
+          this.setData({
+            specifications: this.data.specifications
+          })
+          resolve(res.data)
+        }).goodsAttribute({
+          ecouponId: ecouponId
+        })
+      }
+    })
   },
 
   /**

@@ -1,6 +1,6 @@
 <view class="container">
   <view class="number f20 padding2 border_bottom">
-    共有{{}}包可提
+    共有{{sum}}包可提
   </view>
   <view class="checkout">
     <view wx:for="{{data}}" wx:key="id">
@@ -23,12 +23,16 @@
           <image src='../../../resources/images/member/nbs.jpg'></image>
         </view>
         <view class="center">
-          <view class='f16'>规格：XL</view>
+          <view class='f16'>规格：
+            <block wx:for="{{item.specifications}}" wx:for-item="sitem" wx:key="index">
+              {{item.specificationsSelect[sitem.specification_id].value}}
+            </block>
+          </view>
           <view class='f12 clr_lightGray buyType'>{{item.ecouponstype}}-{{item.name}}</view>
         </view>
         <view class="right amount">
           <button data-ltype='1' data-index="{{index}}" data-btype="reduce" bindtap="revisenum">-</button>
-          <input data-ltype='1' data-index="{{index}}" value="{{item.num}}" class="f12" type="number" data-btype="input" bindchange="revisenum"/>
+          <input data-ltype='1' data-index="{{index}}" value="{{item.num}}" class="f12" type="number" data-btype="input" bindchange="revisenum" />
           <button data-ltype='1' data-index="{{index}}" data-btype="add" bindtap="revisenum">+</button>
         </view>
       </view>
@@ -57,11 +61,11 @@
       </view>
     </view>
     <view class="actionSpecifications border_bottom">
-      <block wx:for="{{specification.all}}" wx:key="id" wx:for-index="idx">
-        <view class="actionItemTitle f16" data-id="{{item.id}}">{{item.name}}：</view>
+      <block wx:for="{{selectData.specifications}}" wx:key="id" wx:for-index="pindex">
+        <view class="actionItemTitle f16" data-id="{{item.specification_id}}">{{item.name}}：</view>
         <view class="actionItemBtn f16">
-          <block wx:for="{{item.specificationValues}}" wx:for-item="citem" wx:key="id">
-            <text bindtap="checkout" class="{{selectArr[idx] == citem.id?'active':''}} {{canClickFn(canClick[selectArr[1-idx]],citem.id,selectArr)?'canTap':'' }}" data-idx="{{idx}}" data-can="{{canClickFn(canClick[selectArr[1-idx]],citem.id,selectArr)}}" data-id="{{citem.id}}">{{citem.name}}</text>
+          <block wx:for="{{item.valueList}}" wx:for-item="citem" wx:key="id" wx:for-index="iindex">
+            <text bindtap="checkout" class="{{selectData.specificationsSelect[item.specification_id].id==citem.id?'active':''}}" data-id="{{citem.id}}" data-goodsid="{{citem.goods_id}}" data-pid="{{item.specification_id}}">{{citem.value}}</text>
           </block>
         </view>
       </block>
