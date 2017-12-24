@@ -1,10 +1,10 @@
 <view class="container">
   <view class="head f16" style="">
     <view class="headImg">
-      <image src="../../resources/images/usernone.png"></image>
+      <image src="{{authSuccess?userInfo.avatarUrl:'../../resources/images/usernone.png'}}"></image>
     </view>
     <view class="details">
-      <view class='f14'>鱼鱼鱼鱼</view>
+      <view class='f14'>{{authSuccess?userInfo.nickName:memberInfo.userName}}</view>
       <view class='f12'>白银天使</view>
     </view>
   </view>

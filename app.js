@@ -17,6 +17,9 @@ App({
     wx.login({
       success(data) {
         tryLogin(data.code, extension, (res) => {
+          if (that.loginOkCallback) {
+            that.loginOkCallback()
+          }
           if (that.loginOkCallbackList.length > 0) {
             for (let i = 0; i < that.loginOkCallbackList.length; i++) {
               if (typeof that.loginOkCallbackList[i] === 'function') {
@@ -25,7 +28,7 @@ App({
             }
           }
           that.globalData.LOGIN_STATUS = true;
-          that.globalData.memberInfo = res.data        
+          that.globalData.memberInfo = res.data  
         })
       }
     })

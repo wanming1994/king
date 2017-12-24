@@ -2,7 +2,7 @@ let app = getApp(),
   util = require("../../utils/util.js")
 Page({
   data: {
-
+    memberInfo: app.globalData.memberInfo
   },
   onLoad: function (options) {
 
@@ -10,14 +10,50 @@ Page({
   onReady: function () {
 
   },
+ 
   onShow: function () {
-
+    var that = this;
+    if (app.globalData.LOGIN_STATUS) {
+      this.getInfoWhenLogin()
+    } else {
+      app.loginOkCallback = res => {
+        this.getInfoWhenLogin()
+      }
+    }
+  },
+  getInfoWhenLogin: function () {
+    var that=this;
+    that.setData({
+      memberInfo:app.globalData.memberInfo
+    })
+    wx.getUserInfo({
+      success: function (res) {
+        that.setData({
+          authSuccess:true,
+          userInfo: res.userInfo
+        })
+      },
+      fail: function (err) {
+        if (err.errMsg.indexOf('auth') > -1) {
+          wx.showModal({
+            title: '提示',
+            content: '未授予用户信息权限，部分功能会受到限制，是否前往设置',
+            success: function (res) {
+              if (res.confirm) {
+                wx.openSetting()
+              }
+            }
+          })
+        }
+      }
+    })
   },
   getGoods() {
     util.navigateTo({
       url: 'getGoods/getGoods',
     })
   },
+  
   //个人资料
   toInfo: function () {
     util.navigateTo({

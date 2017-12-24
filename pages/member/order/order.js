@@ -395,27 +395,27 @@ Page(Object.assign({}, actionsheet, payTemp, {
     }
   },
   pageModel: {
-    'all': {
+    '501': {
       pageNumber: 0,
       pageSize: 5,
       totalPages: 999
     },
-    'unpaid': {
+    '0': {
       pageNumber: 0,
       pageSize: 5,
       totalPages: 999
     },
-    'unshipped': {
+    '201': {
       pageNumber: 0,
       pageSize: 5,
       totalPages: 999
     },
-    'unreciver': {
+    '301': {
       pageNumber: 0,
       pageSize: 5,
       totalPages: 999
     },
-    'unreview': {
+    '300': {
       pageNumber: 0,
       pageSize: 5,
       totalPages: 999
@@ -436,8 +436,8 @@ function paging(that, sType, direction, cb) {
     [sType + 'Tips']: '加载中...'
   })
   new Order(function (data) {
-    that.pageModel[sType].totalPages = data.pageModel.totalPages
-    if (data.pageModel.totalPages == 0) {
+    that.pageModel[sType].totalPages = data.data.pageModel.totalPages
+    if (data.data.pageModel.totalPages == 0) {
       that.setData({
         [sType + 'Tips']: '您还没有相关的订单！',
         [sType]: []
@@ -446,12 +446,12 @@ function paging(that, sType, direction, cb) {
       return
     }
     info = info.concat(data.data.data)
-    if (data.pageModel.totalPages <= data.pageModel.pageNumber) {
+    if (data.data.pageModel.totalPages <= data.data.pageModel.pageNumber) {
       that.setData({
         [sType + 'Tips']: '没有更多啦~',
         [sType]: info
       })
-      if (data.pageModel.totalPages < data.pageModel.pageNumber) {
+      if (data.data.pageModel.totalPages < data.data.pageModel.pageNumber) {
         cb ? cb() : ''
         return
       }
@@ -464,10 +464,10 @@ function paging(that, sType, direction, cb) {
     cb ? cb() : ''
   }).list({
     type: sType,
-    pageNumber:10,
+    pageNumber:1,
     // page: direction == 'up' ? that.pageModel[sType].pageNumber = 1 : ++that.pageModel[sType].pageNumber,
     // size: that.pageModel[sType].pageSize
-    pageSize:1
+    pageSize:10
   })
 }
 
