@@ -55,23 +55,23 @@
 
 <template name="orderList">
   <view class="ordersWrap">
-    <navigator url="../../home/index">
+     <!-- <navigator url="../../home/index">
       <view class="flexC title borderA">
         <image src="{{item.tenantThumbnail?item.tenantThumbnail:'/resources/user.png'}}"></image>
-        <view class="name f16">{{item.tenantName}}</view>
-        <view class="orderType f14 clr_orange">{{item.shippingMethod.method == 'F2F'?'('+item.shippingMethod.name+')':''}}{{item.finalOrderStatus.desc}}</view>
+        <view class="name f16">{{item.id}}</view>
+        <view class="orderType f14 clr_orange">{{item.order_status_text}}</view>
       </view>
-    </navigator>
+    </navigator>  -->
     <navigator url="./orderDetails/orderDetails?id={{item.id}}">
       <block wx:for="{{item.orderItems}}" wx:key="id" wx:for-item="orderItem">
         <view class="flexC details borderA">
           <view class="orderImg">
-            <image src="{{orderItem.thumbnail?orderItem.thumbnail:'/resources/user.png'}}"></image>
+            <image src="{{orderItem.list_pic_url?orderItem.list_pic_url:'/resources/user.png'}}"></image>
           </view>
           <view class="shopInfo">
-            <view class="shopName f14 overone">{{orderItem.name}}</view>
+            <view class="shopName f14 overone">{{orderItem.goods_name}}</view>
             <view class="orderNumber f14">订单号:{{item.order_sn}}</view>
-            <view class="shopPrice f14 clr_orange">￥ {{orderItem.price}}</view>
+            <view class="shopPrice f14 clr_orange">￥ {{orderItem.retail_price}}</view>
           </view>
           <view class="shopNumber">
             <view>x{{orderItem.quantity}}</view>

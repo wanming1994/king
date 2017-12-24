@@ -464,10 +464,8 @@ function paging(that, sType, direction, cb) {
     cb ? cb() : ''
   }).list({
     type: sType,
-    pageNumber:1,
-    // page: direction == 'up' ? that.pageModel[sType].pageNumber = 1 : ++that.pageModel[sType].pageNumber,
-    // size: that.pageModel[sType].pageSize
-    pageSize:10
+    pageNumber: direction == 'up' ? that.pageModel[sType].pageNumber = 1 : ++that.pageModel[sType].pageNumber,
+    pageSize: that.pageModel[sType].pageSize
   })
 }
 
