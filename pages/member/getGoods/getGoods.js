@@ -94,6 +94,7 @@ Page({
         for (let j = 0; j < selectSpList[i].valueList.length; j++) {
           if (selectSpList[i].valueList[j].id == id) {
             selectData.specificationsSelect[pid] = selectSpList[i].valueList[j]
+            selectData.num = 0
             this.setData({
               selectData: selectData
             })
@@ -110,7 +111,7 @@ Page({
       util.errShow("该类型暂无可提")
       return
     }
-    
+
     this.getSpecifications(ecouponsid).then(res => {
       const localSelect = this.data.selectDataList.filter(item => {
         return item.id == id && item.ecouponsid == ecouponsid && item.specificationsSelect[res[0].specification_id].id == res[0].valueList[0].id
@@ -122,7 +123,7 @@ Page({
           id: id,
           ecouponsid: ecouponsid,
           name: ecouponsname,
-          num: localSelect.length > 0 ? localSelect[0].num : 0,
+          num: 0,
           ecouponstype: ecouponstype,
           specifications: res,
           specificationsSelect: {
