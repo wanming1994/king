@@ -1,6 +1,7 @@
 var app = getApp();
 var util = require("../../../utils/util.js");
 var order = require('../../../service/order.js');
+var cart = require('../../../service/cart.js');
 var receiver = require('../../../service/receiver.js');
 var getPwd = require('../../../utils/getPassword.js');
 var password = require('../../../service/common.js');
@@ -33,6 +34,10 @@ Page({
         address: res.data.address
       })
     }).myEcoupons()
+
+    new cart(function(){
+
+    }).list()
   },
 
 
@@ -191,34 +196,45 @@ Page({
     })
   },
   paySubmit() {
-    const selectData = this.data.selectData
-    const selectDataList = this.data.selectDataList || []
-    for (let i = 0; i < selectDataList.length; i++) {
-      if (selectDataList[i].id == selectData.id && selectDataList[i].ecouponsid == selectData.ecouponsid) {
-        let ssSelect = selectDataList[i].specificationsSelect
-        let selectssSelect = selectData.specificationsSelect
-        let sign = true
-        for (let key in ssSelect) {
-          if (selectssSelect[key].id != ssSelect[key].id) {
-            sign = false
-            break;
-          }
-        }
-        if (sign) {
-          selectDataList[i] = selectData
-          this.setData({
-            selectDataList: selectDataList,
-            showAction: false
-          })
-          return
-        }
-      }
-    }
-    selectDataList.push(selectData)
-    this.setData({
-      selectDataList: selectDataList,
-      showAction: false
+
+    //加入购物车
+    new cart(function(){
+
+    }).add({
+      ecouponsType:1,
+      ecouponsId:2,
+      ecouponsCnt:3,
+      specificationId:6,
+      addressId:16
     })
+    // const selectData = this.data.selectData
+    // const selectDataList = this.data.selectDataList || []
+    // for (let i = 0; i < selectDataList.length; i++) {
+    //   if (selectDataList[i].id == selectData.id && selectDataList[i].ecouponsid == selectData.ecouponsid) {
+    //     let ssSelect = selectDataList[i].specificationsSelect
+    //     let selectssSelect = selectData.specificationsSelect
+    //     let sign = true
+    //     for (let key in ssSelect) {
+    //       if (selectssSelect[key].id != ssSelect[key].id) {
+    //         sign = false
+    //         break;
+    //       }
+    //     }
+    //     if (sign) {
+    //       selectDataList[i] = selectData
+    //       this.setData({
+    //         selectDataList: selectDataList,
+    //         showAction: false
+    //       })
+    //       return
+    //     }
+    //   }
+    // }
+    // selectDataList.push(selectData)
+    // this.setData({
+    //   selectDataList: selectDataList,
+    //   showAction: false
+    // })
   },
   getSpecifications(ecouponId) {
     return new Promise((resolve, reject) => {
