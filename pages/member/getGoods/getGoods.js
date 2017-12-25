@@ -30,7 +30,7 @@ Page({
       this.setData({
         data: res.data.data,
         sum: res.data.sum,
-        address:res.data.address
+        address: res.data.address
       })
     }).myEcoupons()
   },
@@ -38,7 +38,7 @@ Page({
 
   //收货地址
   chooseAddress: function () {
-    var that=this;
+    var that = this;
     try {
       wx.chooseAddress({
         success: function (res) {
@@ -106,14 +106,15 @@ Page({
   },
   select: function (e) {
     const { id, ecouponsid, ecouponsname, count, name, ecouponstype } = e.currentTarget.dataset
-    if (Number(count) === 0) {
+    if (parseInt(count) === 0) {
       util.errShow("该类型暂无可提")
       return
     }
-    const localSelect = this.data.selectDataList.filter(item => {
-      return item.id == id && item.ecouponsid == ecouponsid
-    })
+    
     this.getSpecifications(ecouponsid).then(res => {
+      const localSelect = this.data.selectDataList.filter(item => {
+        return item.id == id && item.ecouponsid == ecouponsid && item.specificationsSelect[res[0].specification_id].id == res[0].valueList[0].id
+      })
       this.setData({
         showAction: true,
         selectData: {
@@ -146,10 +147,16 @@ Page({
   },
 
   revisenum(e) {
-    let result
+    let result, selectDataList = this.data.selectDataList, sum = 0
     const { btype, ltype, index } = e.currentTarget.dataset
-    let { num, count } = ltype ? this.data.selectDataList[index] : this.data.selectData
-    num = Number(num)
+    let { num, count, id, ecouponsid } = ltype ? this.data.selectDataList[index] : this.data.selectData
+    for (let i = 0; i < selectDataList.length; i++) {
+      if (id == selectDataList[i].id && ecouponsid == selectDataList[i].ecouponsid) {
+        sum += parseInt(selectDataList[i].num)
+      }
+    }
+    sum -= num
+    count = count - sum
     switch (btype) {
       case 'reduce':
         result = num - 1

@@ -32,7 +32,7 @@
 </view>
 
   <view class="selectedList">
-    <block wx:for="{{selectDataList}}" wx:key="id">
+    <block wx:for="{{selectDataList}}" wx:key="index">
       <view class="selected lineItem border_bottom">
         <view class="left clr_lightGray">
           <image src='../../../resources/images/member/nbs.jpg'></image>
