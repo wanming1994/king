@@ -17,11 +17,11 @@ Page(Object.assign({}, actionsheet, payTemp, {
     unreview: [],//待评价
     unshipped: [],//待发货
     currentTab: 0,//显示全部
-    allTips: '下拉刷新',
-    unpaidTips: '下拉刷新',
-    unreciverTips: '下拉刷新',
-    unreviewTips: '下拉刷新',
-    unshippedTips: '下拉刷新',
+    p501Tips: '下拉刷新',
+    p0Tips: '下拉刷新',
+    p201Tips: '下拉刷新',
+    p301Tips: '下拉刷新',
+    p300Tips: '下拉刷新',
     sType: ["p501", "p0", "p201", "p301", "p300"],
     scroll: [0, 0, 0, 0, 0]
   },
@@ -397,7 +397,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
   pageModel: {
     'p501': {
       pageNumber: 0,
-      pageSize: 5,
+      pageSize: 10,
       totalPages: 999
     },
     'p0': {

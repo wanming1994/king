@@ -13,7 +13,7 @@
         <block wx:for="{{p501}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
-        <view class="tips f12">{{allTips}}</view>
+        <view class="tips f12">{{p501Tips}}</view>
       </scroll-view>
     </swiper-item>
     <swiper-item>
@@ -21,7 +21,7 @@
         <block wx:for="{{p0}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
-        <view class="tips f12">{{unpaidTips}}</view>
+        <view class="tips f12">{{p0Tips}}</view>
       </scroll-view>
     </swiper-item>
     <swiper-item>
@@ -29,7 +29,7 @@
         <block wx:for="{{p201}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
-        <view class="tips f12">{{unshippedTips}}</view>
+        <view class="tips f12">{{p201Tips}}</view>
       </scroll-view>
     </swiper-item>
     <swiper-item>
@@ -37,7 +37,7 @@
         <block wx:for="{{p300}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
-        <view class="tips f12">{{unreciverTips}}</view>
+        <view class="tips f12">{{p301Tips}}</view>
       </scroll-view>
     </swiper-item>
     <swiper-item>
@@ -45,7 +45,7 @@
         <block wx:for="{{p301}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
-        <view class="tips f12">{{unreviewTips}}</view>
+        <view class="tips f12">{{p300Tips}}</view>
       </scroll-view>
     </swiper-item>
   </swiper>
