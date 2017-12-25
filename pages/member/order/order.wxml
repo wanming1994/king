@@ -55,32 +55,42 @@
 
 <template name="orderList">
   <view class="ordersWrap">
+   <navigator url="../../home/index">
+      <view class="flexC title borderA">
+        <!-- <image src="{{item.tenantThumbnail?item.tenantThumbnail:'/resources/user.png'}}"></image> -->
+        <view class="name f16">{{item.add_time}}</view>
+        <view class="orderType f14 clr_orange" wx:if='{{item.order_type==0}}'>{{'商品订单('+item.order_status_text+')'}}</view>
+        <view class="orderType f14 clr_orange" wx:if='{{item.order_type==1}}'>{{'兑换订单('+item.order_status_text+')'}}</view>
+        <view class="orderType f14 clr_orange" wx:if='{{item.order_type==2}}'>{{'提货订单('+item.order_status_text+')'}}</view>
+        <view class="orderType f14 clr_orange" wx:if='{{item.order_type==3}}'>{{'加入会员('+item.order_status_text+')'}}</view>
+      </view>
+    </navigator>  
     <navigator url="./orderDetails/orderDetails?id={{item.id}}">
       <block wx:for="{{item.orderItems}}" wx:key="id" wx:for-item="orderItem">
         {{orderItems.id}}
         <view class="flexC details borderA">
           <view class="orderImg">
-            <image src="{{orderItem.list_pic_url?orderItem.list_pic_url:'/resources/user.png'}}"></image>
+            <image src="{{orderItem.list_pic_url?orderItem.list_pic_url:'/resources/images/noneimg.png'}}"></image>
           </view>
           <view class="shopInfo">
             <view class="shopName f14 overone">{{orderItem.goods_name}}</view>
-            <view class="orderNumber f14">订单号:{{item.order_sn}}</view>
+            <view class="orderNumber f14 overone">订单号:{{item.order_sn}}</view>
             <view class="shopPrice f14 clr_orange">￥ {{orderItem.retail_price}}</view>
           </view>
           <view class="shopNumber">
-            <view>x{{orderItem.quantity}}</view>
+            <view>x{{orderItem.number}}</view>
           </view>
         </view>
       </block>
     </navigator>
     <view class="orderTotal borderA f14">
-      <view>共
-        <text class="clr_orange">{{item.quantity}}</text>件商品</view>
+      <!-- <view>共
+        <text class="clr_orange">{{item.goodsCount}}</text>件商品</view> -->
       <view>实付款
-        <text class="clr_orange">￥{{item.amount}}</text>
+        <text class="clr_orange">￥{{item.goods_price}}</text>
       </view>
       <view>(含运费
-        <text class="clr_orange">￥{{item.freight}}</text>)</view>
+        <text class="clr_orange">￥{{item.shipping_fee}}</text>)</view>
     </view>
     <view class="method f14">
       <block wx:if="{{item.finalOrderStatus.status == 'waitPay'}}">
