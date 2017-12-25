@@ -1,6 +1,7 @@
 var app = getApp();
 var util = require("../../../utils/util.js");
 var order = require('../../../service/order.js');
+var receiver = require('../../../service/receiver.js');
 var getPwd = require('../../../utils/getPassword.js');
 var password = require('../../../service/common.js');
 // pages/member/getGoods/getGoods.js
@@ -28,10 +29,62 @@ Page({
     new order(res => {
       this.setData({
         data: res.data.data,
-        sum: res.data.sum
+        sum: res.data.sum,
+        address:res.data.address
       })
     }).myEcoupons()
   },
+
+
+  //收货地址
+  chooseAddress: function () {
+    var that=this;
+    try {
+      wx.chooseAddress({
+        success: function (res) {
+          console.log(res)
+          new receiver(function (data) {
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success'
+            })
+
+            new order(res => {
+              that.setData({
+                address: res.data.address
+              })
+            }).myEcoupons()
+
+          }).save({
+            provinceName: res.provinceName,
+            cityName: res.cityName,
+            countyName: res.countyName,
+            detailInfo: res.detailInfo,
+            userName: res.userName,
+            telNumber: res.telNumber,
+            nationalCode: res.nationalCode,
+            postalCode: res.postalCode
+          })
+        },
+        fail: function (err) {
+          if (err.errMsg.indexOf('auth') > -1) {
+            wx.showModal({
+              title: '提示',
+              content: '未授予地址权限，是否前往设置',
+              success: function (res) {
+                if (res.confirm) {
+                  wx.openSetting()
+                }
+              }
+            })
+          }
+        }
+      })
+    } catch (e) {
+      util.errShow('微信版本过低')
+    }
+  },
+
   checkout(e) {
     const { id, pid } = e.currentTarget.dataset
     const selectData = this.data.selectData
@@ -53,10 +106,10 @@ Page({
   },
   select: function (e) {
     const { id, ecouponsid, ecouponsname, count, name, ecouponstype } = e.currentTarget.dataset
-    // if (Number(count) === 0) {
-    //   util.errShow("该类型暂无可提")
-    //   return
-    // }
+    if (Number(count) === 0) {
+      util.errShow("该类型暂无可提")
+      return
+    }
     const localSelect = this.data.selectDataList.filter(item => {
       return item.id == id && item.ecouponsid == ecouponsid
     })

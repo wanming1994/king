@@ -1,4 +1,11 @@
 
+.address, .toStore, .tenant {
+  margin-top: 1.33vw;
+}
+
+.address_icon {
+  margin-top: 1em;
+}
 
 .container {
   padding-bottom: 100rpx;

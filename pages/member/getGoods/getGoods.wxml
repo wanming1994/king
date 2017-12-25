@@ -13,9 +13,24 @@
       </view>
     </view>
   </view>
-  <view class="address padding2 border_bottom overtwo">
-    收货地址：安徽省合肥市中绿广场
+
+<view class='lineItem lineItem_access f14 padding2 address'  bindtap='chooseAddress'>
+  <view class='left' wx:if="{{address}}">
+    <text class='iconfont icon-dizhi f66 address_icon'></text>
   </view>
+  <view class='left' wx:if="{{!address}}">
+    <text class='iconfont icon-dizhi f66 address_icon' style='margin-top:12rpx'></text>
+  </view>
+  <view class='center lineH_two' wx:if="{{address}}">
+    <view>{{address.userName}} {{address.telNumber}}</view>
+    <view class='clr_orange'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}</view>
+  </view>
+  <view class='center lineH_two' wx:if="{{!address}}">
+    <view class='clr_red'>请选择收货地址</view>
+  </view>
+  <view class='right'></view>
+</view>
+
   <view class="selectedList">
     <block wx:for="{{selectDataList}}" wx:key="id">
       <view class="selected lineItem border_bottom">
