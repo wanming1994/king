@@ -60,7 +60,7 @@ Page({
     const localSelect = this.data.selectDataList.filter(item => {
       return item.id == id && item.ecouponsid == ecouponsid
     })
-    this.getSpecifications(2).then(res => {
+    this.getSpecifications(ecouponsid).then(res => {
       this.setData({
         showAction: true,
         selectData: {
