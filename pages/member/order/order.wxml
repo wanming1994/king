@@ -1,16 +1,16 @@
 <view class="page">
   <!-- <loading wx:if="{{loading}}">加载中</loading> -->
   <view class="swiper-tab top">
-    <view class="f14 swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-type="all" data-current="0" bindtap="swichNav">全部</view>
-    <view class="f14 swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-type="unpaid" data-current="1" bindtap="swichNav">待支付</view>
-    <view class="f14 swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-type="unshipped" data-current="2" bindtap="swichNav">待发货</view>
-    <view class="f14 swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-type="unreciver" data-current="3" bindtap="swichNav">待收货</view>
-    <view class="f14 swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-type="unreview" data-current="4" bindtap="swichNav">已完成</view>
+    <view class="f14 swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-type="p501" data-current="0" bindtap="swichNav">全部</view>
+    <view class="f14 swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-type="p0" data-current="1" bindtap="swichNav">待支付</view>
+    <view class="f14 swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-type="p201" data-current="2" bindtap="swichNav">待发货</view>
+    <view class="f14 swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-type="p300" data-current="3" bindtap="swichNav">待收货</view>
+    <view class="f14 swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-type="p301" data-current="4" bindtap="swichNav">已完成</view>
   </view>
   <swiper current="{{currentTab}}" bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove' class="swiper-box" duration="0" style="height:{{winHeight - 50}}px;" bindchange="bindChange">
     <swiper-item>
       <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower" bindscrolltoupper="upper">
-        <block wx:for="{{501}}" wx:key="id">
+        <block wx:for="{{p501}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
         <view class="tips f12">{{allTips}}</view>
@@ -18,7 +18,7 @@
     </swiper-item>
     <swiper-item>
       <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower" bindscrolltoupper="upper">
-        <block wx:for="{{unpaid}}" wx:key="id">
+        <block wx:for="{{p0}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
         <view class="tips f12">{{unpaidTips}}</view>
@@ -26,7 +26,7 @@
     </swiper-item>
     <swiper-item>
       <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower" bindscrolltoupper="upper">
-        <block wx:for="{{unshipped}}" wx:key="id">
+        <block wx:for="{{p201}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
         <view class="tips f12">{{unshippedTips}}</view>
@@ -34,7 +34,7 @@
     </swiper-item>
     <swiper-item>
       <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower" bindscrolltoupper="upper">
-        <block wx:for="{{unreciver}}" wx:key="id">
+        <block wx:for="{{p300}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
         <view class="tips f12">{{unreciverTips}}</view>
@@ -42,7 +42,7 @@
     </swiper-item>
     <swiper-item>
       <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower" bindscrolltoupper="pullDownRefresh">
-        <block wx:for="{{unreview}}" wx:key="id">
+        <block wx:for="{{p301}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
         <view class="tips f12">{{unreviewTips}}</view>
@@ -55,15 +55,9 @@
 
 <template name="orderList">
   <view class="ordersWrap">
-     <!-- <navigator url="../../home/index">
-      <view class="flexC title borderA">
-        <image src="{{item.tenantThumbnail?item.tenantThumbnail:'/resources/user.png'}}"></image>
-        <view class="name f16">{{item.id}}</view>
-        <view class="orderType f14 clr_orange">{{item.order_status_text}}</view>
-      </view>
-    </navigator>  -->
     <navigator url="./orderDetails/orderDetails?id={{item.id}}">
       <block wx:for="{{item.orderItems}}" wx:key="id" wx:for-item="orderItem">
+        {{orderItems.id}}
         <view class="flexC details borderA">
           <view class="orderImg">
             <image src="{{orderItem.list_pic_url?orderItem.list_pic_url:'/resources/user.png'}}"></image>

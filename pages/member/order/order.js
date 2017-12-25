@@ -22,7 +22,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
     unreciverTips: '下拉刷新',
     unreviewTips: '下拉刷新',
     unshippedTips: '下拉刷新',
-    sType: [501, 0, 201, 301, 300],
+    sType: ["p501", "p0", "p201", "p301", "p300"],
     scroll: [0, 0, 0, 0, 0]
   },
   bindChange: function (e) {//滑动选项卡
@@ -395,27 +395,27 @@ Page(Object.assign({}, actionsheet, payTemp, {
     }
   },
   pageModel: {
-    '501': {
+    'p501': {
       pageNumber: 0,
       pageSize: 5,
       totalPages: 999
     },
-    '0': {
+    'p0': {
       pageNumber: 0,
       pageSize: 5,
       totalPages: 999
     },
-    '201': {
+    'p201': {
       pageNumber: 0,
       pageSize: 5,
       totalPages: 999
     },
-    '301': {
+    'p301': {
       pageNumber: 0,
       pageSize: 5,
       totalPages: 999
     },
-    '300': {
+    'p300': {
       pageNumber: 0,
       pageSize: 5,
       totalPages: 999
@@ -463,7 +463,7 @@ function paging(that, sType, direction, cb) {
     }
     cb ? cb() : ''
   }).list({
-    type: sType,
+    type: sType.substr(1),
     pageNumber: direction == 'up' ? that.pageModel[sType].pageNumber = 1 : ++that.pageModel[sType].pageNumber,
     pageSize: that.pageModel[sType].pageSize
   })
