@@ -11,12 +11,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    selectData: {
-      count: 0,
-      name: '',
-      num: 0
-    },
-    selectDataList: [],
     sum: 0,
     data: [],
     specifications: {},
@@ -24,7 +18,6 @@ Page({
     address: {},
     updateCartListFlag: true,
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -38,6 +31,20 @@ Page({
     }).myEcoupons()
     this.getCartList().then(res => {
 
+    })
+  },
+  //添加至购物车
+  addToCard(et, eid, ec, sid) {
+    return new Promise((resolve, reject) => {
+      new cart(res => {
+        resolve && resolve(res)
+      }).add({
+        ecouponsType: et,
+        ecouponsId: eid,
+        ecouponsCnt: ec,
+        specificationId: sid,
+        addressId: this.data.address.id || null
+      })
     })
   },
   //收货地址
@@ -86,10 +93,11 @@ Page({
       util.errShow('微信版本过低')
     }
   },
+  //获取购物车列表
   getCartList() {
     return new Promise((resolve, reject) => {
       if (!this.data.updateCartListFlag) {
-        resolve(this.data.cartList)
+        resolve && resolve(this.data.cartList)
       }
       new cart(res => {
         this.data.updateCartListFlag = false
@@ -97,55 +105,63 @@ Page({
         this.setData({
           cartList: res.cartList
         })
-        resolve(res)
+        resolve && resolve(res)
       }).list()
     })
   },
+  //获取购物车项，通过规格id
+  getCartItemById(id) {
+    const cartList = this.data.cartList
+    for (let i = 0; i < cartList.length; i++) {
+      if (cartList[i].goods_specifition_ids == id) {
+        return cartList[i]
+      }
+    }
+    util.errShow('未知错误')
+    return []
+  },
+  //更新购物车
   updateCart(cid, count) {
     return new Promise((resolve, reject) => {
-      // if (!this.data.address.id) {
-      //   reject('未获取到地址信息')
-      //   return
-      // }
       new cart(res => {
         this.data.updateCartListFlag = true
-        resolve(res)
+        resolve && resolve(res)
       }).edit({
         id: cid,
         count: count,
-        addressId: this.data.address ? this.data.address.id : null
+        addressId: this.data.address.id || null
       })
     })
   },
+  //获取券id的规格
   getSpecifications(ecouponId) {
     return new Promise((resolve, reject) => {
       if (this.data.specifications[ecouponId]) {
-        resolve(this.data.specifications[ecouponId])
+        resolve && resolve(this.data.specifications[ecouponId])
       } else {
         new order(res => {
           this.data.specifications[ecouponId] = res.data[0].valueList
           this.setData({
             specifications: this.data.specifications
           })
-          resolve(res.data[0].valueList)
+          resolve && resolve(res.data[0].valueList)
         }).goodsAttribute({
           ecouponId: ecouponId
         })
       }
     })
   },
-
+  //弹窗规格切换
   checkout(e) {
-    const { id, index } = e.currentTarget.dataset
-    const selectData = this.data.selectData
+    const { id } = e.currentTarget.dataset
     const cartList = this.data.cartList
-    // for (let i = 0; i < cartList.length; i++) {
-    //     if (cartList[i].id === id) {
-    //
-    //         break
-    //     }
-    // }
+    let actionData = this.data.actionData
+    actionData = Object.assign(actionData, this.getCartItemById(id))
+    this.setData({
+      actionData
+    })
   },
+  //弹窗数据
   select: function (e) {
     const { id, ecouponsid, ecouponsname, count, name, ecouponstype } = e.currentTarget.dataset
     if (parseInt(count) === 0) {
@@ -153,27 +169,34 @@ Page({
       return
     }
     this.getSpecifications(ecouponsid).then(sList => {
-      const localSelect = this.data.cartList.filter(item => {
+      let actionData = {
+        specifications: sList
+      }
+      const cartItem = this.data.cartList.filter(item => {
         return item.goods_specifition_ids == sList[0].id
       })
-      this.setData({
-        showAction: true,
-        selectData: {
-          count: count,//该类商品库存
-          id: id,
-          ecouponsid: ecouponsid,
-          name: ecouponsname,
-          num: [localSelect.length > 0 ? localSelect[0].number : 0],//已选数量，数组：每种规格的数量，用sSelect获取当前选中index
-          ecouponstype: ecouponstype,
-          specifications: sList,//规格列表
-          specificationsSelect: 0,//当前选中规格
-        }
-      })
+      if (cartItem.length === 0) {
+        this.addToCard(ecouponstype, ecouponsid, 1, sList[0].id).then(res => {
+          this.getCartList().then(cartList => {
+            actionData = Object.assign(actionData, this.getCartItemById(sList[0].id))
+            this.setData({
+              showAction: true,
+              actionData: actionData
+            })
+          })
+        })
+      } else {
+        actionData = Object.assign(actionData, this.getCartItemById(sList[0].id))
+        this.setData({
+          showAction: true,
+          actionData: actionData
+        })
+      }
     })
   },
-
   //弹出框toggle
   toggleMask(e) {
+    this.data.showAction && this.getCartList()
     this.setData({
       showAction: !this.data.showAction,
       buyType: e.currentTarget.dataset.type,
@@ -181,23 +204,19 @@ Page({
       selectData: {}
     })
   },
-
+  //加加减减
   revisenum(e) {
-    let result, selectDataList = this.data.selectDataList, sum = 0
-    const { btype, ltype, index } = e.currentTarget.dataset
-    let { num, count, id, ecouponsid } = ltype ? this.data.selectDataList[index] : this.data.selectData
-    for (let i = 0; i < selectDataList.length; i++) {
-      if (id == selectDataList[i].id && ecouponsid == selectDataList[i].ecouponsid) {
-        sum += parseInt(selectDataList[i].num)
-      }
-    }
-    sum -= num
-    count = count - sum
+    const { btype, id } = e.currentTarget.dataset
+    const cartItem = this.getCartItemById(id)
+    const showAction = this.data.showAction
+    const num = showAction ? parseInt(this.data.actionData.number) : parseInt(cartItem.number)
+    let result
     switch (btype) {
       case 'reduce':
         result = num - 1
         break
       case 'input':
+        if (e.detail.value == num) return
         result = e.detail.value
         break
       case 'add':
@@ -206,76 +225,33 @@ Page({
       default:
         result = 0
     }
-    if (result >= 0 && result <= count) {
-      if (ltype) {
-        this.data.selectDataList[index].num = result
-        this.setData({
-          selectDataList: this.data.selectDataList
-        })
-        return
-      }
-      this.setData({
-        'selectData.num': result
+    if (num >= 0) {
+      this.updateCart(cartItem.id, result).then(res => {
+        if (showAction) this.data.actionData.number = result
+        showAction ? this.setData({
+          actionData: this.data.actionData
+        }) : this.getCartList()
       })
-      return
     }
-    ltype ? this.setData({
-      selectDataList: this.data.selectDataList
-    }) : this.setData({
-      'selectData.num': num
-    })
   },
+  //弹窗确认
   paySubmit() {
-
-    //加入购物车
-    new cart(function () {
-
-    }).add({
-      ecouponsType: 1,
-      ecouponsId: 2,
-      ecouponsCnt: 3,
-      specificationId: 7,
-      addressId: 16
+    this.getCartList()
+    this.setData({
+      showAction: false
     })
-    // const selectData = this.data.selectData
-    // const selectDataList = this.data.selectDataList || []
-    // for (let i = 0; i < selectDataList.length; i++) {
-    //   if (selectDataList[i].id == selectData.id && selectDataList[i].ecouponsid == selectData.ecouponsid) {
-    //     let ssSelect = selectDataList[i].specificationsSelect
-    //     let selectssSelect = selectData.specificationsSelect
-    //     let sign = true
-    //     for (let key in ssSelect) {
-    //       if (selectssSelect[key].id != ssSelect[key].id) {
-    //         sign = false
-    //         break;
-    //       }
-    //     }
-    //     if (sign) {
-    //       selectDataList[i] = selectData
-    //       this.setData({
-    //         selectDataList: selectDataList,
-    //         showAction: false
-    //       })
-    //       return
-    //     }
-    //   }
-    // }
-    // selectDataList.push(selectData)
-    // this.setData({
-    //   selectDataList: selectDataList,
-    //   showAction: false
-    // })
   },
-
+  //购买提交
+  buySubmit(){
+    new order().submit({
+      orderType:2,
+      addressId: this.data.address.id || null
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    setTimeout(() => {
-      this.updateCart(160, 10).then(res => {
-        console.log(res)
-      })
-    }, 1000)
   },
 
   /**

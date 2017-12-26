@@ -19,7 +19,7 @@ module.exports = class Cart extends Ajax {
    */
   edit(data) {
     super.post({
-      url: 'cart/update.jhtml',
+      url: 'cart/update',
       data: data
     });
   }
