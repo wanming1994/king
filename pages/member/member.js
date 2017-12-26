@@ -1,11 +1,14 @@
 let app = getApp(),
-  util = require("../../utils/util.js")
+  util = require("../../utils/util.js"),
+  member = require("../../service/member.js")
 Page({
   data: {
     memberInfo: app.globalData.memberInfo
   },
   onLoad: function (options) {
+    new member(function(){
 
+    }).view()
   },
   onReady: function () {
 

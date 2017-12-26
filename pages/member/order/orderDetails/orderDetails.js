@@ -16,13 +16,13 @@ var getData = function (that, id) {
     var baseUrl = config.BASE_URL;
     var logType = ''
     var log = []
-    for (var i = 0; i < details.orderLogs.length; i++) {
-      if (logType !== details.orderLogs[i].type) {
-        log.push(details.orderLogs[i])
-      }
-      logType = details.orderLogs[i].type
-    }
-    details.orderLogs = log
+    // for (var i = 0; i < details.orderLogs.length; i++) {
+    //   if (logType !== details.orderLogs[i].type) {
+    //     log.push(details.orderLogs[i])
+    //   }
+    //   logType = details.orderLogs[i].type
+    // }
+    // details.orderLogs = log
     that.setData({
       details: details,
       pickUpcodeUrl: baseUrl + details.pickUpCodeUrl
@@ -53,7 +53,7 @@ var getData = function (that, id) {
         iconFn: 'returnChangeMethod'
       })
     }
-  }).view({ id: id })
+  }).view({ orderId: id })
 }
 Page(Object.assign({}, actionsheet, payTemp, {
 

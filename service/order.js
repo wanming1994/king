@@ -16,7 +16,17 @@ module.exports = class Order extends Ajax {
     });
   }
 
-  
+  /**
+     * 订单明细
+     * id 子订单Id
+     */
+  view(data) {
+    super.get({
+      url: "order/detail",
+      data: data,
+      success: this.fn
+    });
+  }
 
   /**
    * 订单提交

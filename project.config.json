@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -82,6 +82,12 @@
 					"name": "订单列表",
 					"pathName": "pages/member/order/order",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详情",
+					"pathName": "pages/member/order/orderDetails/orderDetails",
+					"query": "id=164"
 				}
 			]
 		}

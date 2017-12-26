@@ -93,16 +93,16 @@
         <text class="clr_orange">￥{{item.shipping_fee}}</text>)</view>
     </view>
     <view class="method f14">
-      <block wx:if="{{item.finalOrderStatus.status == 'waitPay'}}">
+      <block wx:if="{{item.order_status == '0'}}">
         <view data-type="refund" data-info="{{item.id}}" catchtap="methodBtn">取消订单</view>
         <form bindsubmit="formSubmit" report-submit bindreset="formReset">
           <button data-type="waitpay" class="confirmBtn" form-type="submit" data-info="{{item.id}}" style="border:1px solid #d9d9d9;line-height:1.6;margin-left:20rpx;margin-right:0;font-size:32rpx;">立即支付</button>
         </form>
       </block>
-      <block wx:elif="{{item.finalOrderStatus.status == 'unconfirmed'}}">
+      <block wx:elif="{{item.order_status == '201'}}">
         <view data-type="refund" data-info="{{item.id}}" catchtap="methodBtn">取消订单</view>
       </block>
-      <block wx:elif="{{item.finalOrderStatus.status == 'waitShipping'}}">
+      <block wx:elif="{{item.order_status == '300'}}">
         <block wx:if="{{item.shippingMethod.method == 'TPL'}}">
           <view data-type="return" data-info="{{item.id}}" catchtap="methodBtn">退货申请</view>
           <view data-type="remind" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">提醒商家发货</view>
@@ -116,12 +116,10 @@
         <view wx:if="{{item.shippings[0].trackingNo}}" data-type="logistics" data-info="{{item.shippings[0].trackingNo}}" catchtap="methodBtn">查看物流</view>
         <view data-type="confirm" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">立即签收</view>
       </block>
-      <block wx:elif="{{item.finalOrderStatus.status == 'toReview'}}">
+      <block wx:elif="{{item.order_status == '301'}}">
         <view data-type="evaluate" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">立即评价</view>
       </block>
-      <block wx:elif="{{item.finalOrderStatus.status == 'waitReturn'}}">
-        <view data-type="remind" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">提醒商家退款</view>
-      </block>
+    
 
     </view>
   </view>

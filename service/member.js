@@ -19,7 +19,7 @@ module.exports = class Member extends Ajax {
    */
   view(data) {
     super.get({
-      url: 'applet/member/view.jhtml',
+      url: 'user/info',
       hideErrorTip: true,
       data: data
     })

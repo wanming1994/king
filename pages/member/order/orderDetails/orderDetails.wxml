@@ -1,20 +1,5 @@
 <view class="page">
-  <view class="title f16">交易状态</view>
-  <view class="progress">
-    <block wx:for="{{details.orderLogs}}" wx:key="operator">
-      <view class="lineItem">
-        <view class="left">
-          <image class="progressDot" src="/resources/images/icon/progressUp.png"></image>
-          <view wx:if="{{index != 0}}" class="progressLine"></view>
-        </view>
-        <view class="center">
-          <view class="f14 proTitle">{{item.content}}</view>
-          <view class="f12">{{item.content}}</view>
-        </view>
-        <view class="right f12">{{item.createDate}}</view>
-      </view>
-    </block>
-  </view>
+  <!-- <view class="title f16">交易状态</view> -->
   <view class="title f16">订单消息</view>
   <view class="orderMsg f14">
     <view class="lineItem border_none">
@@ -27,7 +12,7 @@
     </view>
     <view class="lineItem">
       <view class="left">订单号</view>
-      <view class="right">{{details.sn}}</view>
+      <view class="right">{{details.orderInfo.order_sn}}</view>
     </view>
     <view class="lineItem" wx:if="{{details.shippings.length}}">
       <view class="left">快递单号</view>
@@ -62,27 +47,28 @@
   </view>
   <view class="title f16">商品信息</view>
   <view class="shopMsg f14">
-    <view class="shopName lineItem ">
+     <view class="shopName lineItem ">
       <view class="left">
-        <text class="iconfont icon-shangjia clr_orange"></text>
+        <text>{{details.orderInfo.add_time}}</text>
+        <!-- <text class="iconfont icon-shangjia clr_orange"></text> -->
       </view>
       <view class="center">
-        {{details.tenantName}}
+        <!-- {{details.tenantName}} -->
       </view>
       <view class="right"></view>
-    </view>
-    <block wx:for="{{details.orderItems}}" wx:key="id">
-      <view class="shopDetails" bindtap="goProductDetails" data-id="{{item.productId}}">
+    </view> 
+    <block wx:for="{{details.orderGoods}}" wx:key="id">
+      <view class="shopDetails" bindtap="goProductDetails" data-id="{{item.goods_id}}">
         <view class="lineItem">
           <view class="left">
-            <image src="{{item.thumbnail?item.thumbnail:'/resources/images/share/shareTopBg.jpg'}}"></image>
+            <image src="{{item.list_pic_url?item.list_pic_url:'/resources/images/share/shareTopBg.jpg'}}"></image>
           </view>
           <view class="center">
-            <view class="overthree">{{item.fullName}}</view>
-            <view>￥{{item.price}}</view>
+            <view class="overthree">{{item.goods_name}}</view>
+            <view>￥{{item.retail_price}}</view>
           </view>
           <view class="right">
-            x{{item.quantity}}
+            x{{item.number}}
           </view>
         </view>
       </view>
@@ -92,10 +78,10 @@
       <view class="lineItem">
         <view class="right">
           <view>小计：
-            <text>￥{{details.productPrice}}</text>
+            <text>￥{{details.orderInfo.order_price}}</text>
           </view>
           <view>运费：
-            <text>￥{{details.freight}}</text>
+            <text>￥{{details.orderInfo.shipping_fee}}</text>
           </view>
         </view>
       </view>
@@ -112,7 +98,7 @@
       -￥{{details.couponDiscount}}
     </view>
   </view>
-  <view class="lineItem title border_none f16">
+  <!-- <view class="lineItem title border_none f16">
     <view class="left">
       <text class="iconfont icon-jifen clr_orange f18"></text>
     </view>
@@ -122,11 +108,11 @@
     <view class="right">
       {{details.point}}
     </view>
-  </view>
+  </view> -->
   <view class="op">
     <view>
       实付款：
-      <text class="clr_orange">￥{{details.amount}}</text>
+      <text class="clr_orange">￥{{details.orderInfo.order_price}}</text>
     </view>
   </view>
   <view class="method f14">
