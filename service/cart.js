@@ -13,12 +13,13 @@ module.exports = class Cart extends Ajax {
   }
   /**
    * 编辑数量
-   * id 购物项Id
-   * quantity 数量
+   * cid 购物项Id
+   * count 数量
+   * addressId 地址id
    */
   edit(data) {
     super.post({
-      url: 'applet/cart/edit.jhtml',
+      url: 'cart/update.jhtml',
       data: data
     });
   }

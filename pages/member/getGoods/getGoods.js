@@ -204,7 +204,7 @@ Page({
       ecouponsType:1,
       ecouponsId:2,
       ecouponsCnt:3,
-      specificationId:6,
+      specificationId:7,
       addressId:16
     })
     // const selectData = this.data.selectData
