@@ -1,35 +1,35 @@
 <view class="container">
-  <view class="number f20 padding2 border_bottom">
+  <!-- <view class="number f20 padding2 border_bottom">
     共有{{sum}}包可提
-  </view>
+  </view> -->
   <view class="checkout">
     <view wx:for="{{data}}" wx:key="id">
       <view>{{item.name}}</view>
       <view>
         <block wx:for="{{item.userECouponsInfoDtoList}}" wx:key="id" wx:for-item="zItem">
-          <image src="/resources/images/member/nbs.jpg" data-id="{{item.id}}" data-ecouponsid="{{zItem.ecouponsId}}" data-name="{{item.name}}" data-ecouponsname="{{zItem.ecouponsName}}" data-ecouponstype="{{zItem.ecouponsTypeName}}" data-count="{{zItem.ecouponsCnt}}"
-            bindtap="select"></image>
+          <!-- <image src="/resources/images/member/nbs.jpg" data-id="{{item.id}}" data-ecouponsid="{{zItem.ecouponsId}}" data-name="{{item.name}}" data-ecouponsname="{{zItem.ecouponsName}}" data-ecouponstype="{{zItem.ecouponsTypeName}}" data-count="{{zItem.ecouponsCnt}}" bindtap="select"></image> -->
+          <text data-id="{{item.id}}" data-ecouponsid="{{zItem.ecouponsId}}" data-name="{{item.name}}" data-ecouponsname="{{zItem.ecouponsName}}" data-ecouponstype="{{zItem.ecouponsTypeName}}" data-count="{{zItem.ecouponsCnt}}" bindtap="select">test</text>
         </block>
       </view>
     </view>
   </view>
 
-<view class='lineItem lineItem_access f14 padding2 address'  bindtap='chooseAddress'>
-  <view class='left' wx:if="{{address}}">
-    <text class='iconfont icon-dizhi f66 address_icon'></text>
+  <view class='lineItem lineItem_access f14 padding2 address' bindtap='chooseAddress'>
+    <view class='left' wx:if="{{address}}">
+      <text class='iconfont icon-dizhi f66 address_icon'></text>
+    </view>
+    <view class='left' wx:if="{{!address}}">
+      <text class='iconfont icon-dizhi f66 address_icon' style='margin-top:12rpx'></text>
+    </view>
+    <view class='center lineH_two' wx:if="{{address}}">
+      <view>{{address.userName}} {{address.telNumber}}</view>
+      <view class='clr_orange'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}</view>
+    </view>
+    <view class='center lineH_two' wx:if="{{!address}}">
+      <view class='clr_red'>请选择收货地址</view>
+    </view>
+    <view class='right'></view>
   </view>
-  <view class='left' wx:if="{{!address}}">
-    <text class='iconfont icon-dizhi f66 address_icon' style='margin-top:12rpx'></text>
-  </view>
-  <view class='center lineH_two' wx:if="{{address}}">
-    <view>{{address.userName}} {{address.telNumber}}</view>
-    <view class='clr_orange'>{{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}</view>
-  </view>
-  <view class='center lineH_two' wx:if="{{!address}}">
-    <view class='clr_red'>请选择收货地址</view>
-  </view>
-  <view class='right'></view>
-</view>
 
   <view class="selectedList">
     <block wx:for="{{selectDataList}}" wx:key="index">
@@ -76,20 +76,18 @@
       </view>
     </view>
     <view class="actionSpecifications border_bottom">
-      <block wx:for="{{selectData.specifications}}" wx:key="id" wx:for-index="pindex">
-        <view class="actionItemTitle f16" data-id="{{item.specification_id}}">{{item.name}}：</view>
-        <view class="actionItemBtn f16">
-          <block wx:for="{{item.valueList}}" wx:for-item="citem" wx:key="id" wx:for-index="iindex">
-            <text bindtap="checkout" class="{{selectData.specificationsSelect[item.specification_id].id==citem.id?'active':''}}" data-id="{{citem.id}}" data-goodsid="{{citem.goods_id}}" data-pid="{{item.specification_id}}">{{citem.value}}</text>
-          </block>
-        </view>
-      </block>
+      <view class="actionItemTitle f16">{{selectData.specifications[0].name}}：</view>
+      <view class="actionItemBtn f16">
+        <block wx:for="{{selectData.specifications}}" wx:for-item="citem" wx:key="id" wx:for-index="iindex">
+          <text bindtap="checkout" data-index="{{iindex}}" class="{{selectData.specificationsSelect==iindex?'active':''}}" data-id="{{citem.id}}">{{citem.value}}</text>
+        </block>
+      </view>
     </view>
     <view class="actionNumber border_bottom lineItem" style="align-items:center;">
       <view class="f16 ">提货数量:</view>
       <view class="amount">
         <button data-btype="reduce" bindtap="revisenum">-</button>
-        <input class="f12 " type="number" data-btype="input" bindchange="revisenum" value="{{selectData.num}}" />
+        <input class="f12 " type="number" data-btype="input" bindchange="revisenum" value="{{selectData.num[specificationsSelect]}}" />
         <button data-btype="add" bindtap="revisenum">+</button>
       </view>
     </view>
