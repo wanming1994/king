@@ -1,14 +1,14 @@
 <view class="container">
-  <!-- <view class="number f20 padding2 border_bottom">
+  <view class="number f20 padding2 border_bottom">
     共有{{sum}}包可提
-  </view> -->
+  </view>
   <view class="checkout">
     <view wx:for="{{data}}" wx:key="id">
       <view>{{item.name}}</view>
       <view>
         <block wx:for="{{item.userECouponsInfoDtoList}}" wx:key="id" wx:for-item="zItem">
-          <!-- <image src="/resources/images/member/nbs.jpg" data-id="{{item.id}}" data-ecouponsid="{{zItem.ecouponsId}}" data-name="{{item.name}}" data-ecouponsname="{{zItem.ecouponsName}}" data-ecouponstype="{{zItem.ecouponsTypeName}}" data-count="{{zItem.ecouponsCnt}}" bindtap="select"></image> -->
-          <text data-id="{{item.id}}" data-ecouponsid="{{zItem.ecouponsId}}" data-name="{{item.name}}" data-ecouponsname="{{zItem.ecouponsName}}" data-ecouponstype="{{zItem.ecouponsTypeName}}" data-count="{{zItem.ecouponsCnt}}" bindtap="select">test</text>
+          <image src="/resources/images/member/nbs.jpg" data-id="{{item.id}}" data-ecouponsid="{{zItem.ecouponsId}}" data-name="{{item.name}}" data-ecouponsname="{{zItem.ecouponsName}}" data-ecouponstype="{{zItem.ecouponsTypeName}}" data-count="{{zItem.ecouponsCnt}}"
+            bindtap="select"></image>
         </block>
       </view>
     </view>
@@ -87,7 +87,7 @@
       <view class="f16 ">提货数量:</view>
       <view class="amount">
         <button data-btype="reduce" bindtap="revisenum">-</button>
-        <input class="f12 " type="number" data-btype="input" bindchange="revisenum" value="{{selectData.num[specificationsSelect]}}" />
+        <input class="f12 " type="number" data-btype="input" bindchange="revisenum" value="{{selectData.num[selectData.specificationsSelect]}}" />
         <button data-btype="add" bindtap="revisenum">+</button>
       </view>
     </view>
