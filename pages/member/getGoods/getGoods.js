@@ -103,17 +103,17 @@ Page({
   },
   updateCart(cid, count) {
     return new Promise((resolve, reject) => {
-      if (!this.data.address.id) {
-        reject()
-        return
-      }
+      // if (!this.data.address.id) {
+      //   reject('未获取到地址信息')
+      //   return
+      // }
       new cart(res => {
         this.data.updateCartListFlag = true
         resolve(res)
       }).edit({
         id: cid,
         count: count,
-        addressId: this.data.address.id
+        addressId: this.data.address ? this.data.address.id : null
       })
     })
   },
@@ -173,7 +173,6 @@ Page({
   },
 
   //弹出框toggle
-
   toggleMask(e) {
     this.setData({
       showAction: !this.data.showAction,
@@ -272,11 +271,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    setTimeout(()=>{
+    setTimeout(() => {
       this.updateCart(160, 10).then(res => {
         console.log(res)
       })
-    },1000)
+    }, 1000)
   },
 
   /**
