@@ -117,7 +117,6 @@ Page({
         return cartList[i]
       }
     }
-    util.errShow('未知错误')
     return []
   },
   //更新购物车
@@ -153,17 +152,23 @@ Page({
   },
   //弹窗规格切换
   checkout(e) {
-    const { id } = e.currentTarget.dataset
+    const {id, index} = e.currentTarget.dataset
     const cartList = this.data.cartList
+    const cartItem = this.getCartItemById(id)
     let actionData = this.data.actionData
-    actionData = Object.assign(actionData, this.getCartItemById(id))
+    if (cartItem.length === 0) {
+      this.setData({
+        actionData: Object.assign(actionData, {goods_specifition_ids: actionData.specifications[index].id, number: 0})
+      })
+      return
+    }
     this.setData({
-      actionData
+      actionData: Object.assign(actionData, cartItem)
     })
   },
   //弹窗数据
   select: function (e) {
-    const { id, ecouponsid, ecouponsname, count, name, ecouponstype } = e.currentTarget.dataset
+    const {id, ecouponsid, ecouponsname, count, name, ecouponstype} = e.currentTarget.dataset
     if (parseInt(count) === 0) {
       util.errShow("该类型暂无可提")
       return
@@ -176,19 +181,32 @@ Page({
         return item.goods_specifition_ids == sList[0].id
       })
       if (cartItem.length === 0) {
-        this.addToCard(ecouponstype, ecouponsid, 1, sList[0].id).then(res => {
-          this.getCartList().then(cartList => {
-            actionData = Object.assign(actionData, this.getCartItemById(sList[0].id))
-            this.setData({
-              showAction: true,
-              actionData: actionData
-            })
-          })
+        actionData = Object.assign(actionData, {
+          goods_specifition_ids: sList[0].id,
+          number: 0,
+          goods_name: 'xxx',
+          ecouponstype,
+          ecouponsid,
         })
+        this.setData({
+          showAction: true,
+          cartHas: false,
+          actionData
+        })
+        // this.addToCard(ecouponstype, ecouponsid, 1, sList[0].id).then(res => {
+        //   this.getCartList().then(cartList => {
+        //     actionData = Object.assign(actionData, this.getCartItemById(sList[0].id))
+        //     this.setData({
+        //       showAction: true,
+        //       actionData: actionData
+        //     })
+        //   })
+        // })
       } else {
         actionData = Object.assign(actionData, this.getCartItemById(sList[0].id))
         this.setData({
           showAction: true,
+          shouldAddCard: true,
           actionData: actionData
         })
       }
@@ -206,10 +224,11 @@ Page({
   },
   //加加减减
   revisenum(e) {
-    const { btype, id } = e.currentTarget.dataset
+    const {btype, id} = e.currentTarget.dataset
     const cartItem = this.getCartItemById(id)
     const showAction = this.data.showAction
     const num = showAction ? parseInt(this.data.actionData.number) : parseInt(cartItem.number)
+    const shouldAddCard = showAction && this.data.actionData.shouldAddCard
     let result
     switch (btype) {
       case 'reduce':
@@ -226,6 +245,12 @@ Page({
         result = 0
     }
     if (num >= 0) {
+      if (shouldAddCard) {
+        this.setData({
+          actionData: Object.assign(this.data.actionData, {number: result})
+        })
+        return
+      }
       this.updateCart(cartItem.id, result).then(res => {
         if (showAction) this.data.actionData.number = result
         showAction ? this.setData({
@@ -236,15 +261,22 @@ Page({
   },
   //弹窗确认
   paySubmit() {
+    const actionData = this.data.actionData
+    if (actionData.shouldAddCard) {
+      this.addToCard(actionData.ecouponstype, actionData.ecouponsid, actionData.number, actionData.goods_specifition_ids).then(res => {
+        this.getCartList()
+      })
+      return
+    }
     this.getCartList()
     this.setData({
       showAction: false
     })
   },
   //购买提交
-  buySubmit(){
+  buySubmit() {
     new order().submit({
-      orderType:2,
+      orderType: 2,
       addressId: this.data.address.id || null
     })
   },

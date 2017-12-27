@@ -76,7 +76,7 @@
       <view class="actionItemTitle f16">{{actionData.specifications[0].name}}：</view>
       <view class="actionItemBtn f16">
         <block wx:for="{{actionData.specifications}}" wx:for-item="citem" wx:key="id" wx:for-index="iindex">
-          <text bindtap="checkout" data-id="{{citem.id}}" class="{{citem.id==actionData.goods_specifition_ids?'active':''}}" data-id="{{citem.id}}">{{citem.value}}</text>
+          <text bindtap="checkout" data-index="{{iindex}}}" data-id="{{citem.id}}" class="{{citem.id==actionData.goods_specifition_ids?'active':''}}">{{citem.value}}</text>
         </block>
       </view>
     </view>
