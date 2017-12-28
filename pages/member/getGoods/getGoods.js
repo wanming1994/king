@@ -332,6 +332,17 @@ Page({
     this.setData({
       showBuyDetail: false,
     })
+    new order(res => {
+      this.setData({
+        data: res.data.data,
+        sum: res.data.sum,
+        address: res.data.address,
+        addressId: res.data.address ? res.data.address.id : ''
+      })
+      this.getCartList(res.data.address.id ? res.data.address.id : '').then(res => {
+
+      })
+    }).myEcoupons()
   },
   /**
    * 生命周期函数--监听页面显示
