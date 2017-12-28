@@ -26,12 +26,14 @@ Page({
       this.setData({
         data: res.data.data,
         sum: res.data.sum,
-        address: res.data.address
+        address: res.data.address,
+        addressId: res.data.address ? res.data.address.id:''
+      })
+      this.getCartList(res.data.address.id ? res.data.address.id : '').then(res => {
+
       })
     }).myEcoupons()
-    this.getCartList().then(res => {
-
-    })
+   
   },
   //添加至购物车
   addToCard(et, eid, ec, sid) {
@@ -93,7 +95,7 @@ Page({
     }
   },
   //获取购物车列表
-  getCartList() {
+  getCartList(addressId) {
     return new Promise((resolve, reject) => {
       if (!this.data.updateCartListFlag) {
         resolve && resolve(this.data.cartList)
@@ -102,10 +104,13 @@ Page({
         this.data.updateCartListFlag = false
         wx.hideLoading()
         this.setData({
-          cartList: res.cartList
+          cartList: res.cartList,
+          freight: res.freight
         })
         resolve && resolve(res)
-      }).list()
+      }).list({
+        addressId: addressId
+      })
     })
   },
   //获取购物车项，通过规格id
@@ -203,7 +208,7 @@ Page({
   },
   //弹出框toggle
   toggleMask(e) {
-    this.data.showAction && this.getCartList()
+    this.data.showAction && this.getCartList(this.data.addressId)
     this.setData({
       showAction: !this.data.showAction,
       buyType: e.currentTarget.dataset.type,
@@ -244,7 +249,7 @@ Page({
         if (showAction) this.data.actionData.number = result
         showAction ? this.setData({
           actionData: this.data.actionData
-        }) : this.getCartList()
+        }) : this.getCartList(this.data.addressId)
       })
     }
   },
@@ -253,23 +258,79 @@ Page({
     const actionData = this.data.actionData
     if (actionData.shouldAddCard) {
       this.addToCard(actionData.ecouponstype, actionData.ecouponsid, actionData.number, actionData.goods_specifition_ids).then(res => {
-        this.getCartList()
+        this.getCartList(this.data.addressId)
         this.setData({
           showAction: false
         })
       })
       return
     }
-    this.getCartList()
+    this.getCartList(this.data.addressId)
     this.setData({
       showAction: false
     })
   },
   //购买提交
   buySubmit() {
-    new order().submit({
+    var that=this;
+    new order(function(res){
+      wx.hideLoading()
+      that.setData({
+        userScoreInput: res.data.userScore,
+        scoreMax: parseInt(res.data.userScore),
+        showBuyDetail: true,
+        actual_price: res.data.orderInfo.actual_price,
+        orderId: res.data.orderInfo.id
+      })
+
+      //计算初始积分抵扣现金（默认使用最大积分来抵现）
+      new order(function (data) {
+        that.setData({
+          scoreMoney: data.data.scoreMoney < that.data.actual_price ? data.data.scoreMoney : that.data.actual_price,
+          trueAmount: res.data.orderInfo.actual_price - data.data.scoreMoney >= 0 ? res.data.orderInfo.actual_price - data.data.scoreMoney : 0
+        })
+      }).calPoint({
+        useScore: res.data.userScore
+      })
+    }).submit({
       orderType: 2,
       addressId: this.data.address.id || null
+    })
+  },
+  //去付款
+  toBuyConfirm() {
+    let that = this;
+    //发起支付接口
+    new order(function (data) {
+      that.setData({
+        showBuyDetail: false,
+        showAction: false,
+      })
+      wx.requestPayment({
+        'timeStamp': data.data.timeStamp,
+        'nonceStr': data.data.nonceStr,
+        'package': data.data.package,
+        'signType': 'MD5',
+        'paySign': data.data.paySign,
+        'success': function (res) {
+          wx.showToast({
+            title: '支付成功',
+            icon: 'success',
+            duration: 1000
+          })
+        },
+        'fail': function (res) {
+        }
+      })
+    }).goPay({
+      orderId: that.data.orderId,
+      userScore: that.data.userScoreInput
+    })
+
+  },
+  closeMask() {
+    this.setData({
+      showBuyDetail: false,
     })
   },
   /**
