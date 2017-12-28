@@ -324,7 +324,7 @@ Page({
       })
     }).goPay({
       orderId: that.data.orderId,
-      userScore: that.data.userScoreInput
+      userScore: 0
     })
 
   },
