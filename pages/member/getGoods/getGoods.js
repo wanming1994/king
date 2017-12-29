@@ -195,7 +195,7 @@ Page({
           number: 1,
           goods_name: ecouponsname,
           ecoupon_type: ecouponstype,
-          ecouponsid,
+          ecoupon_id: ecouponsid,
           shouldAddCard: true
         })
         this.setData({
@@ -262,7 +262,7 @@ Page({
   paySubmit() {
     const actionData = this.data.actionData
     if (actionData.shouldAddCard) {
-      this.addToCard(actionData.ecoupon_type, actionData.ecouponsid, actionData.number, actionData.goods_specifition_ids).then(res => {
+      this.addToCard(actionData.ecoupon_type, actionData.ecoupon_id, actionData.number, actionData.goods_specifition_ids).then(res => {
         this.getCartList(this.data.addressId)
         this.setData({
           showAction: false
