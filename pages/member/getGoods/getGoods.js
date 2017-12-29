@@ -39,6 +39,7 @@ Page({
   addToCard(et, eid, ec, sid) {
     return new Promise((resolve, reject) => {
       new cart(res => {
+        this.data.updateCartListFlag = true
         resolve && resolve(res)
       }).add({
         ecouponsType: et,
@@ -97,22 +98,20 @@ Page({
   //获取购物车列表
   getCartList(addressId) {
     return new Promise((resolve, reject) => {
-      // if (!this.data.updateCartListFlag) {
-      //   resolve && resolve(this.data.cartList)
-      // }
-      setTimeout(() => {
-        new cart(res => {
-          this.data.updateCartListFlag = false
-          wx.hideLoading()
-          this.setData({
-            cartList: res.cartList,
-            freight: res.freight
-          })
-          resolve && resolve(res)
-        }).list({
-          addressId: addressId
+      if (!this.data.updateCartListFlag) {
+        resolve && resolve(this.data.cartList)
+      }
+      new cart(res => {
+        this.data.updateCartListFlag = false
+        wx.hideLoading()
+        this.setData({
+          cartList: res.cartList,
+          freight: res.freight
         })
-      }, 500)
+        resolve && resolve(res)
+      }).list({
+        addressId: addressId
+      })
     })
   },
   //获取购物车项，通过规格id
