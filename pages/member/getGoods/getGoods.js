@@ -162,7 +162,7 @@ Page({
     let actionData = this.data.actionData
     if (cartItem.length === 0) {
       this.setData({
-        actionData: Object.assign(actionData, { shouldAddCard: true, goods_specifition_ids: actionData.specifications[index].id, number: 0 })
+        actionData: Object.assign(actionData, { shouldAddCard: true, goods_specifition_ids: actionData.specifications[index].id, number:1 })
       })
       return
     }
@@ -187,7 +187,7 @@ Page({
       if (cartItem.length === 0) {
         actionData = Object.assign(actionData, {
           goods_specifition_ids: sList[0].id,
-          number: 0,
+          number: 1,
           goods_name: 'xxx',
           ecouponstype,
           ecouponsid,
