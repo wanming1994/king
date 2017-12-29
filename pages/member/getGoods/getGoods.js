@@ -27,13 +27,13 @@ Page({
         data: res.data.data,
         sum: res.data.sum,
         address: res.data.address,
-        addressId: res.data.address ? res.data.address.id:''
+        addressId: res.data.address ? res.data.address.id : ''
       })
       this.getCartList(res.data.address.id ? res.data.address.id : '').then(res => {
 
       })
     }).myEcoupons()
-   
+
   },
   //添加至购物车
   addToCard(et, eid, ec, sid) {
@@ -97,20 +97,22 @@ Page({
   //获取购物车列表
   getCartList(addressId) {
     return new Promise((resolve, reject) => {
-      if (!this.data.updateCartListFlag) {
-        resolve && resolve(this.data.cartList)
-      }
-      new cart(res => {
-        this.data.updateCartListFlag = false
-        wx.hideLoading()
-        this.setData({
-          cartList: res.cartList,
-          freight: res.freight
+      // if (!this.data.updateCartListFlag) {
+      //   resolve && resolve(this.data.cartList)
+      // }
+      setTimeout(() => {
+        new cart(res => {
+          this.data.updateCartListFlag = false
+          wx.hideLoading()
+          this.setData({
+            cartList: res.cartList,
+            freight: res.freight
+          })
+          resolve && resolve(res)
+        }).list({
+          addressId: addressId
         })
-        resolve && resolve(res)
-      }).list({
-        addressId: addressId
-      })
+      }, 500)
     })
   },
   //获取购物车项，通过规格id
@@ -156,13 +158,17 @@ Page({
   },
   //弹窗规格切换
   checkout(e) {
-    const { id, index } = e.currentTarget.dataset
+    const {id, index} = e.currentTarget.dataset
     const cartList = this.data.cartList
     const cartItem = this.getCartItemById(id)
     let actionData = this.data.actionData
     if (cartItem.length === 0) {
       this.setData({
-        actionData: Object.assign(actionData, { shouldAddCard: true, goods_specifition_ids: actionData.specifications[index].id, number: 0 })
+        actionData: Object.assign(actionData, {
+          shouldAddCard: true,
+          goods_specifition_ids: actionData.specifications[index].id,
+          number: 1
+        })
       })
       return
     }
@@ -172,7 +178,7 @@ Page({
   },
   //弹窗数据
   select: function (e) {
-    const { id, ecouponsid, ecouponsname, count, name, ecouponstype } = e.currentTarget.dataset
+    const {id, ecouponsid, ecouponsname, count, name, ecouponstype} = e.currentTarget.dataset
     if (parseInt(count) === 0) {
       util.errShow("该类型暂无可提")
       return
@@ -187,8 +193,8 @@ Page({
       if (cartItem.length === 0) {
         actionData = Object.assign(actionData, {
           goods_specifition_ids: sList[0].id,
-          number: 0,
-          goods_name: 'xxx',
+          number: 1,
+          goods_name: ecouponsname,
           ecouponstype,
           ecouponsid,
           shouldAddCard: true
@@ -218,7 +224,7 @@ Page({
   },
   //加加减减
   revisenum(e) {
-    const { btype, id } = e.currentTarget.dataset
+    const {btype, id} = e.currentTarget.dataset
     const cartItem = this.getCartItemById(id)
     const showAction = this.data.showAction
     const num = showAction ? parseInt(this.data.actionData.number) : parseInt(cartItem.number)
@@ -241,7 +247,7 @@ Page({
     if (result >= 0) {
       if (shouldAddCard) {
         this.setData({
-          actionData: Object.assign(this.data.actionData, { number: result })
+          actionData: Object.assign(this.data.actionData, {number: result})
         })
         return
       }
@@ -272,8 +278,8 @@ Page({
   },
   //购买提交
   buySubmit() {
-    var that=this;
-    new order(function(res){
+    var that = this;
+    new order(function (res) {
       wx.hideLoading()
       that.setData({
         userScoreInput: res.data.userScore,

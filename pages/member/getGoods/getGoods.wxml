@@ -55,7 +55,7 @@
     <view class='buySubmit' bindtap='buySubmit'>结算</view>
   </view>
 
-  <view class="actionMask" catchtouchmove="catchActionMask" hidden="{{!showAction || !showBuyDetail}}" bindtap="toggleMask"></view>
+  <view class="actionMask" catchtouchmove="catchActionMask" hidden="{{!showAction}}" bindtap="toggleMask"></view>
   <view class="actionMask" catchtouchmove="catchActionMask" hidden="{{!showBuyDetail}}" bindtap="toggleMaskPay"></view>
   <view class="actionContent" hidden="{{!showAction}}">
     <view class="actionTitle border_bottom lineItem">
