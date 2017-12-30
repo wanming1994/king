@@ -25,6 +25,17 @@ module.exports = class Member extends Ajax {
     })
   }
 
+  /**
+   * 更新用户基本信息
+   */
+  updateView(data) {
+    super.get({
+      url: 'user/update',
+      hideErrorTip: true,
+      data: data
+    })
+  }
+
     /**
      * 绑定手机号发送短信
      * @param:

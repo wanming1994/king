@@ -39,6 +39,7 @@ App({
                   if (typeof that.loginOkCallbackList[i] === 'function') {
                     that.loginOkCallbackList[i]()
                   }
+                  continue
                 }
               }
               that.globalData.LOGIN_STATUS = true;

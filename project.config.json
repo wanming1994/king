@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -45,7 +45,7 @@
 					"id": 3,
 					"name": "商品详情",
 					"pathName": "pages/home/productDetails/productDetails",
-					"query": "id=1152101"
+					"query": "id=1181003"
 				},
 				{
 					"id": -1,
@@ -88,6 +88,18 @@
 					"name": "详情",
 					"pathName": "pages/member/order/orderDetails/orderDetails",
 					"query": "id=164"
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/member/member",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人资料",
+					"pathName": "pages/member/info/info",
+					"query": ""
 				}
 			]
 		}

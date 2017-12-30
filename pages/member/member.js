@@ -6,35 +6,43 @@ Page({
     memberInfo: app.globalData.memberInfo
   },
   onLoad: function (options) {
-    new member(function(){
 
-    }).view()
   },
   onReady: function () {
 
   },
- 
+
   onShow: function () {
     var that = this;
     if (app.globalData.LOGIN_STATUS) {
       this.getInfoWhenLogin()
     } else {
-      app.loginOkCallback = res => {
+      app.loginOkCallbackList.push(() => {
         this.getInfoWhenLogin()
-      }
+      })
     }
   },
   getInfoWhenLogin: function () {
-    var that=this;
-    that.setData({
-      memberInfo:app.globalData.memberInfo
-    })
+    var that = this;
+    // that.setData({
+    //   memberInfo:app.globalData.memberInfo
+    // })
+    new member(function (data) {
+      that.setData({
+        memberInfo: data.data
+      })
+    }).view()
     wx.getUserInfo({
       success: function (res) {
-        that.setData({
-          authSuccess:true,
+        new member(function(){
+
+        }).updateView({
           userInfo: res.userInfo
         })
+        // that.setData({
+        //   authSuccess: true,
+        //   userInfo: res.userInfo
+        // })
       },
       fail: function (err) {
         if (err.errMsg.indexOf('auth') > -1) {
@@ -56,7 +64,7 @@ Page({
       url: 'getGoods/getGoods',
     })
   },
-  
+
   //个人资料
   toInfo: function () {
     util.navigateTo({
@@ -83,9 +91,14 @@ Page({
   },
   //绑定手机
   bindPhone: function () {
-    util.navigateTo({
-      url: 'bind/bind',
-    })
+    if (this.data.memberInfo.mobile){
+      util.errShow('您已绑定')
+    }else{
+      util.navigateTo({
+        url: 'bind/bind',
+      })
+    }
+   
   },
 
   //我的订单

@@ -1,6 +1,7 @@
 var app = getApp();
 var util = require("../../../utils/util.js");
 var receiver = require('../../../service/receiver.js');
+var member = require('../../../service/member.js');
 var getPwd = require('../../../utils/getPassword.js');
 var password = require('../../../service/common.js');
 // pages/member/info/info.js
@@ -17,7 +18,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that=this;
+    new member(function(data){
+      that.setData({
+        info:data.data
+      })
+    }).view()
   },
   
   //收货地址

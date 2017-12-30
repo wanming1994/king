@@ -1,10 +1,10 @@
 <view class="container">
   <view class="head f16" style="">
     <view class="headImg">
-      <image src="{{authSuccess?userInfo.avatarUrl:'../../resources/images/usernone.png'}}"></image>
+      <image src="{{memberInfo.avatarUrl?memberInfo.avatarUrl:'../../resources/images/usernone.png'}}"></image>
     </view>
     <view class="details">
-      <view class='f14'>{{authSuccess?userInfo.nickName:memberInfo.userName}}</view>
+      <view class='f14'>{{memberInfo.nickName}}</view>
       <view class='f12'>白银天使</view>
     </view>
   </view>
@@ -13,14 +13,14 @@
     <view class="flex-item lineItem lineItem_access" style='border-right:1px solid #666;' bindtap='goExchange'>
       <view>
         <view>积分兑换</view>
-        <view>0</view>
+        <view>{{memberInfo.bonus}}</view>
       </view>
       <view class="right"></view>
     </view>
     <view class="flex-item lineItem lineItem_access" bindtap='toMyInfluence'>
       <view>
         <view>我的影响力</view>
-        <view>0</view>
+        <view>{{memberInfo.influence}}</view>
       </view>
       <view class="right"></view>
     </view>
@@ -72,7 +72,8 @@
     </view>
     <view class=" lineItem lineItem_access borderA" bindtap='bindPhone'>
       <view class="center">绑定手机号</view>
-      <view class="clr_lightGray f12">未绑定</view>
+      <view class="clr_lightGray f12" wx:if="{{memberInfo.mobile}}">{{memberInfo.mobile}}</view>
+       <view class="clr_lightGray f12" wx:if="{{!memberInfo.mobile}}">未绑定</view>
       <view class="right"></view>
     </view>
      <view class="lineItem lineItem_access ">
