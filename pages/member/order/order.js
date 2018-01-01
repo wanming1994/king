@@ -246,7 +246,6 @@ Page(Object.assign({}, actionsheet, payTemp, {
       duration: 50000
     })
     new Order((res) => {
-      new Order((data) => {
         wx.hideToast()
         that.ActionsheetSet({ "header": "￥" + data.data.amount.toFixed(2) })
         that.ActionsheetSetItem({ content: data.data.memo }, 0)
@@ -260,12 +259,9 @@ Page(Object.assign({}, actionsheet, payTemp, {
           }
         }, 1)
         that.ActionsheetShow()
-      }).paymentView({
-        sn: res.data
-      })
-    }).tradePayment({
-      id: info,
-      formId: formId
+    }).goPay({
+      orderId: info,
+      userScore: 0
     })
   },
 
@@ -290,8 +286,8 @@ Page(Object.assign({}, actionsheet, payTemp, {
                   duration: 1000
                 })
                 paging(that, sTypeList[index], 'up')
-              }).refund({
-                id: info
+              }).cancelOrder({
+                orderId: info
               })
             } else if (res.cancel) {
 

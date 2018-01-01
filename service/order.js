@@ -85,6 +85,17 @@ module.exports = class Order extends Ajax {
     });
   }
 
+
+      /**
+       * 取消订单
+       * orderId
+       */
+  cancelOrder(data) {
+    super.post({
+      url: "order/cancelOrder",
+      data: data
+    });
+  }
   
  
 
