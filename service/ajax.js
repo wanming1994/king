@@ -29,7 +29,7 @@ module.exports = class Ajax {
         'X-Nideshop-Token': wx.getStorageSync('token')
       }, options.header),
       success(res) {
-        console.log(res)
+        // console.log(res)
         if (res.data.errno=='0') {
           _this.fn(res.data)
         } else if (res.data.errno == '1' || res.data.errno == '400') {
@@ -41,7 +41,7 @@ module.exports = class Ajax {
         }
       },
       error(err) {
-        console.log(err)
+        // console.log(err)
         _this.errFn(err)
         wx.getNetworkType({
           success: function (res) {

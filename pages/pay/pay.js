@@ -120,9 +120,13 @@ Page(Object.assign({}, actionsheet, {
     }
   },
 
+//关闭付款框
   toggleMaskPay:function(){
     this.setData({
       showPayDetail: false
+    })
+    util.navigateTo({
+      url: '/pages/member/order/order?id=1'
     })
   },
 

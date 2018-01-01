@@ -13,7 +13,9 @@ App({
   loginOkCallbackList: [],
   onLaunch(opData) {
     let that = this
-    const extension = opData.query.extension
+    const extension = opData.query.extension;
+    console.log(1111111)
+    console.log('推广人：' + extension)
     wx.login({
       success(data) {
         // 用户登陆成功

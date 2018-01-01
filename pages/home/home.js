@@ -53,7 +53,7 @@ Page(Object.assign({}, {
       that.setData({
         productHotList: data.data.hotGoodsList
       })
-      console.log(data)
+      // console.log(data)
     }).list()
   },
 
