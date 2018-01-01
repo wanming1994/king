@@ -49,6 +49,8 @@ Page(Object.assign({}, actionsheet, {
     })
     if (this.data.usePoint) {
       this.calcPointMoney(this.data.totalAmount, this.data.scoreMax)
+    }else{
+      this.calcPointMoney(this.data.totalAmount, 0)
     }
   },
 
