@@ -58,7 +58,7 @@ module.exports = class Order extends Ajax {
    */
   goPay(data) {
     super.post({
-      url:"pay/pay_prepay",
+      url: "pay/pay_prepay",
       data: data
     });
   }
@@ -86,19 +86,30 @@ module.exports = class Order extends Ajax {
   }
 
 
-      /**
-       * 取消订单
-       * orderId
-       */
+  /**
+   * 取消订单
+   * orderId
+   */
   cancelOrder(data) {
     super.post({
       url: "order/cancelOrder",
       data: data
     });
   }
-  
- 
 
+  /**
+   * 取消订单
+   * orderId
+   */
+  confirm(data) {
+    super.post({
+      url: "order/confirmOrder",
+      data: data
+    });
+  }
+
+
+  
 
 
 

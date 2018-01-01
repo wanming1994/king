@@ -331,7 +331,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
                 })
                 paging(that, sTypeList[index], 'up')
               }).confirm({
-                id: info
+                orderId: info
               })
             } else if (res.cancel) {
 

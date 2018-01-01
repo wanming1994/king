@@ -103,17 +103,7 @@
         <view data-type="refund" data-info="{{item.id}}" catchtap="methodBtn">取消订单</view>
       </block>
       <block wx:elif="{{item.order_status == '300'}}">
-        <block wx:if="{{item.shippingMethod.method == 'TPL'}}">
-          <view data-type="return" data-info="{{item.id}}" catchtap="methodBtn">退货申请</view>
-          <view data-type="remind" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">提醒商家发货</view>
-        </block>
-        <block wx:else>
-          <view data-type="return" data-info="{{item.id}}" catchtap="methodBtn">退货申请</view>
-        </block>
-      </block>
-      <block wx:elif="{{item.finalOrderStatus.status == 'sign'}}">
-        <view data-type="return" data-info="{{item.id}}" catchtap="methodBtn">退货</view>
-        <view wx:if="{{item.shippings[0].trackingNo}}" data-type="logistics" data-info="{{item.shippings[0].trackingNo}}" catchtap="methodBtn">查看物流</view>
+        <view wx:if="{{item.shipping_no}}" data-type="logistics" data-info="{{item.shipping_no}}" catchtap="methodBtn">查看物流</view>
         <view data-type="confirm" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">立即签收</view>
       </block>
       <block wx:elif="{{item.order_status == '301'}}">
