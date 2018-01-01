@@ -65,8 +65,9 @@
     </view>
     <view class="center f14">
       <view class="f16 clr_orange bold">￥{{productData.info.retail_price}}</view>
-      <view>库存{{productData.info.goods_number}}{{productData.info.goods_unit}}</view>
+      <view>库存{{productData.info.goods_number}}</view>
       <!-- <view>已选
+      {{productData.info.goods_unit}}
         <text class="clr_orange">{{selectData.specifications[0].name}} {{selectData.specifications[1].name}}</text>
       </view> -->
     </view>

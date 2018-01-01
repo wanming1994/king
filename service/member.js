@@ -36,139 +36,152 @@ module.exports = class Member extends Ajax {
     })
   }
 
-    /**
-     * 绑定手机号发送短信
-     * @param:
-     * mobile  手机号
-     */
-    sendMsgToBindPhone(data) {
-        super.post({
-          url: "user/smscode",
-            data: data
-        })
-    }
-
-    /**
-     * 绑定手机号确定
-     *  phone  和 smsCode
-     */
-    bindPhone(data) {
-        super.post({
-          url: "user/bindMobile",
-            data: data
-        })
-    }
-
-    /**
-     * 卡号获取银行信息
-     * @param cardNo 卡号
-     */
-    getCardInfoByCardNo(data) {
-        super.get({
-            url: "applet/member/bankcard/bank_info.jhtml",
-            data: data
-        })
-    }
-
-    /**
-     * 绑定银行卡发送短信
-     *  @param mobile 手机号
-     */
-    bindCardSendCode(data) {
-        super.post({
-          url: "applet/member/bank/sendCode.jhtml",
-            data: data
-        })
-    }
-
-    /**
-     * 绑定银行卡
-     * @param captcha 验证码
-     * @param cardNo  卡号
-     *
-     * @param bankInfoId 银行Id
-     * @param name     开户名
-     */
-    bindCard(data) {
-        super.post({
-            url: "applet/member/bankcard/save.jhtml",
-            data: data
-        })
-    }
+  /**
+ * 影响力接口
+ */
+  userRecommend(data) {
+    super.get({
+      url: 'user/userRecommend',
+      hideErrorTip: true,
+      data: data
+    })
+  }
 
 
-    /**
-     * 我的银行卡列表
-     */
-    bankList() {
-        super.get({
-            url: 'applet/member/bankcard/list.jhtml'
-        });
-    }
 
-    /**
-    * 我的银行卡列表
-    */
-    canbankList() {
-      super.get({
-        url: 'applet/member/bank/bank_info/list.jhtml'
-      });
-    }
-    /**
-        * 删除银行卡
-        * @param data
-        * id 银行卡Id
-        */
-    deleteCard (data) {
-      super.post({
-        url: 'applet/member/bank/delete.jhtml',
-        data: data
-      });
-    }
+  /**
+   * 绑定手机号发送短信
+   * @param:
+   * mobile  手机号
+   */
+  sendMsgToBindPhone(data) {
+    super.post({
+      url: "user/smscode",
+      data: data
+    })
+  }
+
+  /**
+   * 绑定手机号确定
+   *  phone  和 smsCode
+   */
+  bindPhone(data) {
+    super.post({
+      url: "user/bindMobile",
+      data: data
+    })
+  }
+
+  /**
+   * 卡号获取银行信息
+   * @param cardNo 卡号
+   */
+  getCardInfoByCardNo(data) {
+    super.get({
+      url: "applet/member/bankcard/bank_info.jhtml",
+      data: data
+    })
+  }
+
+  /**
+   * 绑定银行卡发送短信
+   *  @param mobile 手机号
+   */
+  bindCardSendCode(data) {
+    super.post({
+      url: "applet/member/bank/sendCode.jhtml",
+      data: data
+    })
+  }
+
+  /**
+   * 绑定银行卡
+   * @param captcha 验证码
+   * @param cardNo  卡号
+   *
+   * @param bankInfoId 银行Id
+   * @param name     开户名
+   */
+  bindCard(data) {
+    super.post({
+      url: "applet/member/bankcard/save.jhtml",
+      data: data
+    })
+  }
 
 
-    /**
-     * 重置支付密码发送短信
-     */
-    resetPaySendCode(data) {
-        super.post({
-            url: "applet/member/password/send_mobile.jhtml"
-        })
-    }
+  /**
+   * 我的银行卡列表
+   */
+  bankList() {
+    super.get({
+      url: 'applet/member/bankcard/list.jhtml'
+    });
+  }
 
-    /**
-     * 检查重置密码的验证码是否正确
-     @param captcha  验证码
-     */
-    resetPayCheckCode(data) {
-        super.post({
-            url: "applet/member/password/check_captcha.jhtml",
-            data:data
-        })
-    }
+  /**
+  * 我的银行卡列表
+  */
+  canbankList() {
+    super.get({
+      url: 'applet/member/bank/bank_info/list.jhtml'
+    });
+  }
+  /**
+      * 删除银行卡
+      * @param data
+      * id 银行卡Id
+      */
+  deleteCard(data) {
+    super.post({
+      url: 'applet/member/bank/delete.jhtml',
+      data: data
+    });
+  }
 
-    /**
-     * 重置支付密码
-     * @param captcha  验证码
-     * @param newPass   加密后的密码
-     */
-    resetPay(data) {
-        super.post({
-            url: "applet/member/password/update.jhtml",
-            data: data
-        })
-    }
 
-    /**
-     * 我收藏的商品
-     * pageSize 页大小
-     * pageNumber 页码
-     */
-    productList(data) {
-        super.get({
-            url: 'applet/member/favorite/product/list.jhtml',
-            data: data
-        });
-    }
+  /**
+   * 重置支付密码发送短信
+   */
+  resetPaySendCode(data) {
+    super.post({
+      url: "applet/member/password/send_mobile.jhtml"
+    })
+  }
+
+  /**
+   * 检查重置密码的验证码是否正确
+   @param captcha  验证码
+   */
+  resetPayCheckCode(data) {
+    super.post({
+      url: "applet/member/password/check_captcha.jhtml",
+      data: data
+    })
+  }
+
+  /**
+   * 重置支付密码
+   * @param captcha  验证码
+   * @param newPass   加密后的密码
+   */
+  resetPay(data) {
+    super.post({
+      url: "applet/member/password/update.jhtml",
+      data: data
+    })
+  }
+
+  /**
+   * 我收藏的商品
+   * pageSize 页大小
+   * pageNumber 页码
+   */
+  productList(data) {
+    super.get({
+      url: 'applet/member/favorite/product/list.jhtml',
+      data: data
+    });
+  }
 
 }

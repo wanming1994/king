@@ -52,6 +52,16 @@ module.exports = class Order extends Ajax {
   }
 
   /**
+   * 根据价格换算积分
+   * useMoney 使用的分数
+   */
+  moneyConvert(data) {
+    super.post({
+      url: "user/moneyConvert",
+      data: data
+    });
+  }
+  /**
    * 发起支付
    * orderId, 订单id
    * userScore使用的分数
@@ -102,7 +112,7 @@ module.exports = class Order extends Ajax {
    * orderId
    */
   confirm(data) {
-    super.post({
+    super.get({
       url: "order/confirmOrder",
       data: data
     });

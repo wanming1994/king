@@ -73,10 +73,13 @@ Page(Object.assign({}, swiperAutoHeight, {
   },
   //弹出框toggle
   toggleMask(e) {
-    this.setData({
-      showAction: !this.data.showAction,
-      buyType: e.currentTarget.dataset.type,
-      _swiper: this.data._swiper
+    // this.setData({
+    //   showAction: !this.data.showAction,
+    //   buyType: e.currentTarget.dataset.type,
+    //   _swiper: this.data._swiper
+    // })
+    util.navigateTo({
+      url: '/pages/pay/pay?id='+this.data.id,
     })
   },
   //立即购买选择数量
