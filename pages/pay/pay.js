@@ -13,8 +13,8 @@ Page(Object.assign({}, actionsheet, {
    */
   data: {
     goodsAmount: 1,
-    usePoint:true,
-    userScoreInput:100
+    usePoint: true,
+    userScoreInput: 100
   },
 
 
@@ -33,23 +33,23 @@ Page(Object.assign({}, actionsheet, {
         })
         that.calcPointMoney(that.data.totalAmount, res.data.bonus)
       }).view()
-      
+
     }).view({
       id: id
     })
 
-    
+
 
   },
 
-//选择是否使用积分
-  clickUsePoint:function(){
+  //选择是否使用积分
+  clickUsePoint: function () {
     this.setData({
       usePoint: !this.data.usePoint
     })
     if (this.data.usePoint) {
       this.calcPointMoney(this.data.totalAmount, this.data.scoreMax)
-    }else{
+    } else {
       this.calcPointMoney(this.data.totalAmount, 0)
     }
   },
@@ -57,16 +57,17 @@ Page(Object.assign({}, actionsheet, {
   //付款输入积分
   userScoreInput(e) {
     let that = this;
-    let val = parseInt(e.detail.value)
+    let val = parseInt(e.detail.value) ? parseInt(e.detail.value):0
     this.setData({
       userScoreInput: val > this.data.scoreMax ? this.data.scoreMax : val
     })
-    this.calcPointMoney(this.data.totalAmount, val)
+    this.calcPointMoney(this.data.totalAmount, val ? val:0)
 
   },
 
-  calcPointMoney: function (totalAmount, scoreInput){
-    var that=this;
+  //输入积分，总价格换算
+  calcPointMoney: function (totalAmount, scoreInput) {
+    var that = this;
     //获取总积分
     new order(function (data) {
       //抵扣金额大于订单总额
@@ -75,17 +76,33 @@ Page(Object.assign({}, actionsheet, {
           that.setData({
             userScoreInput: cdata.data.useBonus,
             trueAmount: 0,
-            canTransMoney: totalAmount
+            canTransMoney: totalAmount,
+            canusePoint: cdata.data.useBonus
           })
         }).moneyConvert({
           useMoney: that.data.totalAmount
         })
       } else {
-        that.setData({
-          userScoreInput: scoreInput,
-          trueAmount: that.data.totalAmount - data.data.scoreMoney,
-          canTransMoney: data.data.scoreMoney
+        new order(function (bdata) {
+          if (bdata.data.useBonus > that.data.scoreMax){
+            that.setData({
+              userScoreInput: scoreInput,
+              trueAmount: that.data.totalAmount - data.data.scoreMoney,
+              canTransMoney: data.data.scoreMoney,
+              canusePoint: that.data.scoreMax
+            })
+          }else{
+            that.setData({
+              userScoreInput: scoreInput,
+              trueAmount: that.data.totalAmount - data.data.scoreMoney,
+              canTransMoney: data.data.scoreMoney,
+              canusePoint: bdata.data.useBonus
+            })
+          }
+        }).moneyConvert({
+          useMoney: that.data.totalAmount
         })
+        
       }
     }).calPoint({
       useScore: scoreInput
@@ -115,38 +132,72 @@ Page(Object.assign({}, actionsheet, {
       goodsAmount: goodsAmount,
       totalAmount: goodsAmount * (this.data.productData.info.retail_price)
     })
-    if (this.data.usePoint){
+    if (this.data.usePoint) {
       this.calcPointMoney(this.data.totalAmount, this.data.scoreMax)
+    } else {
+      this.calcPointMoney(this.data.totalAmount, 0)
     }
   },
 
-//关闭付款框
-  toggleMaskPay:function(){
+  //关闭付款框
+  toggleMaskPay: function () {
     this.setData({
       showPayDetail: false
     })
-    util.navigateTo({
+    wx.redirectTo({
       url: '/pages/member/order/order?id=1'
     })
   },
 
   //确认下单提交
   formSubmit: function (e) {
-    var that=this;
-      //创建订单submit
-      new order(function (res) {
-        wx.hideLoading();
-        that.setData({
-          showPayDetail: true
-        })
-        that.setData({
-          orderInfo: res.data.orderInfo
-        })
-      }).submit({
-        goodsId: that.data.id,
-        goodsAmount: that.data.goodsAmount,
-        orderType: 0,
-        userScore: that.data.usePoint ? that.data.userScoreInput:0
+    var that = this;
+    //创建订单submit
+    new order(function (res) {
+      wx.hideLoading();
+      that.setData({
+        showPayDetail: true,
+        orderId:res.data.orderInfo.id
       })
+      that.setData({
+        orderInfo: res.data.orderInfo
+      })
+    }).submit({
+      goodsId: that.data.id,
+      goodsAmount: that.data.goodsAmount,
+      orderType: 0,
+      userScore: that.data.usePoint ? that.data.userScoreInput : 0
+    })
+  },
+  //去付款
+  toBuyConfirm() {
+    let that = this;
+    //发起支付接口
+    new order(function (data) {
+      wx.requestPayment({
+        'timeStamp': data.data.timeStamp,
+        'nonceStr': data.data.nonceStr,
+        'package': data.data.package,
+        'signType': 'MD5',
+        'paySign': data.data.paySign,
+        'success': function (res) {
+          wx.showToast({
+            title: '支付成功',
+            icon: 'success',
+            duration: 1000,
+            success:function(){
+              wx.redirectTo({
+                url: '/pages/member/order/order?id=2'
+              })
+            }
+          })
+        },
+        'fail': function (res) {
+        }
+      })
+    }).goPay({
+      orderId: that.data.orderId
+    })
+
   }
 }))
