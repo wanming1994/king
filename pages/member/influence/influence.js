@@ -8,8 +8,11 @@ Page({
   
   },
   onLoad: function (options) {
-    new member(function(){
-
+    var that=this;
+    new member(function(data){
+      that.setData({
+        data: data.data.userRecommend
+      })
     }).userRecommend()
   },
   onReady: function () {
