@@ -119,6 +119,20 @@ module.exports = class Order extends Ajax {
   }
 
 
+  /**
+   * 支付详情页面
+   * orderId
+   */
+  payResult(data) {
+    super.get({
+      url: "order/payResult",
+      data: data
+    });
+  }
+
+
+  
+
   
 
 

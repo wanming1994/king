@@ -12,27 +12,19 @@
 
   <view class="successCont">
    <view class="lineItem">
-      <view class="left clr_lightGray f14">支付单号</view>
+      <view class="left clr_lightGray f14">订单号</view>
       <view class="right tr f16">{{sn}}</view>
     </view>
     <view class="lineItem">
       <view class="left clr_lightGray f14">支付类型</view>
-      <view class="right tr f16">{{memo}}</view>
-    </view>
-    <view class="lineItem">
-      <view class="left clr_lightGray f14">收款商家</view>
-      <view class="right tr f16">{{tenantName}}</view>
+      <view class="right tr f16">微信支付</view>
     </view>
     <view class="lineItem">
       <view class="left  clr_lightGray f14">支付时间</view>
       <view class="right tr f16">{{createDate}}</view>
     </view>
     <view class="lineItem ">
-      <view class="left  clr_lightGray f14">支付方式</view>
-      <view class="right tr f16">{{paymentMethod}}</view>
-    </view>
-    <view class="lineItem ">
-      <view class="left  clr_lightGray f14">优惠金额</view>
+      <view class="left  clr_lightGray f14">积分抵扣</view>
       <view class="right tr f16">{{discount}}</view>
     </view>
     

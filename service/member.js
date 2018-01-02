@@ -47,6 +47,19 @@ module.exports = class Member extends Ajax {
     })
   }
 
+  /**
+   * 兑换订单
+   */
+  goodsexchange(data) {
+    super.get({
+      url: 'goodsexchange/list',
+      hideErrorTip: true,
+      data: data
+    })
+  }
+
+
+
 
 
   /**

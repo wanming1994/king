@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 15,
 			"list": [
 				{
 					"id": -1,
@@ -111,6 +111,12 @@
 					"id": -1,
 					"name": "个人中心影响力",
 					"pathName": "pages/member/influence/influence",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "支付完成",
+					"pathName": "pages/pay/success",
 					"query": ""
 				}
 			]

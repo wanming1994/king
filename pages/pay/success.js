@@ -17,17 +17,17 @@ Page({
     var sn=options.sn;
     var that=this;
       new order(function(data){
-        that.setData({
-          sn:data.data.sn,
-          memo: data.data.memo,
-          createDate: data.data.createDate,
-          amount: data.data.amount,
-          tenantName: data.data.tenantName,
-          discount: data.data.discount,
-          paymentMethod: data.data.paymentMethod
-        })
-      }).paymentView({
-        sn: sn
+        // that.setData({
+        //   sn:data.data.sn,
+        //   memo: data.data.memo,
+        //   createDate: data.data.createDate,
+        //   amount: data.data.amount,
+        //   tenantName: data.data.tenantName,
+        //   discount: data.data.discount,
+        //   paymentMethod: data.data.paymentMethod
+        // })
+      }).payResult({
+        orderId: 161
       })
   },
 
