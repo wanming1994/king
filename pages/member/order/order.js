@@ -281,7 +281,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
             if (res.confirm) {
               new Order((data) => {
                 wx.showToast({
-                  title: data.message.content,
+                  title: '取消成功',
                   icon: 'success',
                   duration: 1000
                 })
@@ -325,7 +325,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
             if (res.confirm) {
               new Order((data) => {
                 wx.showToast({
-                  title: data.message.content,
+                  title: '签收成功',
                   icon: 'success',
                   duration: 1000
                 })

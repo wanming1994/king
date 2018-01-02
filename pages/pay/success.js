@@ -27,7 +27,7 @@ Page({
         //   paymentMethod: data.data.paymentMethod
         // })
       }).payResult({
-        orderId: 161
+        orderId: 254
       })
   },
 

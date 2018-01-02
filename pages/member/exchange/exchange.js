@@ -30,10 +30,11 @@ Page({
       size: that.data.size
     })
 
+  //type0兑换中，1兑换完成
     new member(function(){
 
     }).goodsexchange({
-      
+      type:1
     })
   },
 
