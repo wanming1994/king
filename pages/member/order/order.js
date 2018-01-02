@@ -22,7 +22,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
     p201Tips: '下拉刷新',
     p301Tips: '下拉刷新',
     p300Tips: '下拉刷新',
-    sType: ["p501", "p0", "p201", "p301", "p300"],
+    sType: ["p501", "p0", "p201", "p300", "p301"],
     scroll: [0, 0, 0, 0, 0]
   },
   bindChange: function (e) {//滑动选项卡

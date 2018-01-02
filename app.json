@@ -11,6 +11,7 @@
     "pages/member/getGoods/getGoods",
     "pages/member/bind/bind",
     "pages/member/exchange/exchange",
+    "pages/member/exchange/history",
     "pages/member/influence/influence",
     "pages/member/share/share",
     "pages/member/info/info",

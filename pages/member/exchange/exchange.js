@@ -4,7 +4,6 @@ var product = require("../../../service/product.js")
 var order = require("../../../service/order.js")
 var member = require("../../../service/member.js")
 var util = require("../../../utils/util")
-// pages/member/exchange/exchange.js
 Page({
 
   /**
@@ -12,6 +11,11 @@ Page({
    */
   data: {
     size: 5
+  },
+  toHistory(){
+    util.navigateTo({
+      url:'./history'
+    })
   },
 
   /**
