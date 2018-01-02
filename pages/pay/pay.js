@@ -155,6 +155,11 @@ Page(Object.assign({}, actionsheet, {
     //创建订单submit
     new order(function (res) {
       wx.hideLoading();
+      if (that.data.trueAmount==0){
+        wx.redirectTo({
+          url: '/pages/pay/success?orderId=' + res.data.orderInfo.id,
+        })
+      }
       that.setData({
         showPayDetail: true,
         orderId:res.data.orderInfo.id
@@ -187,7 +192,7 @@ Page(Object.assign({}, actionsheet, {
             duration: 1000,
             success:function(){
               wx.redirectTo({
-                url: '/pages/member/order/order?id=2'
+                url: '/pages/pay/success?orderId=' + that.data.orderId
               })
             }
           })

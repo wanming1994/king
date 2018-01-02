@@ -14,20 +14,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var sn=options.sn;
+    var orderId=options.orderId;
     var that=this;
       new order(function(data){
-        // that.setData({
-        //   sn:data.data.sn,
-        //   memo: data.data.memo,
-        //   createDate: data.data.createDate,
-        //   amount: data.data.amount,
-        //   tenantName: data.data.tenantName,
-        //   discount: data.data.discount,
-        //   paymentMethod: data.data.paymentMethod
-        // })
+        that.setData({
+          data:data.data
+        })
       }).payResult({
-        orderId: 254
+        orderId: orderId
       })
   },
 

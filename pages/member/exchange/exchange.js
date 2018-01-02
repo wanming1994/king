@@ -33,20 +33,24 @@ Page({
       page: 1,
       size: that.data.size
     })
-
-  //type0兑换中，1兑换完成
-    new member(function(){
-
-    }).goodsexchange({
-      type:1
-    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that=this;
+    new member(function(data){
+      if (data.data.mobile){
+        that.setData({
+         canExc: true
+       })
+      }else{
+        that.setData({
+          canExc: false
+        })
+      }
+    }).view()
   },
 
   /**
@@ -61,21 +65,40 @@ Page({
     var that=this;
     var id = e.currentTarget.dataset.id;
     var price = e.currentTarget.dataset.price;
-    wx.showModal({
-      title: '兑换提示',
-      content: '确认花费' + price+'积分兑换商品吗?',
-      success:function(res){
-        if(res.confirm){
-          new order(function (res) {
+    if (that.data.canExc){
+      wx.showModal({
+        title: '兑换提示',
+        content: '确认花费' + price + '积分兑换商品吗?',
+        success: function (res) {
+          if (res.confirm) {
+            new order(function (res) {
 
-          }).submit({
-            goodsId: id,
-            goodsAmount: 1,
-            orderType: 1
-          })
+            }).submit({
+              goodsId: id,
+              goodsAmount: 1,
+              orderType: 1
+            })
+          }
         }
-      }
-    })
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '绑定手机后才可兑换商品，是否前去绑定',
+        cancelText:'取消',
+        confirmText:'立即前去',
+        success: function (res) {
+          if (res.confirm) {
+            util.navigateTo({
+              url: '/pages/member/bind/bind',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+   
     
   },
 

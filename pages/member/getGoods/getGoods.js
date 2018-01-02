@@ -61,11 +61,12 @@ Page({
               title: '保存成功',
               icon: 'success'
             })
-            new order(res => {
-              that.setData({
-                address: res.data.address
-              })
-            }).myEcoupons()
+            that.getCartList(data.data.id)
+            // new order(res => {
+            //   that.setData({
+            //     address: res.data.address
+            //   })
+            // }).myEcoupons()
           }).save({
             provinceName: res.provinceName,
             cityName: res.cityName,
@@ -299,7 +300,8 @@ Page({
       })
     }).submit({
       orderType: 2,
-      addressId: this.data.address.id || null
+      addressId: this.data.address.id || null,
+      userScore: 0      
     })
   },
   //去付款
@@ -321,15 +323,19 @@ Page({
           wx.showToast({
             title: '支付成功',
             icon: 'success',
-            duration: 1000
+            duration: 1000,
+            success:function(){
+              wx.redirectTo({
+                url: '/pages/pay/success?orderId=' + that.data.orderId
+              })
+            }
           })
         },
         'fail': function (res) {
         }
       })
     }).goPay({
-      orderId: that.data.orderId,
-      userScore: 0
+      orderId: that.data.orderId
     })
 
   },
