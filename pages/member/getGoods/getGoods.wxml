@@ -5,10 +5,13 @@
   <view class="checkout">
     <view wx:for="{{data}}" wx:key="id">
       <view>{{item.name}}</view>
-      <view>
+      <view class="checkout-item">
         <block wx:for="{{item.userECouponsInfoDtoList}}" wx:key="id" wx:for-item="zItem">
-          <image src="/resources/images/member/nbs.jpg" data-id="{{item.id}}" data-ecouponsid="{{zItem.ecouponsId}}" data-name="{{item.name}}" data-ecouponsname="{{zItem.ecouponsName}}" data-ecouponstype="{{zItem.ecouponsType}}" data-count="{{zItem.ecouponsCnt}}"
-            bindtap="select"></image>
+          <view>
+            <image src="/resources/images/member/nbs.jpg" data-id="{{item.id}}" data-ecouponsid="{{zItem.ecouponsId}}" data-name="{{item.name}}" data-ecouponsname="{{zItem.ecouponsName}}" data-ecouponstype="{{zItem.ecouponsType}}" data-count="{{zItem.ecouponsCnt}}"
+              bindtap="select"></image>
+            <view>{{zItem.ecouponsCnt}}</view>
+          </view>
         </block>
       </view>
     </view>
@@ -35,7 +38,7 @@
     <block wx:for="{{cartList}}" wx:key="index">
       <view class="selected lineItem border_bottom">
         <view class="left clr_lightGray">
-          <image src='../../../resources/images/member/nbs.jpg'></image>
+          <image src='{{item.list_pic_url||"../../../resources/images/member/nbs.jpg"}}'></image>
         </view>
         <view class="center">
           <view class='f16'>规格：{{item.goods_specifition_name_value}}
@@ -60,7 +63,9 @@
   <view class="actionContent" hidden="{{!showAction}}">
     <view class="actionTitle border_bottom lineItem">
       <view class="left">
-        <image src="{{actionData.thumbnail}}"></image>
+        <block wx:for="{{actionData.specifications}}" wx:for-item="sitem" wx:key="id">
+          <image wx:if="{{actionData.goods_specifition_ids==sitem.id}}" src="{{sitem.pic_url||'../../../resources/images/member/nbs.jpg'}}"></image>
+        </block>
       </view>
       <view class="center f14">
         <view class="f16 clr_orange bold">{{actionData.goods_name}}</view>
@@ -85,8 +90,8 @@
       <view class="f16 ">提货数量:</view>
       <view class="amount">
         <button data-btype="reduce" data-id="{{actionData.goods_specifition_ids}}" bindtap="revisenum">-</button>
-        <input class="f12" data-id="{{actionData.goods_specifition_ids}}"  type="number" data-btype="input" bindchange="revisenum" value="{{actionData.number}}" />
-        <button data-btype="add" data-id="{{actionData.goods_specifition_ids}}"  bindtap="revisenum">+</button>
+        <input class="f12" data-id="{{actionData.goods_specifition_ids}}" type="number" data-btype="input" bindchange="revisenum" value="{{actionData.number}}" />
+        <button data-btype="add" data-id="{{actionData.goods_specifition_ids}}" bindtap="revisenum">+</button>
       </view>
     </view>
     <button class="defaultBtn " bindtap="paySubmit">确认</button>
