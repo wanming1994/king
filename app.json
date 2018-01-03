@@ -31,12 +31,7 @@
         "iconPath": "/resources/images/tabBar/home.png",
         "selectedIconPath": "/resources/images/tabBar/home-sel.png"
       },
-      {
-        "pagePath": "pages/influence/influence",
-        "text": "影响力",
-        "iconPath": "/resources/images/tabBar/influence.png",
-        "selectedIconPath": "/resources/images/tabBar/influence-sel.png"
-      },
+    
       {
         "pagePath": "pages/member/member",
         "text": "我的",

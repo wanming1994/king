@@ -152,27 +152,47 @@ Page(Object.assign({}, actionsheet, {
   //确认下单提交
   formSubmit: function (e) {
     var that = this;
-    //创建订单submit
-    new order(function (res) {
-      wx.hideLoading();
-      if (that.data.trueAmount==0){
-        wx.redirectTo({
-          url: '/pages/pay/success?orderId=' + res.data.orderInfo.id,
+    new member(function(res){
+      if (res.data.userIsMember==0){
+        //创建订单submit
+        new order(function (res) {
+          wx.hideLoading();
+          if (that.data.trueAmount == 0) {
+            wx.redirectTo({
+              url: '/pages/pay/success?orderId=' + res.data.orderInfo.id,
+            })
+          }
+          that.setData({
+            showPayDetail: true,
+            orderId: res.data.orderInfo.id
+          })
+          that.setData({
+            orderInfo: res.data.orderInfo
+          })
+        }).submit({
+          goodsId: that.data.id,
+          goodsAmount: that.data.goodsAmount,
+          orderType: 0,
+          userScore: that.data.usePoint ? that.data.userScoreInput : 0
+        })
+      }else{
+        wx.showModal({
+          title: '提示',
+          content: '您还不是会员，成为会员后才可下单',
+          cancelText: '取消',
+          confirmText: '立即成为',
+          success: function (res) {
+            if (res.confirm) {
+              util.navigateTo({
+                url: '/pages/home/join/join',
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
         })
       }
-      that.setData({
-        showPayDetail: true,
-        orderId:res.data.orderInfo.id
-      })
-      that.setData({
-        orderInfo: res.data.orderInfo
-      })
-    }).submit({
-      goodsId: that.data.id,
-      goodsAmount: that.data.goodsAmount,
-      orderType: 0,
-      userScore: that.data.usePoint ? that.data.userScoreInput : 0
-    })
+    }).view()
   },
   //去付款
   toBuyConfirm() {

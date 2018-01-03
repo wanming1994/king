@@ -8,7 +8,7 @@
       <view class="checkout-item">
         <block wx:for="{{item.userECouponsInfoDtoList}}" wx:key="id" wx:for-item="zItem">
           <view>
-            <image src="{{zItem.listPicUrl?listPicUrl:'/resources/images/member/nbs.jpg'}}" data-id="{{item.id}}" data-ecouponsid="{{zItem.ecouponsId}}" data-name="{{item.name}}" data-ecouponsname="{{zItem.ecouponsName}}" data-ecouponstype="{{zItem.ecouponsType}}" data-count="{{zItem.ecouponsCnt}}"
+            <image src="{{zItem.listPicUrl?zItem.listPicUrl:'/resources/images/member/nbs.jpg'}}" data-id="{{item.id}}" data-ecouponsid="{{zItem.ecouponsId}}" data-name="{{item.name}}" data-ecouponsname="{{zItem.ecouponsName}}" data-ecouponstype="{{zItem.ecouponsType}}" data-count="{{zItem.ecouponsCnt}}"
               bindtap="select"></image>
             <view class='f14 baseColor'>{{zItem.ecouponsCnt}}(包)</view>
           </view>

@@ -94,20 +94,20 @@
     </view>
     <view class="method f14">
       <block wx:if="{{item.order_status == '0'}}">
-        <view data-type="refund" data-info="{{item.id}}" catchtap="methodBtn">取消订单</view>
+        <!-- <view data-type="refund" data-info="{{item.id}}" catchtap="methodBtn">取消订单</view> -->
         <form bindsubmit="formSubmit" report-submit bindreset="formReset">
           <button data-type="waitpay" class="confirmBtn" form-type="submit" data-info="{{item.id}}" style="border:1px solid #d9d9d9;line-height:1.6;margin-left:20rpx;margin-right:0;font-size:32rpx;">立即支付</button>
         </form>
       </block>
       <block wx:elif="{{item.order_status == '201'}}">
-        <view data-type="refund" data-info="{{item.id}}" catchtap="methodBtn">取消订单</view>
+        <!-- <view data-type="refund" data-info="{{item.id}}" catchtap="methodBtn">取消订单</view> -->
       </block>
       <block wx:elif="{{item.order_status == '300'}}">
         <view wx:if="{{item.shipping_no}}" data-type="logistics" data-info="{{item.shipping_no}}" catchtap="methodBtn">查看物流</view>
         <view data-type="confirm" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">立即签收</view>
       </block>
       <block wx:elif="{{item.order_status == '301'}}">
-        <view data-type="evaluate" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">立即评价</view>
+        <!-- <view data-type="evaluate" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">立即评价</view> -->
       </block>
     
 
