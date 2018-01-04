@@ -25,6 +25,13 @@ Page(Object.assign({}, {
     })
   },
 
+  //视频
+  goVideo:function(){
+    util.navigateTo({
+      url: '/pages/home/video/video',
+    })
+  },
+
   //商品详情
   goProductDeatil: function (e) {
     var id = e.currentTarget.dataset.id;

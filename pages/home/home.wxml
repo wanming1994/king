@@ -16,7 +16,7 @@
       <image src='../../resources/images/home/recommender.png'></image>
       <text class='f14 '>推荐馆</text>
     </view>
-    <view class='circle3'>
+    <view class='circle3' bindtap='goVideo'>
       <image src='../../resources/images/home/video.png'></image>
       <text class='f14 '>视频</text>
     </view>

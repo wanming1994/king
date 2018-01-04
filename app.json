@@ -2,6 +2,7 @@
   "pages": [
     "pages/home/home",
     "pages/home/join/join",
+    "pages/home/video/video",
     "pages/influence/influence",
     "pages/home/productList/productList",
     "pages/home/productDetails/productDetails",
