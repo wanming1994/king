@@ -32,32 +32,37 @@ Page({
         memberInfo: data.data
       })
     }).view()
-    wx.getUserInfo({
-      success: function (res) {
-        new member(function(){
-
-        }).updateView({
-          userInfo: res.userInfo
-        })
-        // that.setData({
-        //   authSuccess: true,
-        //   userInfo: res.userInfo
-        // })
-      },
-      fail: function (err) {
-        if (err.errMsg.indexOf('auth') > -1) {
-          wx.showModal({
-            title: '提示',
-            content: '未授予用户信息权限，部分功能会受到限制，是否前往设置',
-            success: function (res) {
-              if (res.confirm) {
-                wx.openSetting()
-              }
-            }
+    if (!wx.getStorageSync("isGetUserInfo")) {
+      wx.getUserInfo({
+        success: function (res) {
+          new member(function () {
+            wx.setStorageSync("isGetUserInfo", true)
+          }, function () {
+            wx.setStorageSync("isGetUserInfo", true)
+          }).updateView({
+            userInfo: res.userInfo
           })
+          // that.setData({
+          //   authSuccess: true,
+          //   userInfo: res.userInfo
+          // })
+        },
+        fail: function (err) {
+          wx.setStorageSync("isGetUserInfo", false)
+          if (err.errMsg.indexOf('auth') > -1) {
+            wx.showModal({
+              title: '提示',
+              content: '未授予用户信息权限，部分功能会受到限制，是否前往设置',
+              success: function (res) {
+                if (res.confirm) {
+                  wx.openSetting()
+                }
+              }
+            })
+          }
         }
-      }
-    })
+      })
+    }
   },
   getGoods() {
     util.navigateTo({
@@ -91,14 +96,14 @@ Page({
   },
   //绑定手机
   bindPhone: function () {
-    if (this.data.memberInfo.mobile){
+    if (this.data.memberInfo.mobile) {
       util.errShow('您已绑定')
-    }else{
+    } else {
       util.navigateTo({
         url: 'bind/bind',
       })
     }
-   
+
   },
 
   //我的订单
