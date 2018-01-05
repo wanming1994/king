@@ -1,5 +1,14 @@
 /* pages/home/join/join.wxss */
-image{
+.container{
+  position: relative;
+}
+.imgBtn{
+  position: absolute;
+  width: 80vw;
+  top:52vh;
+  left: 10vw;
+}
+.bgimg{
   width: 100%;
   height: 99vh;
 }

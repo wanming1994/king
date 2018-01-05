@@ -4,6 +4,7 @@ let swiperAutoHeight = require("../../template/swiper/swiper.js"),
   Product = require("../../service/product.js"),
   Cart = require("../../service/cart.js"),
   Coupon = require("../../service/coupon.js"),
+  member = require("../../service/member.js"),
   Tenant = require("../../service/tenant.js"),
   Ad = require("../../service/ad.js"),
   app = getApp(),
@@ -20,9 +21,17 @@ Page(Object.assign({}, {
 
   //邀请
   joinUs: function () {
-    util.navigateTo({
-      url: 'join/join'
-    })
+    new member(function (res) {
+      if (res.data.userIsMember == 1) {
+        util.navigateTo({
+          url: '/pages/member/share/share'
+        })
+      } else {
+        util.navigateTo({
+          url: 'join/join'
+        })
+      }
+    }).view()
   },
 
   //视频

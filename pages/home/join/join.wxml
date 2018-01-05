@@ -1,3 +1,4 @@
 <view class="container">
-  <image src='../../../resources/images/home/recom.png' bindtap='clickImg'></image>
+  <image class='bgimg' src='../../../resources/images/home/recom.png' ></image>
+   <image class='imgBtn' src='../../../resources/images/home/joinBtn.png' mode="widthFix" bindtap='clickImg'></image>
 </view>

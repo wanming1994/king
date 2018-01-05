@@ -153,7 +153,7 @@ Page(Object.assign({}, actionsheet, {
   formSubmit: function (e) {
     var that = this;
     new member(function(res){
-      if (res.data.userIsMember==0){
+      if (res.data.userIsMember==1){
         //创建订单submit
         new order(function (res) {
           wx.hideLoading();
