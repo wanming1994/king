@@ -53,7 +53,7 @@
       </view>
     </block>
   </view>
-  <view class="buy f16">
+  <view class="buy f16" wx:if="{{cartList.length>0}}">
     <view class='buyAmount'>实付款：{{freight}}元</view>
     <view class='buySubmit' bindtap='buySubmit'>结算</view>
   </view>
