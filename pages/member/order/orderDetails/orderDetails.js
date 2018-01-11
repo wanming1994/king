@@ -28,7 +28,7 @@ var getData = function (that, id) {
       pickUpcodeUrl: baseUrl + details.pickUpCodeUrl
     })
 
-    if (details.finalOrderStatus.status == 'waitPay') {
+    if (details.orderInfo.order_status_text == '未付款') {
       that.ActionsheetSet({
         item: [
           {

@@ -55,7 +55,7 @@
 
 <template name="orderList">
   <view class="ordersWrap">
-   <navigator url="../../home/index">
+    <navigator url="../../home/index">
       <view class="flexC title borderA">
         <!-- <image src="{{item.tenantThumbnail?item.tenantThumbnail:'/resources/user.png'}}"></image> -->
         <view class="name f16">{{item.add_time}}</view>
@@ -64,7 +64,7 @@
         <view class="orderType f14 clr_orange" wx:if='{{item.order_type==2}}'>{{'提货订单('+item.order_status_text+')'}}</view>
         <view class="orderType f14 clr_orange" wx:if='{{item.order_type==3}}'>{{'加入会员('+item.order_status_text+')'}}</view>
       </view>
-    </navigator>  
+    </navigator>
     <navigator url="./orderDetails/orderDetails?id={{item.id}}">
       <block wx:for="{{item.orderItems}}" wx:key="id" wx:for-item="orderItem">
         {{orderItems.id}}
@@ -96,7 +96,7 @@
       <block wx:if="{{item.order_status == '0'}}">
         <!-- <view data-type="refund" data-info="{{item.id}}" catchtap="methodBtn">取消订单</view> -->
         <form bindsubmit="formSubmit" report-submit bindreset="formReset">
-          <button data-type="waitpay" class="confirmBtn" form-type="submit" data-info="{{item.id}}" style="border:1px solid #d9d9d9;line-height:1.6;margin-left:20rpx;margin-right:0;font-size:32rpx;">立即支付</button>
+          <button data-type="waitpay" class="confirmBtn" form-type="submit" data-info="{{item.id}}" style="border:1px solid #d9d9d9;line-height:1.6;margin-left:20rpx;margin-right:0;font-size:32rpx;margin:10px 0;">立即支付</button>
         </form>
       </block>
       <block wx:elif="{{item.order_status == '201'}}">
@@ -107,9 +107,8 @@
         <view data-type="confirm" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">立即签收</view>
       </block>
       <block wx:elif="{{item.order_status == '301'}}">
-        <!-- <view data-type="evaluate" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">立即评价</view> -->
       </block>
-    
+
 
     </view>
   </view>
