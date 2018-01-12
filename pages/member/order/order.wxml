@@ -5,7 +5,7 @@
     <view class="f14 swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-type="p0" data-current="1" bindtap="swichNav">待支付</view>
     <view class="f14 swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-type="p201" data-current="2" bindtap="swichNav">待发货</view>
     <view class="f14 swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-type="p300" data-current="3" bindtap="swichNav">待收货</view>
-    <view class="f14 swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-type="p301" data-current="4" bindtap="swichNav">已完成</view>
+    <view class="f14 swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-type="p402" data-current="4" bindtap="swichNav">已完成</view>
   </view>
   <swiper current="{{currentTab}}" bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove' class="swiper-box" duration="0" style="height:{{winHeight - 50}}px;" bindchange="bindChange">
     <swiper-item>
@@ -37,12 +37,12 @@
         <block wx:for="{{p300}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
-        <view class="tips f12">{{p301Tips}}</view>
+        <view class="tips f12">{{p402Tips}}</view>
       </scroll-view>
     </swiper-item>
     <swiper-item>
       <scroll-view class="scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower" bindscrolltoupper="pullDownRefresh">
-        <block wx:for="{{p301}}" wx:key="id">
+        <block wx:for="{{p402}}" wx:key="id">
           <template is="orderList" data="{{item:item}}"></template>
         </block>
         <view class="tips f12">{{p300Tips}}</view>
@@ -106,7 +106,7 @@
         <view wx:if="{{item.shipping_no}}" data-type="logistics" data-info="{{item.shipping_no}}" catchtap="methodBtn">查看物流</view>
         <view data-type="confirm" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">立即签收</view>
       </block>
-      <block wx:elif="{{item.order_status == '301'}}">
+      <block wx:elif="{{item.order_status == '402'}}">
       </block>
 
 

@@ -188,27 +188,33 @@ Page(Object.assign({}, actionsheet, payTemp, {
       icon: 'loading',
       duration: 50000
     })
-    new Order((res) => {
-      new Order((data) => {
-        wx.hideToast()
-        that.ActionsheetSet({ "header": "￥" + data.data.amount.toFixed(2) })
-        that.ActionsheetSetItem({ content: data.data.memo }, 0)
-        that.ActionsheetSetItem({
-          fn: data.data.useBalance ? 'changeMethod' : '',
-          content: '微信支付',
-          more: data.data.useBalance,
-          data: {
-            type: 'weixinPayPlugin',
-            sn: res.data
-          }
-        }, 1)
-        that.ActionsheetShow()
-      }).paymentView({
-        sn: res.data
+    new Order((data) => {
+      wx.hideToast()
+      wx.requestPayment({
+        'timeStamp': data.data.timeStamp,
+        'nonceStr': data.data.nonceStr,
+        'package': data.data.package,
+        'signType': 'MD5',
+        'paySign': data.data.paySign,
+        'success': function (res) {
+          wx.showToast({
+            title: '支付成功',
+            icon: 'success',
+            duration: 1000,
+            success: function () {
+              wx.redirectTo({
+                url: '/pages/pay/success?orderId=' + info
+              })
+            }
+          })
+        },
+        'fail': function (res) {
+        }
       })
-    }).tradePayment({
-      id: info,
-      formId: formId
+
+    }).goPay({
+      orderId: info,
+      userScore: 0
     })
   },
 
@@ -271,13 +277,13 @@ Page(Object.assign({}, actionsheet, payTemp, {
             if (res.confirm) {
               new Order((data) => {
                 wx.showToast({
-                  title: data.message.content,
+                  title: '签收成功',
                   icon: 'success',
                   duration: 1000
                 })
                 getData(that, that.data.id)
               }).confirm({
-                id: info
+                orderId: info
               })
             } else if (res.cancel) {
 

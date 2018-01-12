@@ -20,9 +20,9 @@ Page(Object.assign({}, actionsheet, payTemp, {
     p501Tips: '下拉刷新',
     p0Tips: '下拉刷新',
     p201Tips: '下拉刷新',
-    p301Tips: '下拉刷新',
+    p402Tips: '下拉刷新',
     p300Tips: '下拉刷新',
-    sType: ["p501", "p0", "p201", "p300", "p301"],
+    sType: ["p501", "p0", "p201", "p300", "p402"],
     scroll: [0, 0, 0, 0, 0],
     isPay:false
   },
@@ -427,7 +427,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
       pageSize: 10,
       totalPages: 999
     },
-    'p301': {
+    'p402': {
       pageNumber: 0,
       pageSize: 10,
       totalPages: 999

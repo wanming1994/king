@@ -7,7 +7,7 @@
       <image src='../../resources/images/home/title_right.png' class=' title_right'></image>
     </view>
   </view>
-  <view class='circle'>
+  <!-- <view class='circle'>
     <view class='circle1 tc'>
       <image src='../../resources/images/home/brand.png'></image>
       <text class='f14 '>品牌</text>
@@ -28,7 +28,7 @@
       <image src='../../resources/images/home/company.png'></image>
       <text class='f14 '>公司介绍</text>
     </view>
-  </view>
+  </view> -->
 
   <video id="myVideo" src="https://www.sincereglobe.com/VIDEO/tianshi.mp4" poster="https://www.sincereglobe.com/VIDEO/tianshi.png">>
   </video>

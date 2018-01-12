@@ -104,7 +104,7 @@
     <block wx:if="{{details.orderInfo.order_status == '0'}}">
       <!-- <view data-type="refund" data-info="{{details.id}}" catchtap="methodBtn">取消订单</view> -->
       <form bindsubmit="formSubmit" report-submit bindreset="formReset" style='margin:auto 0;'>
-        <button data-type="waitpay" class="confirmBtn" form-type="submit" data-info="{{details.details.orderInfo.id}}" style="border:1px solid #d9d9d9;line-height:1.6;margin-left:20rpx;margin-right:0;font-size:32rpx;">立即支付</button>
+        <button data-type="waitpay" class="confirmBtn" form-type="submit" data-info="{{details.orderInfo.id}}" style="border:1px solid #d9d9d9;line-height:1.6;margin-left:20rpx;margin-right:0;font-size:32rpx;">立即支付</button>
       </form>
     </block>
     <block wx:elif="{{details.orderInfo.order_status == 'unconfirmed'}}">

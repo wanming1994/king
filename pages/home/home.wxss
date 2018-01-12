@@ -18,6 +18,7 @@
 }
 .head .title_right{
   margin-right: 10px;
+  width: 24vw;
 }
 .controls {
   position: relative;
