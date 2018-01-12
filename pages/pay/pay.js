@@ -58,10 +58,18 @@ Page(Object.assign({}, actionsheet, {
   userScoreInput(e) {
     let that = this;
     let val = parseInt(e.detail.value) ? parseInt(e.detail.value):0
-    this.setData({
-      userScoreInput: val > this.data.scoreMax ? this.data.scoreMax : val
-    })
-    this.calcPointMoney(this.data.totalAmount, val ? val:0)
+    console.log(val > this.data.scoreMax)
+    if (val > this.data.scoreMax){
+      this.setData({
+        userScoreInput: this.data.scoreMax
+      })
+    }else{
+      this.setData({
+        userScoreInput: val
+      })
+    }
+  
+    this.calcPointMoney(this.data.totalAmount, userScoreInput ? userScoreInput:0)
 
   },
 

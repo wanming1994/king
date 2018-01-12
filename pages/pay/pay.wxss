@@ -3,6 +3,7 @@
 @import "/template/password/payPassword";
 
 /* pages/pay/pay.wxss */
+
 .actionContent {
   /* position: absolute; */
   width: 100%;
@@ -30,7 +31,7 @@
   justify-content: flex-start;
 }
 
-.actionNext input{
+.actionNext input {
   float: left;
   width: 40vw;
   height: 10vh;
@@ -101,6 +102,7 @@
 .actionNumber .amount button::after {
   border: none !important;
 }
+
 .actionTitle {
   padding: 0 20rpx;
 }
@@ -132,17 +134,39 @@ view {
   padding: 20rpx 0;
 }
 
-.section_gap{
+.section_gap {
   margin-top: 2%;
   padding-left: 2%;
 }
 
-.word{
+/* .word{
   width: 96%;
   margin-top: 12%;
 }
 .word .left {
   line-height: 1.4rem;
+} */
+
+.word {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12%;
+  box-sizing: border-box;
+  padding: 2%;
+}
+
+.word .left {
+  width: 60%;
+}
+
+.word .center {
+  width: 40%;
+  margin-left: auto;
+}
+
+.word input {
+  display: block;
+  width: 100%;
 }
 
 .reduct {
@@ -186,7 +210,7 @@ view {
   justify-content: flex-start;
 }
 
-.actionNext input{
+.actionNext input {
   float: left;
   width: 40vw;
   height: 10vh;
@@ -209,13 +233,14 @@ view {
   min-width: 30vw;
 }
 
-.nextClose{
+.nextClose {
   position: absolute;
   width: 30px;
   height: 30px;
   top: 10px;
   right: 5%;
 }
+
 .actionMask {
   /* position: absolute; */
   position: fixed;

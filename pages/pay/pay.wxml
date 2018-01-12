@@ -28,12 +28,14 @@
   <view class="section__title f14 fl">是否使用积分(剩余<text class='f12 baseColor'>{{scoreMax}}分</text>)</view>
   <switch class='fr' name="switch" checked="{{usePoint}}" bindtap='clickUsePoint' />
 </view>
-<view class='lineItem border_bottom f14 word' wx:if="{{usePoint}}">
+
+<view class='border_bottom f14 word' wx:if="{{usePoint}}">
   <view class='left'>使用积分(可用<text class='f12 baseColor'>{{canusePoint}}分</text>)</view>
   <view class='center tr'>
     <input  placeholder="请输入使用积分数量" type='number' bindinput='userScoreInput' value='{{userScoreInput}}'/>
   </view>
 </view>
+
 <view class='padding2 tr f12' wx:if="{{usePoint}}">积分可抵扣<text class='baseColor'>{{canTransMoney}}元</text></view>
 <form bindsubmit="formSubmit" report-submit bindreset="formReset">
   <view class='lineItem lineH_three f16 bottom'>
