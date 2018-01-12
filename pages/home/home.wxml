@@ -30,17 +30,12 @@
     </view>
   </view>
 
-  <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-    poster="http://cdn.tiaohuo.com/upload/image/201711/8daf57ca-f144-444d-a56f-5e5494de40a3.png@375w_1l">
+  <video id="myVideo" src="https://www.sincereglobe.com/VIDEO/tianshi.mp4" poster="https://www.sincereglobe.com/VIDEO/tianshi.png">>
   </video>
-
-
-
-
 
   <view class='break'></view>
   <view class='imageOne productList'>
-    <image src='../../resources/images/home/pic1.png'></image>
+    <image src='../../resources/images/home/pic1.png' mode="widthFix"></image>
     <view class='word tc' bindtap='joinUs'>
       <text class='f14 '>加入大王推荐管领免费纸尿裤</text>
     </view>
@@ -48,7 +43,7 @@
 
   <block wx:for="{{productHotList}}" wx:key="id" wx:for-item="item">
     <view class='break'></view>
-    <view class='imageTwo productList' bindtap='goProductDeatil'  data-id="{{item.id}}">
+    <view class='imageTwo productList' bindtap='goProductDeatil' data-id="{{item.id}}">
       <image src='{{item.primary_pic_url}}' mode="widthFix"></image>
       <view class='word tc'>
         <text class='f14 overone'>购买{{item.name}}</text>

@@ -14,8 +14,9 @@ page {
 
 .head {
   height: 211rpx;
-  border: 1px solid #848484;
-  border-radius: 22rpx;
+  border-right: 1px solid #848484;
+  border-bottom: 1px solid #848484;
+  border-radius: 20rpx;
   position: relative;
   display: flex;
   align-items: stretch;

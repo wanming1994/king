@@ -23,7 +23,8 @@ Page(Object.assign({}, actionsheet, payTemp, {
     p301Tips: '下拉刷新',
     p300Tips: '下拉刷新',
     sType: ["p501", "p0", "p201", "p300", "p301"],
-    scroll: [0, 0, 0, 0, 0]
+    scroll: [0, 0, 0, 0, 0],
+    isPay:false
   },
   bindChange: function (e) {//滑动选项卡
     var that = this;
@@ -202,7 +203,6 @@ Page(Object.assign({}, actionsheet, payTemp, {
       }
       that.weixinPayCanClick = false
       new Order(function (data) {
-
         wx.requestPayment({
           'timeStamp': data.data.timeStamp,
           'nonceStr': data.data.nonceStr,
@@ -240,25 +240,46 @@ Page(Object.assign({}, actionsheet, payTemp, {
     var sTypeList = this.data.sType
     var index = this.data.currentTab
     var that = this
+    if (that.data.isPay){
+      return
+    }
     wx.showToast({
       title: '信息获取中',
       icon: 'loading',
       duration: 50000
     })
-    new Order((res) => {
+    that.setData({
+      isPay: true
+    })
+    setTimeout(function(){
+      that.setData({
+        isPay:false
+      })
+    },2000)
+    new Order((data) => {
         wx.hideToast()
-        that.ActionsheetSet({ "header": "￥" + data.data.amount.toFixed(2) })
-        that.ActionsheetSetItem({ content: data.data.memo }, 0)
-        that.ActionsheetSetItem({
-          fn: data.data.useBalance ? 'changeMethod' : '',
-          content: '微信支付',
-          more: data.data.useBalance,
-          data: {
-            type: 'weixinPayPlugin',
-            sn: res.data
+        wx.requestPayment({
+          'timeStamp': data.data.timeStamp,
+          'nonceStr': data.data.nonceStr,
+          'package': data.data.package,
+          'signType': 'MD5',
+          'paySign': data.data.paySign,
+          'success': function (res) {
+            wx.showToast({
+              title: '支付成功',
+              icon: 'success',
+              duration: 1000,
+              success: function () {
+                wx.redirectTo({
+                  url: '/pages/pay/success?orderId=' + info
+                })
+              }
+            })
+          },
+          'fail': function (res) {
           }
-        }, 1)
-        that.ActionsheetShow()
+        })
+        
     }).goPay({
       orderId: info,
       userScore: 0

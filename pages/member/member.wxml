@@ -10,7 +10,7 @@
   </view>
 
   <view class="memberRadius lineItem flex f14">
-    <view class="flex-item lineItem lineItem_access" style='border-right:1px solid #666;' bindtap='goExchange'>
+    <view class="flex-item lineItem lineItem_access" style='border-right:1px solid #c8c8cd;' bindtap='goExchange'>
       <view>
         <view>积分兑换</view>
         <view>{{memberInfo.bonus}}</view>
