@@ -116,7 +116,7 @@ page {
 }
 
 .tab .right {
-  flex: 4;
+  flex: 3;
 }
 
 .tab image {
