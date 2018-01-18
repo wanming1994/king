@@ -40,58 +40,25 @@ module.exports = class Cart extends Ajax {
     });
   }
 
-  /**
-   * 添加至购物车2
-   * id 商品Id
-   *  数量
-   */
-  add2(data) {
-    super.post({
-      url: 'applet/cart/add2.jhtml',
-      data: data
-    });
-  }
-  /**
-   * 搭配销售-立即购买
-   * id 商品Id
-   * quantity 数量
-   */
-  tieinsaleBuy(data) {
-    super.post({
-      url: 'applet/cart/tieinsale/buy.jhtml',
-      data: data
-    });
-  }
+
   /**
    * 选择
-   * ids 购物项Id(数组)
-   * flag 是否选中
+   * cartIds 购物项Id(数组)
    */
   selected(data) {
     super.post({
-      url: 'applet/cart/selected.jhtml',
+      url: '/cart/checked',
       data: data,
       traditional: true
     });
   }
   /**
    * 删除
-   * ids 购物项id(数组)
+   * cartIds 购物项id(数组)
    */
   delete(data) {
     super.post({
-      url: 'applet/cart/delete.jhtml',
-      data: data,
-      traditional: true
-    });
-  }
-  /**
-   * 删除
-   * ids 商品id(数组)
-   */
-  del(data) {
-    super.post({
-      url: 'applet/cart/del.jhtml',
+      url: 'cart/delete',
       data: data,
       traditional: true
     });

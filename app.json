@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/cart/cart",
     "pages/home/join/join",
     "pages/home/video/video",
     "pages/influence/influence",
@@ -32,7 +33,12 @@
         "iconPath": "/resources/images/tabBar/home.png",
         "selectedIconPath": "/resources/images/tabBar/home-sel.png"
       },
-    
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "/resources/images/tabBar/cart.png",
+        "selectedIconPath": "/resources/images/tabBar/cart-sel.png"
+      },
       {
         "pagePath": "pages/member/member",
         "text": "我的",
