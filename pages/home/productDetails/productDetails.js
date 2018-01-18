@@ -33,13 +33,14 @@ Page(Object.assign({}, swiperAutoHeight, {
     goodsAmount: 1,
     sys: app.globalData.sys,//系统信息
     productData: {},//数据
-    showAction: false,//显示弹窗
+    showAction: true,//显示弹窗
     buyType: 'buy',//buy or cart
     specification: {},//商品规格
     canClick: [],
     pageLoad: false,//页面加载完成
     userScoreInput: 0,//付款使用积分
     scoreMax: 0,//可用积分
+    selectData: {},//选中规格
   },
   catchActionMask(e) {
     return false;
@@ -53,10 +54,11 @@ Page(Object.assign({}, swiperAutoHeight, {
       wx.setNavigationBarTitle({
         title: res.data.info.name
       })
-      var introduction = res.data.info.goods_desc;
+      var introduction = res.data.info.goods_desc
       this.setData({
         productData: res.data,
         introduction: res.data.info.goods_desc,
+        "selectData.id": res.data.specificationList[0].valueList[0].id
       })
 
       if (introduction != null) {
@@ -71,24 +73,29 @@ Page(Object.assign({}, swiperAutoHeight, {
       id: id
     })
   },
-  //弹出框toggle
-  toggleMask(e) {
-    // this.setData({
-    //   showAction: !this.data.showAction,
-    //   buyType: e.currentTarget.dataset.type,
-    //   _swiper: this.data._swiper
-    // })
-    util.navigateTo({
-      url: '/pages/pay/pay?id='+this.data.id,
+  checkout(e) {
+    this.data.selectData = Object.assign(this.data.selectData, e.currentTarget.dataset)
+    this.setData({
+      selectData: this.data.selectData
     })
+  },
+  //弹出框toggle
+  toggleMask(t) {
+    this.setData({
+      showAction: t === undefined || t.currentTarget ? !this.data.showAction : t,
+      buyType: (t.currentTarget && t.currentTarget.dataset.type) || this.data.buyType
+    })
+    // this.setData({
+    //   showAction: t === undefined || t.target ? !this.data.showAction : t
+    // })
   },
   //立即购买选择数量
   revisenum(e) {
-    let stype = e.currentTarget.dataset.type,
+    let stype = e.currentTarget.dataset.btype,
       min = 1,
       max = 10,
       goods_number = this.data.productData.info.goods_number,
-      goodsAmount = this.data.goodsAmount
+      goodsAmount = this.data.selectData.num || 0
     switch (stype) {
       case 'input':
         goodsAmount = (!isNaN(e.detail.value) && e.detail.value >= min && e.detail.value <= goods_number) ? e.detail.value : goodsAmount
@@ -101,7 +108,7 @@ Page(Object.assign({}, swiperAutoHeight, {
         break;
     }
     this.setData({
-      goodsAmount: goodsAmount
+      "selectData.num": goodsAmount
     })
   },
 
@@ -112,8 +119,15 @@ Page(Object.assign({}, swiperAutoHeight, {
   onReachBottom: function () {
 
   },
-
-
+  paySubmitSel() {
+    if (!this.data.selectData.num) return
+    new Cart().add({
+      productId: parseInt(this.data.id),
+      speid: this.data.selectData.id,
+      count: this.data.selectData.num,
+      type: this.data.buyType,
+    })
+  },
   //立即购买确认按钮
   paySubmit: function () {
     let that = this;
@@ -122,7 +136,7 @@ Page(Object.assign({}, swiperAutoHeight, {
     new order(function (res) {
       wx.hideLoading()
       that.setData({
-        userScoreInput:res.data.userScore,
+        userScoreInput: res.data.userScore,
         scoreMax: parseInt(res.data.userScore),
         showBuyDetail: true,
         showAction: false,
@@ -131,10 +145,10 @@ Page(Object.assign({}, swiperAutoHeight, {
       })
 
       //计算初始积分抵扣现金（默认使用最大积分来抵现）
-      new order(function(data){
+      new order(function (data) {
         that.setData({
           scoreMoney: data.data.scoreMoney < that.data.actual_price ? data.data.scoreMoney : that.data.actual_price,
-          trueAmount: res.data.orderInfo.actual_price - data.data.scoreMoney >= 0 ? res.data.orderInfo.actual_price - data.data.scoreMoney:0
+          trueAmount: res.data.orderInfo.actual_price - data.data.scoreMoney >= 0 ? res.data.orderInfo.actual_price - data.data.scoreMoney : 0
         })
       }).calPoint({
         useScore: res.data.userScore
@@ -148,9 +162,9 @@ Page(Object.assign({}, swiperAutoHeight, {
   },
   //去付款
   toBuyConfirm() {
-    let that=this;
+    let that = this;
     //发起支付接口
-    new order(function(data){
+    new order(function (data) {
       that.setData({
         showBuyDetail: false,
         showAction: false,
@@ -175,9 +189,9 @@ Page(Object.assign({}, swiperAutoHeight, {
       orderId: that.data.orderId,
       userScore: that.data.userScoreInput
     })
-    
+
   },
-  closeMask(){
+  closeMask() {
     this.setData({
       showBuyDetail: false,
       showAction: false,
@@ -185,7 +199,7 @@ Page(Object.assign({}, swiperAutoHeight, {
   },
   //付款输入积分
   userScoreInput(e) {
-    let that=this;
+    let that = this;
     let val = parseInt(e.detail.value)
     let userScoreInput = val > this.data.scoreMax ? this.data.scoreMax : val
     new order(function (data) {
@@ -196,9 +210,9 @@ Page(Object.assign({}, swiperAutoHeight, {
         trueAmount: that.data.actual_price - data.data.scoreMoney >= 0 ? that.data.actual_price - data.data.scoreMoney : 0
       })
     }).calPoint({
-      useScore: userScoreInput ? userScoreInput:0
+      useScore: userScoreInput ? userScoreInput : 0
     })
-  
+
   },
   toggleshowShortcut: function () {
     this.setData({

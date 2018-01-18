@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -68,10 +68,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "商品详情",
 					"pathName": "pages/home/productDetails/productDetails",
-					"query": "id=1153006"
+					"query": "id=1181003"
 				},
 				{
 					"id": -1,
