@@ -98,10 +98,9 @@ Page(Object.assign({}, swiperAutoHeight, {
   //立即购买选择数量
   revisenum(e) {
     let stype = e.currentTarget.dataset.btype,
-      min = 1,
-      max = 10,
+      min = 0,
       goods_number = parseInt(this.data.selectData.number || this.data.productData.info.goods_number),
-      goodsAmount = this.data.selectData.count || 0
+      goodsAmount = parseInt(this.data.selectData.count) || 0
     switch (stype) {
       case 'input':
         goodsAmount = (!isNaN(e.detail.value) && e.detail.value >= min && e.detail.value <= goods_number) ? e.detail.value : goodsAmount
@@ -110,7 +109,7 @@ Page(Object.assign({}, swiperAutoHeight, {
         goodsAmount = goodsAmount + 1 <= goods_number ? goodsAmount + 1 : goods_number
         break;
       case 'reduce':
-        goodsAmount = goodsAmount - 1 < min ? 1 : --goodsAmount
+        goodsAmount = goodsAmount - 1 < min ? min : --goodsAmount
         break;
     }
     this.setData({
@@ -127,7 +126,15 @@ Page(Object.assign({}, swiperAutoHeight, {
   },
   paySubmitSel() {
     if (!this.data.selectData.count) return
-    new Cart().add({
+    new Cart(res => {
+      if (this.data.buyType === 'buy') {
+        util.navigateTo({
+          url: '/pages/pay/pay',
+        })
+      } else {
+        this.toggleMask(false)
+      }
+    }).add({
       productId: this.data.selectData.goodsid,
       speid: this.data.selectData.id,
       count: this.data.selectData.count,

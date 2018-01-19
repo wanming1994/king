@@ -297,7 +297,7 @@ function shareGetTime(time) {
   return Y + '年' + M + '月' + D + '日 ' + H + ':' + Mi
 }
 function navigateTo(options) {
-  if (getCurrentPages().length >= 5) {
+  if (getCurrentPages().length >= 10) {
     wx.redirectTo(options)
   } else {
     wx.navigateTo(options)
