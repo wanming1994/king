@@ -74,11 +74,12 @@
       </block>
     </view>
     <view class="center f14">
-      <view class="f16 clr_orange bold">{{productData.info.name}}</view>
+      <view class="f16 clr_orange bold">￥{{productData.info.retail_price}}</view>
+      <!-- <view class="f16 clr_orange bold">{{productData.info.name}}</view> -->
       <view>库存{{productData.info.goods_number}}件</view>
-      <view>已选
+      <!-- <view>已选
         <text class="clr_orange">{{slectData.number||0}}包</text>
-      </view>
+      </view> -->
     </view>
     <view class="right" bindtap="toggleMask">
       <image src="/resources/images/icon/close.png"></image>

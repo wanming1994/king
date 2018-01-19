@@ -93,6 +93,9 @@ Page(Object.assign({}, swiperAutoHeight, {
       buyType: (t.currentTarget && t.currentTarget.dataset.type) || this.data.buyType
     })
     // this.setData({
+
+
+
     //   showAction: t === undefined || t.target ? !this.data.showAction : t
     // })
   },
@@ -109,6 +112,8 @@ Page(Object.assign({}, swiperAutoHeight, {
       case 'add':
         goodsAmount = goodsAmount + 1 <= goods_number ? goodsAmount + 1 : goods_number
         break;
+
+
       case 'reduce':
         goodsAmount = goodsAmount - 1 < min ? min : --goodsAmount
         break;
