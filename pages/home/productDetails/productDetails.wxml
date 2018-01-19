@@ -93,7 +93,7 @@
     </view>
   </view>
   <view class="actionNumber border_bottom lineItem" style="align-items:center;">
-    <view class="f16 ">提货数量:</view>
+    <view class="f16 ">购买数量:</view>
     <view class="amount">
       <button data-btype="reduce" data-id="{{selectData.id}}" bindtap="revisenum">-</button>
       <input class="f12" data-id="{{selectData.id}}" type="number" data-btype="input" bindchange="revisenum" value="{{selectData.count||0}}" />

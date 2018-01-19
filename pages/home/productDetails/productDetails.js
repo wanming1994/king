@@ -33,7 +33,7 @@ Page(Object.assign({}, swiperAutoHeight, {
     goodsAmount: 1,
     sys: app.globalData.sys,//系统信息
     productData: {},//数据
-    showAction: true,//显示弹窗
+    showAction: false,//显示弹窗
     buyType: 'buy',//buy or cart
     specification: {},//商品规格
     canClick: [],
