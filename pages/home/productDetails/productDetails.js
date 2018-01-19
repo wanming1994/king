@@ -58,7 +58,13 @@ Page(Object.assign({}, swiperAutoHeight, {
       this.setData({
         productData: res.data,
         introduction: res.data.info.goods_desc,
-        "selectData.id": res.data.specificationList[0].valueList[0].id
+        productList: res.data.productList,
+        selectData: {
+          id: res.data.productList[0].id,
+          number: res.data.productList[0].goods_number,
+          goodsid: res.data.productList[0].goods_id,
+          value: res.data.productList[0].goods_specification_value
+        }
       })
 
       if (introduction != null) {
@@ -94,8 +100,8 @@ Page(Object.assign({}, swiperAutoHeight, {
     let stype = e.currentTarget.dataset.btype,
       min = 1,
       max = 10,
-      goods_number = this.data.productData.info.goods_number,
-      goodsAmount = this.data.selectData.num || 0
+      goods_number = parseInt(this.data.selectData.number || this.data.productData.info.goods_number),
+      goodsAmount = this.data.selectData.count || 0
     switch (stype) {
       case 'input':
         goodsAmount = (!isNaN(e.detail.value) && e.detail.value >= min && e.detail.value <= goods_number) ? e.detail.value : goodsAmount
@@ -108,7 +114,7 @@ Page(Object.assign({}, swiperAutoHeight, {
         break;
     }
     this.setData({
-      "selectData.num": goodsAmount
+      "selectData.count": goodsAmount
     })
   },
 
@@ -120,11 +126,11 @@ Page(Object.assign({}, swiperAutoHeight, {
 
   },
   paySubmitSel() {
-    if (!this.data.selectData.num) return
+    if (!this.data.selectData.count) return
     new Cart().add({
-      productId: parseInt(this.data.id),
+      productId: this.data.selectData.goodsid,
       speid: this.data.selectData.id,
-      count: this.data.selectData.num,
+      count: this.data.selectData.count,
       type: this.data.buyType,
     })
   },

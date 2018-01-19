@@ -69,7 +69,7 @@
 <view class="actionContent" hidden="{{!showAction}}">
   <view class="actionTitle border_bottom lineItem">
     <view class="left">
-      <block wx:for="{{productData.specificationList[0].valueList}}" wx:for-item="sitem" wx:key="id">
+      <block wx:for="{{productList}}" wx:for-item="sitem" wx:key="id">
         <image wx:if="{{selectData.id==sitem.id}}" src="{{sitem.pic_url||'../../../resources/images/member/nbs.jpg'}}"></image>
       </block>
     </view>
@@ -87,8 +87,8 @@
   <view class="actionSpecifications border_bottom">
     <view class="actionItemTitle f16">{{productData.specificationList[0].name}}：</view>
     <view class="actionItemBtn f16">
-      <block wx:for="{{productData.specificationList[0].valueList}}" wx:for-item="citem" wx:key="id" wx:for-index="iindex">
-        <text bindtap="checkout" data-id="{{citem.id}}" data-value="{{citem.value}}" class="{{citem.id==selectData.id?'active':''}}">{{citem.value}}</text>
+      <block wx:for="{{productList}}" wx:for-item="citem" wx:key="id" wx:for-index="iindex">
+        <text bindtap="checkout" data-id="{{citem.id}}" data-goodsid="{{citem.goods_id}}" data-number="{{citem.goods_number}}" data-value="{{citem.goods_specification_value}}" class="{{citem.id==selectData.id?'active':''}}">{{citem.goods_specification_value}}</text>
       </block>
     </view>
   </view>
@@ -96,7 +96,7 @@
     <view class="f16 ">提货数量:</view>
     <view class="amount">
       <button data-btype="reduce" data-id="{{selectData.id}}" bindtap="revisenum">-</button>
-      <input class="f12" data-id="{{selectData.id}}" type="number" data-btype="input" bindchange="revisenum" value="{{selectData.num||0}}" />
+      <input class="f12" data-id="{{selectData.id}}" type="number" data-btype="input" bindchange="revisenum" value="{{selectData.count||0}}" />
       <button data-btype="add" data-id="{{selectData.id}}" bindtap="revisenum">+</button>
     </view>
   </view>
