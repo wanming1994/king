@@ -13,7 +13,7 @@ Page({
     total: 0,//计算总价
     checkAll: false,//是否选择全部
     selectedId: [],//已选择商品id
-    mailPromotion: null,//包邮信息
+    // mailPromotion: null,//包邮信息
   },
   //商品check事件
   checkItemChange(e) {
@@ -166,8 +166,8 @@ Page({
         cartList: that.data.cartList
       })
     }).edit({
-      id: id,
-      quantity: num
+      cartId: id,
+      count: num
     })
   },
   onLoad: function (options) {
@@ -175,21 +175,23 @@ Page({
   },
   getCartDataWhenLogin() {
     var that = this
+    console.log(1111)
     new Cart(function (data) {
-      if (!data.data.tenants || data.data.tenants.length == 0) {
-        that.setData({
-          cartList: [],
-          total: 0,
-          checkAll: false,
-          selectedId: [],
-          mailPromotion: null,
-          getDataComplete: true
-        })
-        return
-      }
-      let selectedId = [], cartList = data.data.tenants[0].cartItems, mailPromotion = data.data.tenants[0].mailPromotion
+      // if (!data.data.tenants || data.data.tenants.length == 0) {
+      //   that.setData({
+      //     cartList: [],
+      //     total: 0,
+      //     checkAll: false,
+      //     selectedId: [],
+      //     mailPromotion: null,
+      //     getDataComplete: true
+      //   })
+      //   return
+      // }
+      console.log(data.cartList)
+      let selectedId = [], cartList = data.cartList
       for (let i = 0, j = cartList.length; i < j; i++) {
-        if (cartList[i].selected) {
+        if (cartList[i].checked==1) {
           selectedId.push(cartList[i].id)
         }
       }
@@ -199,14 +201,12 @@ Page({
         cartList: cartList,
         checkAll: [...new Set(selectedId)].length === cartList.length,
         selectedId: selectedId,
-        mailPromotion: mailPromotion,
+        // mailPromotion: mailPromotion,
         getDataComplete: true
       })
 
       that.calcTotal()
-    }).list({
-      tenantId: app.globalData.tenantId
-    })
+    }).list()
   },
   onShow: function () {
     this.setData({
