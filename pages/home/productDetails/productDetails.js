@@ -63,7 +63,8 @@ Page(Object.assign({}, swiperAutoHeight, {
           id: res.data.productList[0].id,
           number: res.data.productList[0].goods_number,
           goodsid: res.data.productList[0].goods_id,
-          value: res.data.productList[0].goods_specification_value
+          value: res.data.productList[0].goods_specification_value,
+          count: 1
         }
       })
 
