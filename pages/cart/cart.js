@@ -37,7 +37,7 @@ Page({
       })
       this.calcTotal()
     }).selected({
-      ids: value
+      cartIds: value
     })
   },
   deleteItem(e) {
@@ -47,13 +47,13 @@ Page({
     let that = this
     wx.showModal({
       title: '提示',
-      content: '是否确定删除该商品(' + name + ')',
+      content: '是否确定删除该商品',
       success: function (res) {
         if (res.confirm) {
           new Cart((res) => {
             that.onShow()
           }).delete({
-            ids: [id]
+            cartIds: [id]
           })
         } else if (res.cancel) {
 
@@ -66,7 +66,7 @@ Page({
     let that = this
     let data = e.currentTarget.dataset
     let id = data.id, rtype = data.type, min = data.min
-    let localnum = this.getItemById(id).quantity
+    let localnum = this.getItemById(id).number
     let result = min
     if (localnum < min) {
       this.setNum(id, min)
@@ -120,7 +120,7 @@ Page({
       })
       this.calcTotal()
     }).selected({
-      ids: selectAll ? selectedId : []
+      cartIds: selectAll ? selectedId : []
     })
   },
   //计算总价
@@ -136,7 +136,7 @@ Page({
     selectedId.forEach((val, index) => {
       let item = this.getItemById(val)
       if (item)
-        total += item.quantity * item.price
+        total += item.number * item.price
     })
     this.setData({
       total: total.toFixed(2)
@@ -146,12 +146,12 @@ Page({
   setNum(id, num) {
     let cartList = this.data.cartList
     let that = this
-    if (this.getItemById(id).quantity == num) return
+    if (this.getItemById(id).number == num) return
     //编辑数目调用接口
     new Cart(function (data) {
       for (let i = 0, j = cartList.length; i < j; i++) {
         if (cartList[i].id == id) {
-          cartList[i].quantity = num
+          cartList[i].number = num
           that.data.cartList = cartList
           that.setData({
             cartList: that.data.cartList

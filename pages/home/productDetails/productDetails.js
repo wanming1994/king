@@ -60,12 +60,12 @@ Page(Object.assign({}, swiperAutoHeight, {
         introduction: res.data.info.goods_desc,
         productList: res.data.productList,
         selectData: {
-          id: res.data.productList[0].id,
-          number: res.data.productList[0].goods_number,
-          goodsid: res.data.productList[0].goods_id,
-          value: res.data.productList[0].goods_specification_value,
+          id: res.data.productList[0]?res.data.productList[0].id:'',
+          number: res.data.productList[0]?res.data.productList[0].goods_number:'',
+          goodsid: res.data.productList[0]?res.data.productList[0].goods_id:'',
+          value: res.data.productList[0]?res.data.productList[0].goods_specification_value:'',
           count: 1,
-          retail_price: res.data.productList[0].retail_price,
+          retail_price: res.data.productList[0]?res.data.productList[0].retail_price:'',
         }
       })
 
@@ -139,7 +139,11 @@ Page(Object.assign({}, swiperAutoHeight, {
           url: '/pages/pay/pay',
         })
       } else {
-        this.toggleMask(false)
+        this.toggleMask(false);
+        wx.showToast({
+          title: '加入成功',
+          duration:1000
+        })
       }
     }).add({
       productId: this.data.selectData.goodsid,
