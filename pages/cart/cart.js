@@ -23,9 +23,9 @@ Page({
     let cartList = this.data.cartList
     for (let i = 0, j = cartList.length; i < j; i++) {
       if (value.indexOf(cartList[i].id + '') + 1 || value.indexOf(cartList[i].id) + 1) {
-        cartList[i].selected = true
+        cartList[i].checked = 1
       } else {
-        cartList[i].selected = false
+        cartList[i].checked = 0
       }
     }
     new Cart(res => {
