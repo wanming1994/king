@@ -47,7 +47,7 @@ module.exports = class Cart extends Ajax {
    */
   selected(data) {
     super.post({
-      url: '/cart/checked',
+      url: 'cart/checked',
       data: data,
       traditional: true
     });
