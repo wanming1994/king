@@ -33,7 +33,8 @@ Page({
       this.data.selectedId = value
       this.setData({
         checkAll: [...new Set(e.detail.value)].length === this.data.cartList.length,
-        cartList: cartList
+        cartList: cartList,
+        checkedGoodsAmount: res.data.cartTotal.checkedGoodsAmount
       })
       this.calcTotal()
     }).selected({
@@ -109,14 +110,15 @@ Page({
     let cartList = this.data.cartList
     let selectedId = []
     for (let i = 0, j = cartList.length; i < j; i++) {
-      cartList[i].selected = selectAll
+      cartList[i].checked = selectAll
       selectedId.push(cartList[i].id)
     }
     new Cart(res => {
       //设置已选择商品
       this.data.selectedId = selectAll ? selectedId : []
       this.setData({
-        cartList: cartList
+        cartList: cartList,
+        checkedGoodsAmount:res.data.cartTotal.checkedGoodsAmount
       })
       this.calcTotal()
     }).selected({
@@ -154,7 +156,8 @@ Page({
           cartList[i].number = num
           that.data.cartList = cartList
           that.setData({
-            cartList: that.data.cartList
+            cartList: that.data.cartList,
+            checkedGoodsAmount: data.data.cartTotal.checkedGoodsAmount
           })
           break
         }
@@ -202,7 +205,8 @@ Page({
         checkAll: [...new Set(selectedId)].length === cartList.length,
         selectedId: selectedId,
         // mailPromotion: mailPromotion,
-        getDataComplete: true
+        getDataComplete: true,
+        checkedGoodsAmount: data.cartTotal.checkedGoodsAmount
       })
 
       that.calcTotal()

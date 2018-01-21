@@ -58,7 +58,7 @@
       <text>全选</text>
     </label>
     <view class="total f14">
-      <text>合计:￥{{total}}</text>
+      <text>合计:￥{{checkedGoodsAmount}}</text>
     </view>
     <view class="submit f14" bindtap='submit'>
       结算
