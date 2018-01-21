@@ -65,6 +65,18 @@ module.exports = class Cart extends Ajax {
   }
 
   /**
+  * 确认订单页
+  */
+  orderCon(data) {
+    super.post({
+      url: 'cart/info',
+      data: data
+    });
+  }
+
+ 
+
+  /**
    * 购物车商品数量
    * tenantId 商家Id
    */

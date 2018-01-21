@@ -1,0 +1,69 @@
+<include src="/template/actionsheet/actionsheet.wxml" />
+<include src="/template/password/payPassword.wxml" />
+<!--pages/pay/pay.wxml-->
+
+
+
+<view class='lineItem lineItem_access f14 address' hidden="{{express}}" bindtap='chooseAddress'>
+  <view class='left' wx:if="{{receiver}}">
+    <text class='iconfont icon-dizhi f66 address_icon'></text>
+  </view>
+  <view class='left' wx:if="{{!receiver}}">
+    <text class='iconfont icon-dizhi f66 address_icon' style='margin-top:12rpx'></text>
+  </view>
+  <view class='center lineH_two' wx:if="{{receiver}}">
+    <view>{{receiver.userName}} {{receiver.telNumber}}</view>
+    <view class='clr_orange'>{{receiver.provinceName}}{{receiver.cityName}}{{receiver.countyName}}{{receiver.detailInfo}}</view>
+  </view>
+  <view class='center lineH_two' wx:if="{{!receiver}}">
+    <view class='clr_red'>请选择收货地址</view>
+  </view>
+  <view class='right'></view>
+</view>
+
+<view class='lineItem product' wx:for="{{order}}" wx:key="id" wx:for-item="item">
+  <view class='left product_img'>
+    <image src='{{item.list_pic_url}}'></image>
+  </view>
+  <view class='center product_txt'>
+    <view class='f14'>{{item.goods_name}}</view>
+    <view class='f12'>尺码：{{item.goods_specifition_name_value}}</view>
+    <view class='lineItem f16 clr_orange price'>
+      <view class='center'>￥{{item.retail_price}}</view>
+      <view class='right'>X{{item.number}}</view>
+    </view>
+  </view>
+  <!-- <view class='lineItem border_bottom f14 word' wx:if="{{showMemo}}">
+      <view class='left'>买家留言：</view>
+      <view class='center'>
+        <input maxlength="500" placeholder="给商家留言（500字以内）" bindblur='inputMemo' />
+      </view>
+    </view> -->
+</view>
+ <view class='lineItem lineH_two f14'>
+    <view class='center tr'>小计：</view>
+    <view class='right clr_orange f16'>￥{{orderInfo.goodsTotalPrice}}</view>
+  </view>
+<view class='lineItem f14' wx:if="{{orderInfo.freightPrice}}">
+  <view class='center'>快递运费</view>
+  <view class='right'>￥{{orderInfo.freightPrice}}</view>
+</view>
+
+<view class="section section_gap">
+  <view class="section__title f14 fl">是否使用积分(剩余<text class='f12 baseColor'>{{scoreMax}}分</text>)</view>
+  <switch class='fr' name="switch" checked="{{usePoint}}" bindtap='clickUsePoint' />
+</view>
+<view class='border_bottom f14 word' wx:if="{{usePoint}}">
+  <view class='left'>使用积分(可用<text class='f12 baseColor'>{{canusePoint}}分</text>)</view>
+  <view class='center tr'>
+    <input  placeholder="请输入使用积分数量" type='number' bindinput='userScoreInput' value='{{userScoreInput}}'/>
+  </view>
+</view>
+<view class='padding2 tr f12' wx:if="{{usePoint}}">积分可抵扣<text class='baseColor'>{{canTransMoney}}元</text></view>
+
+<form bindsubmit="formSubmit" report-submit bindreset="formReset">
+  <view class='lineItem lineH_three f16 bottom'>
+    <view class='center tc clr_orange'>实付款：￥{{orderInfo.orderTotalPrice}}</view>
+    <button class='right' form-type="submit" style='border-radius:0'>确认下单</button>
+  </view>
+</form>

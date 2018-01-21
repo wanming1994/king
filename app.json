@@ -9,6 +9,7 @@
     "pages/home/productDetails/productDetails",
     "pages/pay/success",
     "pages/pay/pay",
+    "pages/pay/orderPay",
     "pages/member/member",
     "pages/member/getGoods/getGoods",
     "pages/member/bind/bind",

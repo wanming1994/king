@@ -236,7 +236,7 @@ Page({
       util.errShow('请选择结算商品')
     } else {
       util.navigateTo({
-        url: '../pay/pay',
+        url: '../pay/orderPay',
       })
     }
   },
