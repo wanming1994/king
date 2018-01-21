@@ -1,6 +1,6 @@
 <button loading hidden="{{cartList.length > 0||getDataComplete}}" class="f14 loadBtn clr_lightGray">加载中</button>
 <!--要是够车内没有数据，就行显示没有数据-->
-<view class="cart" hidden="{{cartList.length > 0||!getDataComplete}}">
+<view class="cart" hidden="{{cartList.length > 0||!getDataComplete}}" style="margin-top:160rpx;">
   <!-- <image src="/resources/images/cart/cart_none.png" /> -->
   <view class='tc'>购物车什么都没有，赶快去购物吧</view>
   <button type="primary" size="mini" bindtap="goIndex" hover-class="none"> 去逛逛 </button>
