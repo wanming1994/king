@@ -123,7 +123,15 @@ Page(Object.assign({}, swiperAutoHeight, {
       "selectData.count": goodsAmount
     })
   },
-
+  //进入购物车
+  toCart() {
+    this.setData({
+      showAction: false
+    })
+    wx.switchTab({
+      url: '/pages/cart/cart',
+    })
+  },
 
   /**
   * 页面上拉触底事件的处理函数
@@ -136,7 +144,7 @@ Page(Object.assign({}, swiperAutoHeight, {
     new Cart(res => {
       if (this.data.buyType === 'buy') {
         util.navigateTo({
-          url: '/pages/pay/pay',
+          url: '/pages/pay/orderPay',
         })
       } else {
         this.toggleMask(false);

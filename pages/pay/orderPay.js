@@ -90,7 +90,7 @@ Page(Object.assign({}, actionsheet, {
     new cart(function (data) {
       that.data.addressIsGet = true
       that.setData({
-        orderInfo:data.data,
+        orderInfo: data.data,
         receiver: data.data.address,
         order: data.data.checkedGoodsList,
         totalAmount: data.data.orderTotalPrice,
@@ -210,41 +210,96 @@ Page(Object.assign({}, actionsheet, {
     //同城快递提交订单
     if (!this.data.addressIsGet && this.data.getAddressCount) {
       setTimeout(() => {
-
         this.formSubmit(e)
         --this.data.getAddressCount
       }, 200)
       return
     }
-    if (!this.data.receiver.id) {
-      util.errShow('请选择收货地址');
-    } else {
-      wx.showLoading({
-        title: '订单请求中',
-        mask: true
-      })
-      new order(function (data) {
-        if (that.data.totalAmount == '0') {
-          wx.redirectTo({
-            url: '/pages/pay/payZero?sn=' + data.data,
-          })
-        } else {
-          new order(function (a) {
-            new order(function (res) {
-              wx.hideLoading()
-              that.ActionsheetShow(Object.assign({}, res.data, {
-                closeJump: '/pages/member/order/order?id=1',
-                successJump: '/pages/pay/success'
-              }))
-            }).paymentView({
-              sn: a.data
+    new member(function (res) {
+      if (res.data.userIsMember == 1) {
+        if (!that.data.receiver.id) {
+          util.errShow('请选择收货地址');
+        }else{
+          //创建订单submit
+          new order(function (res) {
+            wx.hideLoading();
+            if (that.data.trueAmount == 0) {
+              wx.redirectTo({
+                url: '/pages/pay/success?orderId=' + res.data.orderInfo.id,
+              })
+            }
+            that.setData({
+              showPayDetail: true,
+              orderId: res.data.orderInfo.id
             })
-          }).payment({ sn: data.data, formId: formId })
+            that.setData({
+              payorderInfo: res.data.orderInfo
+            })
+          }).submit({
+            addressId: that.data.orderInfo.address.id,
+            userScore: that.data.userScoreInput,
+            orderType: 0
+          })
         }
-      }).submit({
-        addressId: that.data.orderInfo.address.id,
-        userScore: that.data.userScoreInput
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '您还不是会员，成为会员后才可下单',
+          cancelText: '取消',
+          confirmText: '立即成为',
+          success: function (res) {
+            if (res.confirm) {
+              util.navigateTo({
+                url: '/pages/home/join/join',
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    }).view()
+    
+  },
+
+  //去付款
+  toBuyConfirm() {
+    let that = this;
+    //发起支付接口
+    new order(function (data) {
+      wx.requestPayment({
+        'timeStamp': data.data.timeStamp,
+        'nonceStr': data.data.nonceStr,
+        'package': data.data.package,
+        'signType': 'MD5',
+        'paySign': data.data.paySign,
+        'success': function (res) {
+          wx.showToast({
+            title: '支付成功',
+            icon: 'success',
+            duration: 1000,
+            success: function () {
+              wx.redirectTo({
+                url: '/pages/pay/success?orderId=' + that.data.orderId
+              })
+            }
+          })
+        },
+        'fail': function (res) {
+        }
       })
-    }
-  }
+    }).goPay({
+      orderId: that.data.orderId
+    })
+
+  },
+  //关闭付款框
+  toggleMaskPay: function () {
+    this.setData({
+      showPayDetail: false
+    })
+    wx.redirectTo({
+      url: '/pages/member/order/order?id=1'
+    })
+  },
 }))

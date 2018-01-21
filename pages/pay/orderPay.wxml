@@ -61,9 +61,28 @@
 </view>
 <view class='padding2 tr f12' wx:if="{{usePoint}}">积分可抵扣<text class='baseColor'>{{canTransMoney}}元</text></view>
 
+<view class="actionNext f22" hidden="{{!showPayDetail}}">
+  <image class="nextClose" bindtap="toggleMaskPay" src="/resources/images/icon/close.png"></image>
+  <view>
+    <view class="nextTitle">小计:</view>
+    <view>{{payorderInfo.order_price}}元</view>
+  </view>
+  <view>
+    <view class="nextTitle">积分抵现:</view>
+    <view>{{payorderInfo.full_cut_price}}元</view>
+  </view>
+  <view class='baseColor'>
+    <view class="nextTitle">实付金额:</view>
+    <view>{{payorderInfo.actual_price}}元</view>
+  </view>
+  <view bindtap="toBuyConfirm" class="nextBtn f16">去付款</view>
+</view>
+<view class="actionMask" catchtouchmove="catchActionMask" hidden="{{!showPayDetail}}"></view>
+
+
 <form bindsubmit="formSubmit" report-submit bindreset="formReset">
   <view class='lineItem lineH_three f16 bottom'>
-    <view class='center tc clr_orange'>实付款：￥{{orderInfo.orderTotalPrice}}</view>
+    <view class='center tc clr_orange'>实付款：￥{{trueAmount}}</view>
     <button class='right' form-type="submit" style='border-radius:0'>确认下单</button>
   </view>
 </form>
