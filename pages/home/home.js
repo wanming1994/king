@@ -55,16 +55,19 @@ Page(Object.assign({}, {
    */
   onLoad: function (options) {
     if (app.globalData.LOGIN_STATUS) {
-      this.getData()
+      this.getData(options)
     } else {
       app.loginOkCallbackList.push(() => {
-        this.getData()
+        this.getData(options)
       })
     }
   },
 
-  getData: function () {
+  getData: function (options) {
     var that = this;
+    if (options.extension){
+      wx.setStorageSync('extension', options.extension)
+    }
     new Product(function (data) {
       that.setData({
         productHotList: data.data.hotGoodsList

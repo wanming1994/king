@@ -1,4 +1,5 @@
 let order = require("../../../service/order.js"),
+  member= require("../../../service/member.js"),
   app = getApp(),
   util = require("../../../utils/util.js")
 // pages/home/join/join.js
@@ -26,13 +27,19 @@ Page({
               icon: 'success',
               duration: 1000
             })
+            setTimeout(function(){
+              wx.redirectTo({
+                url: '/pages/member/share/share',
+              })
+            },1500)
           },
           'fail': function (res) {
           }
         })
       }).goPay({
         orderId: orderId,
-        userScore:0
+        userScore:0,
+        recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension'):''
       })
     }).submit({
       orderType:3
@@ -42,7 +49,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that=this;
+    new member(function(data){
+      that.setData({
+        recommendUser: data.data.userName
+      })
+    }).getUserName({
+      userId: wx.getStorageSync('extension') ? wx.getStorageSync('extension'):''
+    })
   },
 
   /**

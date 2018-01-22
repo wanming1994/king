@@ -24,21 +24,26 @@ Page(Object.assign({}, actionsheet, {
     try {
       wx.chooseAddress({
         success: function (res) {
-          //获取国家地址码
           new receiver(function (data) {
-
-            //保存地址
-            new receiver(function (sd) {
-              console.log(sd)
-              that.getAddress()
-            }).save({
-              areaId: data.data,
-              consignee: res.userName,
-              address: res.detailInfo,
-              phone: res.telNumber
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success'
             })
-          }).getAreaId({
-            code: res.nationalCode
+            that.getCartList(data.data.id)
+            // new order(res => {
+            //   that.setData({
+            //     address: res.data.address
+            //   })
+            // }).myEcoupons()
+          }).save({
+            provinceName: res.provinceName,
+            cityName: res.cityName,
+            countyName: res.countyName,
+            detailInfo: res.detailInfo,
+            userName: res.userName,
+            telNumber: res.telNumber,
+            nationalCode: res.nationalCode,
+            postalCode: res.postalCode
           })
         },
         fail: function (err) {
