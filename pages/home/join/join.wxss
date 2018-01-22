@@ -15,5 +15,5 @@
 .myRec{
   position: absolute;
   width: 100%;
-  bottom: 28vh;
+  bottom: 27.5vh;
 }

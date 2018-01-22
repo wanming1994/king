@@ -50,6 +50,7 @@
           </view>
           <view class="center">
             <view class="overthree">{{item.goods_name}}</view>
+            <view class="overthree clr_lightGray">尺码：{{item.goods_specifition_name_value}}</view>
             <view>￥{{item.retail_price}}</view>
           </view>
           <view class="right">
@@ -63,24 +64,24 @@
       <view class="lineItem">
         <view class="right">
           <view>小计：
-            <text>￥{{details.orderInfo.order_price}}</text>
+            <text>￥{{details.orderInfo.goods_price}}</text>
           </view>
           <view>运费：
-            <text>￥{{details.orderInfo.shipping_fee}}</text>
+            <text>￥{{details.orderInfo.freight_price}}</text>
           </view>
         </view>
       </view>
     </view>
   </view>
-  <view class="lineItem title border_none f16" wx:if="{{details.couponDiscount}}">
+  <view class="lineItem title border_none f16" wx:if="{{details.orderInfo.full_cut_price}}">
     <view class="left">
       <text class="iconfont icon-round_quan_fill clr_purple f18"></text>
     </view>
     <view class="center">
-      店铺优惠券
+      积分抵扣
     </view>
     <view class="right">
-      -￥{{details.couponDiscount}}
+      -￥{{details.orderInfo.full_cut_price}}元
     </view>
   </view>
   <!-- <view class="lineItem title border_none f16">
@@ -97,7 +98,7 @@
   <view class="op">
     <view>
       实付款：
-      <text class="clr_orange">￥{{details.orderInfo.order_price}}</text>
+      <text class="clr_orange">￥{{details.orderInfo.actual_price}}</text>
     </view>
   </view>
   <view class="method f14">

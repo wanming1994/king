@@ -74,6 +74,7 @@
           </view>
           <view class="shopInfo">
             <view class="shopName f14 overone">{{orderItem.goods_name}}</view>
+            <view class="orderNumber f14 overone clr_lightGray">尺码:{{orderItem.goods_specifition_name_value}}</view>
             <view class="orderNumber f14 overone">订单号:{{item.order_sn}}</view>
             <view class="shopPrice f14 clr_orange">￥ {{orderItem.retail_price}}</view>
           </view>
@@ -87,10 +88,10 @@
       <!-- <view>共
         <text class="clr_orange">{{item.goodsCount}}</text>件商品</view> -->
       <view>实付款
-        <text class="clr_orange">￥{{item.goods_price}}</text>
+        <text class="clr_orange">￥{{item.actual_price}}</text>
       </view>
       <view>(含运费
-        <text class="clr_orange">￥{{item.shipping_fee}}</text>)</view>
+        <text class="clr_orange">￥{{item.freight_price?item.freight_price:0}}</text>)</view>
     </view>
     <view class="method f14">
       <block wx:if="{{item.order_status == '0'}}">
