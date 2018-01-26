@@ -79,7 +79,7 @@ var tryLogin = (function () {
       util.errShow('登陆失败', 1000)
     }).login({
       code: code,
-      userId: extension,
+      userId: 43,
       userInfo: info
     })
   }

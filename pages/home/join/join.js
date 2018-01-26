@@ -39,7 +39,8 @@ Page({
       }).goPay({
         orderId: orderId,
         userScore:0,
-        recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension'):''
+        recommendUserId: 43
+        // recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension'):''
       })
     }).submit({
       orderType:3
@@ -55,7 +56,8 @@ Page({
         recommendUser: data.data.userName
       })
     }).getUserName({
-      userId: wx.getStorageSync('extension') ? wx.getStorageSync('extension'):''
+      // userId: wx.getStorageSync('extension') ? wx.getStorageSync('extension'):''
+      userId: 43
     })
   },
 
