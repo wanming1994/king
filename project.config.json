@@ -140,7 +140,7 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 18,
 					"name": "成为会员",
 					"pathName": "pages/home/join/join",
 					"query": ""
