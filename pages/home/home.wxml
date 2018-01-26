@@ -45,9 +45,9 @@
     <view class='break'></view>
     <view class='imageTwo productList' bindtap='goProductDeatil' data-id="{{item.id}}">
       <image src='{{item.primary_pic_url}}' mode="widthFix"></image>
-      <view class='word tc'>
+      <!-- <view class='word tc'>
         <text class='f14 overone'>购买{{item.name}}</text>
-      </view>
+      </view> -->
     </view>
   </block>
 
