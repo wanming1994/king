@@ -75,7 +75,7 @@
   </view>
   <view class="lineItem title border_none f16" wx:if="{{details.orderInfo.full_cut_price}}">
     <view class="left">
-      <text class="iconfont icon-round_quan_fill clr_purple f18"></text>
+      <text class="iconfont icon-jifen clr_purple f20"></text>
     </view>
     <view class="center">
       积分抵扣
