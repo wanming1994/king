@@ -37,6 +37,7 @@ Page({
       return {
         title: '邀请您加入大王纸尿裤',
         imageUrl:'https://www.sincereglobe.com/IMAGE/share.jpg',
+        path: '/pages/home/home?extension=43',
         path: '/pages/home/home?extension=' + app.globalData.memberInfo.userId,
         success: function (res) {
           console.log('/pages/home/home?extension=' + app.globalData.memberInfo.userId)
@@ -55,7 +56,8 @@ Page({
     return {
       title: '邀请您加入大王纸尿裤',
       imageUrl: 'https://www.sincereglobe.com/IMAGE/share.jpg',
-      path: '/pages/home/home?extension=' + app.globalData.memberInfo.userId,
+      // path: '/pages/home/home?extension=' + app.globalData.memberInfo.userId,
+      path: '/pages/home/home?extension=43',
       success: function (res) {
         // 转发成功
         wx.showToast({
