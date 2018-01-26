@@ -39,11 +39,11 @@ Page({
       }).goPay({
         orderId: orderId,
         userScore:0,
-        recommendUserId: 43
-        // recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension'):''
       })
     }).submit({
-      orderType:3
+      orderType:3,
+      recommendUserId: 43
+        // recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension'):''
     })
   },
   /**
