@@ -221,7 +221,7 @@ Page(Object.assign({}, actionsheet, {
       return
     }
     new member(function (res) {
-      if (res.data.userIsMember == 1) {
+      if (res.data.userIsMember >= 1) {
         if (!that.data.receiver.id) {
           util.errShow('请选择收货地址');
         }else{

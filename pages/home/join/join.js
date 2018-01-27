@@ -14,33 +14,33 @@ Page({
   clickImg: function () {
     var that=this;
     new order(function (res) {
-      var orderId = res.data.orderInfo.id;
-      new order(function (data) {
-        wx.requestPayment({
-          'timeStamp': data.data.timeStamp,
-          'nonceStr': data.data.nonceStr,
-          'package': data.data.package,
-          'signType': 'MD5',
-          'paySign': data.data.paySign,
-          'success': function (res) {
-            wx.showToast({
-              title: '支付成功',
-              icon: 'success',
-              duration: 1000
-            })
-            setTimeout(function () {
-              wx.redirectTo({
-                url: '/pages/member/share/share',
-              })
-            }, 1500)
-          },
-          'fail': function (res) {
-          }
-        })
-      }).goPay({
-        orderId: orderId,
-        userScore: 0,
-      })
+      // var orderId = res.data.orderInfo.id;
+      // new order(function (data) {
+      //   wx.requestPayment({
+      //     'timeStamp': data.data.timeStamp,
+      //     'nonceStr': data.data.nonceStr,
+      //     'package': data.data.package,
+      //     'signType': 'MD5',
+      //     'paySign': data.data.paySign,
+      //     'success': function (res) {
+      //       wx.showToast({
+      //         title: '支付成功',
+      //         icon: 'success',
+      //         duration: 1000
+      //       })
+      //       setTimeout(function () {
+      //         wx.redirectTo({
+      //           url: '/pages/member/share/share',
+      //         })
+      //       }, 1500)
+      //     },
+      //     'fail': function (res) {
+      //     }
+      //   })
+      // }).goPay({
+      //   orderId: orderId,
+      //   userScore: 0,
+      // })
     },function(err){
       if(err.errno == 1 && err.errmsg =='你已经是会员了'){
         setTimeout(function(){
@@ -51,7 +51,7 @@ Page({
       }
     }).submit({
       orderType: 3,
-      recommendUserId: that.data.userId ? that.data.userId:''
+      recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension'):''
     })
   },
   /**
@@ -70,18 +70,14 @@ Page({
   getData(options){
     var that = this;
     if (options) {
-      var userId = options.extension;
       wx.setStorageSync('extension', options.extension);
-      that.setData({
-        userId: userId
-      })
     }
     new member(function (data) {
       that.setData({
         recommendUser: data.data.userName
       })
     }).getUserName({
-      userId: userId ? userId : ''
+      userId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
     })
   },
 
