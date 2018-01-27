@@ -12,7 +12,7 @@ Page({
 
   },
   clickImg: function () {
-    var that=this;
+    var that = this;
     new order(function (res) {
       // var orderId = res.data.orderInfo.id;
       // new order(function (data) {
@@ -23,17 +23,17 @@ Page({
       //     'signType': 'MD5',
       //     'paySign': data.data.paySign,
       //     'success': function (res) {
-      //       wx.showToast({
-      //         title: '支付成功',
-      //         icon: 'success',
-      //         duration: 1000
-      //       })
-      //       setTimeout(function () {
-      //         wx.redirectTo({
-      //           url: '/pages/member/share/share',
-      //         })
-      //       }, 1500)
-      //     },
+      wx.showToast({
+        title: '加入成功',
+        icon: 'success',
+        duration: 1000
+      })
+      setTimeout(function () {
+        wx.switchTab({
+          url: '/pages/home/home',
+        })
+      }, 1500)
+
       //     'fail': function (res) {
       //     }
       //   })
@@ -41,17 +41,17 @@ Page({
       //   orderId: orderId,
       //   userScore: 0,
       // })
-    },function(err){
-      if(err.errno == 1 && err.errmsg =='你已经是会员了'){
-        setTimeout(function(){
+    }, function (err) {
+      if (err.errno == 1 && err.errmsg == '你已经是会员了') {
+        setTimeout(function () {
           wx.switchTab({
             url: '/pages/home/home',
           })
-        },500)
+        }, 500)
       }
     }).submit({
       orderType: 3,
-      recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension'):''
+      recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
     })
   },
   /**
@@ -67,7 +67,7 @@ Page({
     }
   },
 
-  getData(options){
+  getData(options) {
     var that = this;
     if (options) {
       wx.setStorageSync('extension', options.extension);
@@ -81,7 +81,7 @@ Page({
     })
   },
 
-  goHome:function(){
+  goHome: function () {
     wx.switchTab({
       url: '/pages/home/home',
     })
