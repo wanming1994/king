@@ -29,7 +29,7 @@ Page(Object.assign({}, actionsheet, {
               title: '保存成功',
               icon: 'success'
             })
-            that.getCartList(data.data.id)
+            that.getAddress()
             // new order(res => {
             //   that.setData({
             //     address: res.data.address
