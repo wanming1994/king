@@ -5,7 +5,7 @@
     </view>
     <view class="details">
       <view class='f14'>{{memberInfo.nickName}}</view>
-      <view class='f12' style='margin-top:12rpx'>{{memberInfo.userIsMember?'会员':'非会员'}}</view>
+      <view class='f12' style='margin-top:12rpx'>{{memberInfo.userIsMember==1?'会员':'非会员'}}</view>
     </view>
   </view>
 
