@@ -69,7 +69,7 @@ Page({
 
   getData(options) {
     var that = this;
-    if (options) {
+    if (options.extension) {
       wx.setStorageSync('extension', options.extension);
     }
     new member(function (data) {
