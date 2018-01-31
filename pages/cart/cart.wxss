@@ -177,7 +177,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   width: 30rpx;
   height: 30rpx;
   margin-left: auto;
-  margin-right: 8vw;
+  margin-right: 6vw;
   /* right: 10%; */
 }
 

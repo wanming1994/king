@@ -28,6 +28,7 @@
   -webkit-justify-content: space-between;
   -moz-justify-content: space-between;
   justify-content: space-between;
+  border-bottom: 1px solid #eee;
 }
 
 .product .product_txt {
