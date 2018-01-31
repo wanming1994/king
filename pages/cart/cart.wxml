@@ -24,12 +24,12 @@
           <view class="overone f16">{{item.goods_name}}</view>
           <view class="specification f12" style="line-height:1.4;">
             <!-- <block wx:for="{{item.specification}}" wx:key="id" wx:for-item="specification"> -->
-              <text class='clr_lightGray f16'>尺码:{{item.goods_specifition_name_value}}</text>
+              <text class='clr_lightGray f14'>尺码:{{item.goods_specifition_name_value}}</text>
               <!-- <text class="clr_lightGray">{{specification.name}} </text> -->
             <!-- </block> -->
           </view>
           <view class="price">
-            <text class="clr_orange f16">￥{{item.retail_price}}</text>
+            <text class="clr_orange f18">￥{{item.retail_price}}</text>
             <text class="sumdel f12 clr_lightGray">￥{{item.market_price}}</text>
           </view>
           <!-- <block wx:for="{{item.promotions}}" wx:key="id" wx:for-item="promotions">

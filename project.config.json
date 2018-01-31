@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.6.6",
+	"libVersion": "1.9.1",
 	"appid": "wxd32c6f0a8ce28e23",
 	"projectname": "tt",
 	"svr": "",
@@ -143,6 +143,12 @@
 					"id": 18,
 					"name": "成为会员",
 					"pathName": "pages/home/join/join",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/cart/cart",
 					"query": ""
 				}
 			]
