@@ -22,28 +22,30 @@
         </view>
         <view class="detail">
           <view class="overone f16">{{item.goods_name}}</view>
-          <view class="specification f12" style="line-height:1.4;">
-            <!-- <block wx:for="{{item.specification}}" wx:key="id" wx:for-item="specification"> -->
-              <text class='clr_lightGray f14'>尺码:{{item.goods_specifition_name_value}}</text>
-              <!-- <text class="clr_lightGray">{{specification.name}} </text> -->
-            <!-- </block> -->
+          <view class="lineItem">
+            <view class="center">
+              <view class='clr_lightGray f14'>尺码:{{item.goods_specifition_name_value}}</view>
+              <view>
+                <text class="clr_orange f18">￥{{item.retail_price}}</text>
+                <text class="sumdel f12 clr_lightGray">￥{{item.market_price}}</text>
+              </view>
+            </view>
+            <view class="right">
+              <view class="amount">
+                <button bindtap="revisenum" data-id="{{item.id}}" data-type="reduce" data-min="1" data-num="{{item.number}}">-</button>
+                <input bindchange="inputnum" data-id="{{item.id}}" class="f12" type="number" value="{{item.number}}" />
+                <button data-id="{{item.id}}" data-type="add" data-min="1" data-num="{{item.number}}" bindtap="revisenum">+</button>
+              </view>
+            </view>
+          </view>
+          <!-- <view class="specification f12" style="line-height:1.4;">
+            <text class='clr_lightGray f14'>尺码:{{item.goods_specifition_name_value}}</text>
           </view>
           <view class="price">
             <text class="clr_orange f18">￥{{item.retail_price}}</text>
             <text class="sumdel f12 clr_lightGray">￥{{item.market_price}}</text>
-          </view>
-          <!-- <block wx:for="{{item.promotions}}" wx:key="id" wx:for-item="promotions">
-            <view class="promotions f12">
-              <image src="/resources/images/icon/icon-{{promotions.type}}.png" class="promotionsicon"></image>
-              <text>{{promotions.name}}</text>
-            </view>
-          </block> -->
-          <view class="op">
-            <view class="amount">
-              <button bindtap="revisenum" data-id="{{item.id}}" data-type="reduce" data-min="1" data-num="{{item.number}}">-</button>
-              <input bindchange="inputnum" data-id="{{item.id}}" class="f12" type="number" value="{{item.number}}" />
-              <button data-id="{{item.id}}" data-type="add" data-min="1" data-num="{{item.number}}" bindtap="revisenum">+</button>
-            </view>
+          </view> -->
+          <view class="op" style="display:flex;">
             <image bindtap="deleteItem" data-name="{{item.fullName}}" data-id="{{item.id}}" class="delete" src="/resources/images/icon/delete.png"></image>
           </view>
         </view>

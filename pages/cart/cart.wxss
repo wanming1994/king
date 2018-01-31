@@ -32,7 +32,8 @@ page {
   margin-right: 10rpx;
   border-radius: 6rpx;
 }
-checkbox{
+
+checkbox {
   vertical-align: middle;
 }
 
@@ -67,11 +68,12 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   align-items: center;
 }
 
-.cartItem .image{
+.cartItem .image {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .cartItem .thumbnail {
   width: 172.5rpx;
   height: 172.5rpx;
@@ -84,30 +86,35 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   align-items: flex-start;
   overflow: hidden;
   padding: 0 0 0 2%;
-  flex:1;
+  flex: 1;
 }
 
 .cartItem .detail>view {
   width: 100%;
 }
-.cartItem .price{
+
+.cartItem .price {
   margin-bottom: 10rpx;
 }
-.cartItem .promotions{
+
+.cartItem .promotions {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 6rpx 0;
 }
-.cartItem .promotionsicon{
+
+.cartItem .promotionsicon {
   width: 35rpx;
   margin-right: 12rpx;
   height: 35rpx;
 }
+
 .amount {
   display: flex;
   width: 180rpx;
   position: relative;
+  margin-right: 4vw;
 }
 
 .amount::after {
@@ -130,7 +137,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   display: block;
   position: relative;
 }
-.amount input::after{
+
+.amount input::after {
   content: " ";
   width: 200%;
   height: 200%;
@@ -146,13 +154,14 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   transform-origin: 0 0;
   box-sizing: border-box;
 }
+
 .amount button, .amount input {
   width: 60rpx;
-  height: 60rpx!important;
-  min-height: 60rpx!important;
+  height: 60rpx !important;
+  min-height: 60rpx !important;
   padding: 0;
   margin: 0;
-  line-height: 60rpx!important;
+  line-height: 60rpx !important;
   background: #fff;
   text-align: center;
   background: transparent;
@@ -163,14 +172,14 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   border: none !important;
 }
 
-.cartItem .delete{
-  position: absolute;
+.cartItem .delete {
+  /* position: absolute; */
   width: 30rpx;
   height: 30rpx;
-  bottom: 30rpx;
-  right: 10%;
+  margin-left: auto;
+  margin-right: 8vw;
+  /* right: 10%; */
 }
-
 
 .tab {
   position: fixed;
@@ -184,27 +193,29 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   z-index: 1000;
 }
 
-.tab>view,.tab label{
+.tab>view, .tab label {
   display: flex;
   align-items: center;
 }
-.checkAll{
+
+.checkAll {
   margin-left: 2%;
   padding-right: 40rpx;
 }
-.total{
+
+.total {
   flex: 1;
 }
-.total>text{
+
+.total>text {
   display: block;
   width: 100%;
   text-align: right;
   padding-right: 25rpx;
 }
-.submit{
+
+.submit {
   background: #ffa73d;
   color: #fff;
   padding: 0 70rpx;
 }
-
-
