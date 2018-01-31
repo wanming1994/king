@@ -4,7 +4,7 @@
       <image src='../../resources/images/home/logo.png' class=' logo'></image>
     </view>
     <view class='tr'>
-      <image src='../../resources/images/home/title_right.png' class=' title_right'></image>
+      <!-- <image src='../../resources/images/home/title_right.png' class=' title_right'></image> -->
     </view>
   </view>
   <!-- <view class='circle'>
