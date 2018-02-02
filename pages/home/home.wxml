@@ -1,12 +1,21 @@
+<import src="/template/swiper/swiper.wxml" />
 <view class="container">
-  <view class='head'>
+  <!-- <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" mode="widthFix" style="will-change:transform;width:100vw;"/>
+      </swiper-item>
+    </block>
+  </swiper> -->
+  <template is="adSwiper" data="{{_swiper,name:'top',data:imgUrls,key:topImgs.key,fn:'adTap'}}"></template>
+  <!-- <view class='head'>
     <view>
       <image src='../../resources/images/home/logo.png' class=' logo'></image>
     </view>
     <view class='tr'>
-      <!-- <image src='../../resources/images/home/title_right.png' class=' title_right'></image> -->
+       <image src='../../resources/images/home/title_right.png' class=' title_right'></image> 
     </view>
-  </view>
+  </view> -->
   <!-- <view class='circle'>
     <view class='circle1 tc'>
       <image src='../../resources/images/home/brand.png'></image>
@@ -30,10 +39,10 @@
     </view>
   </view> -->
 
-  <video id="myVideo" src="https://www.sincereglobe.com/VIDEO/tianshi.mp4" poster="https://www.sincereglobe.com/VIDEO/tianshi.png">>
-  </video>
+  <!-- <video id="myVideo" src="https://www.sincereglobe.com/VIDEO/tianshi.mp4" poster="https://www.sincereglobe.com/VIDEO/tianshi.png">>
+  </video> -->
 
-  <view class='break'></view>
+   <view class='breakTop' style='height:2vw;background:#fff'></view> 
   <view class='imageOne productList'>
     <image src='../../resources/images/home/pic1.png' mode="widthFix"></image>
     <view class='word tc' bindtap='joinUs'>

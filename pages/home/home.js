@@ -10,13 +10,20 @@ let swiperAutoHeight = require("../../template/swiper/swiper.js"),
   app = getApp(),
   util = require("../../utils/util.js")
 
-Page(Object.assign({}, {
+Page(Object.assign({}, swiperAutoHeight, {
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imgUrls: [
+      'https://www.sincereglobe.com/IMAGE/BANNER1.jpg',
+      'https://www.sincereglobe.com/IMAGE/BANNER2.jpg'
+    ],
+    indicatorDots: false,
+    autoplay: true,
+    interval: 4000,
+    duration: 1000
   },
 
   //邀请

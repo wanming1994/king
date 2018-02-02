@@ -24,27 +24,27 @@
     "pages/include/captcha/captcha"
   ],
   "tabBar": {
-    "color": "#fff",
-    "backgroundColor": "#393939",
-    "selectedColor": "#1296db",
+    "color": "#7f91a7",
+    "backgroundColor": "#fff",
+    "selectedColor": "#ffcbc0",
     "list": [
       {
         "pagePath": "pages/home/home",
         "text": "首页",
-        "iconPath": "/resources/images/tabBar/home.png",
-        "selectedIconPath": "/resources/images/tabBar/home-sel.png"
+        "iconPath": "/resources/images/tabBar/1.2.jpg",
+        "selectedIconPath": "/resources/images/tabBar/1.1.jpg"
       },
       {
         "pagePath": "pages/cart/cart",
         "text": "购物车",
-        "iconPath": "/resources/images/tabBar/cart.png",
-        "selectedIconPath": "/resources/images/tabBar/cart-sel.png"
+        "iconPath": "/resources/images/tabBar/2.2.jpg",
+        "selectedIconPath": "/resources/images/tabBar/2.1.jpg"
       },
       {
         "pagePath": "pages/member/member",
         "text": "我的",
-        "iconPath": "/resources/images/tabBar/mine.png",
-        "selectedIconPath": "/resources/images/tabBar/mine-sel.png"
+        "iconPath": "/resources/images/tabBar/3.2.jpg",
+        "selectedIconPath": "/resources/images/tabBar/3.1.jpg"
       }
     ]
   },
