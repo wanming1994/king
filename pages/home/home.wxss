@@ -127,8 +127,8 @@
 }
 
 .break{
-  background: #f4f4f4;
-  height: 20px;
-  margin: 2% 0;
+  background: #fff;
+  height: 2vw;
+  /* margin: 2% 0; */
   
 }
