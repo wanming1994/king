@@ -50,8 +50,8 @@
   },
   "window": {
     "backgroundTextStyle": "#ffa73d",
-    "navigationBarBackgroundColor": "#393939",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": ".",
-    "navigationBarTextStyle": "red"
+    "navigationBarTextStyle": "black"
   }
 }
