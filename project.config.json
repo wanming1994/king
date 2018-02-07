@@ -33,98 +33,8 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "member",
-					"pathName": "pages/member/member",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "influence",
-					"pathName": "pages/influence/influence",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "recom",
-					"pathName": "pages/home/join/join",
-					"query": ""
-				},
-				{
-					"id": 3,
-					"name": "商品详情",
-					"pathName": "pages/home/productDetails/productDetails",
-					"query": "id=1181007"
-				},
-				{
-					"id": -1,
-					"name": "分享",
-					"pathName": "pages/member/share/share",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "积分兑换",
-					"pathName": "pages/member/exchange/exchange",
-					"query": ""
-				},
-				{
-					"id": 6,
-					"name": "商品详情",
-					"pathName": "pages/home/productDetails/productDetails",
-					"query": "id=1181003"
-				},
-				{
-					"id": -1,
-					"name": "商品提货",
-					"pathName": "pages/member/getGoods/getGoods",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "添加地址",
-					"pathName": "pages/member/info/info",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "订单列表",
-					"pathName": "pages/member/order/order",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "详情",
-					"pathName": "pages/member/order/orderDetails/orderDetails",
-					"query": "id=164"
-				},
-				{
-					"id": -1,
-					"name": "个人中心",
-					"pathName": "pages/member/member",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "个人资料",
-					"pathName": "pages/member/info/info",
-					"query": ""
-				},
-				{
-					"id": 13,
-					"name": "确认订单页面",
-					"pathName": "pages/pay/pay",
-					"query": "id=1181002"
-				},
-				{
-					"id": -1,
 					"name": "个人中心影响力",
 					"pathName": "pages/member/influence/influence",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "支付完成",
-					"pathName": "pages/pay/success",
 					"query": ""
 				},
 				{
@@ -146,10 +56,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "购物车",
-					"pathName": "pages/cart/cart",
-					"query": ""
+					"pathName": "pages/home/home",
+					"query": "&extension=90"
 				}
 			]
 		}
