@@ -46,7 +46,7 @@
   <view class='imageOne productList'>
     <image src='../../resources/images/home/pic1.png' mode="widthFix"></image>
     <view class='word tc' bindtap='joinUs'>
-      <text class='f14 '>加入大王推荐管领免费纸尿裤</text>
+      <text class='f14 '>加入大王推荐官领免费纸尿裤</text>
     </view>
   </view>
 

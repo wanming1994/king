@@ -99,11 +99,11 @@
   display: block
 }
 .productList .word{
-  background: #2963ad;
+  background: #ac2424;
 }
 .productList .word text{
   margin: 10px 0;
-  color: #2963ad;
+  color: #ac2424;
   background: #fff;
   padding: 5px 0;
   border-radius: 20px;
