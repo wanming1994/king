@@ -24,7 +24,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
     p300Tips: '下拉刷新',
     sType: ["p501", "p0", "p201", "p300", "p402"],
     scroll: [0, 0, 0, 0, 0],
-    isPay:false
+    isPay: false
   },
   bindChange: function (e) {//滑动选项卡
     var that = this;
@@ -240,7 +240,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
     var sTypeList = this.data.sType
     var index = this.data.currentTab
     var that = this
-    if (that.data.isPay){
+    if (that.data.isPay) {
       return
     }
     wx.showToast({
@@ -251,35 +251,35 @@ Page(Object.assign({}, actionsheet, payTemp, {
     that.setData({
       isPay: true
     })
-    setTimeout(function(){
+    setTimeout(function () {
       that.setData({
-        isPay:false
+        isPay: false
       })
-    },2000)
+    }, 2000)
     new Order((data) => {
-        wx.hideToast()
-        wx.requestPayment({
-          'timeStamp': data.data.timeStamp,
-          'nonceStr': data.data.nonceStr,
-          'package': data.data.package,
-          'signType': 'MD5',
-          'paySign': data.data.paySign,
-          'success': function (res) {
-            wx.showToast({
-              title: '支付成功',
-              icon: 'success',
-              duration: 1000,
-              success: function () {
-                wx.redirectTo({
-                  url: '/pages/pay/success?orderId=' + info
-                })
-              }
-            })
-          },
-          'fail': function (res) {
-          }
-        })
-        
+      wx.hideToast()
+      wx.requestPayment({
+        'timeStamp': data.data.timeStamp,
+        'nonceStr': data.data.nonceStr,
+        'package': data.data.package,
+        'signType': 'MD5',
+        'paySign': data.data.paySign,
+        'success': function (res) {
+          wx.showToast({
+            title: '支付成功',
+            icon: 'success',
+            duration: 1000,
+            success: function () {
+              wx.redirectTo({
+                url: '/pages/pay/success?orderId=' + info
+              })
+            }
+          })
+        },
+        'fail': function (res) {
+        }
+      })
+
     }).goPay({
       orderId: info,
       userScore: 0
@@ -342,6 +342,28 @@ Page(Object.assign({}, actionsheet, payTemp, {
         wx.showModal({
           title: '提示',
           content: '是否确认收货',
+          success: function (res) {
+            if (res.confirm) {
+              new Order((data) => {
+                wx.showToast({
+                  title: '签收成功',
+                  icon: 'success',
+                  duration: 1000
+                })
+                paging(that, sTypeList[index], 'up')
+              }).confirm({
+                orderId: info
+              })
+            } else if (res.cancel) {
+
+            }
+          }
+        })
+        break;
+      case 'delete'://删除订单
+        wx.showModal({
+          title: '提示',
+          content: '是否确认删除该订单，删除后不可恢复',
           success: function (res) {
             if (res.confirm) {
               new Order((data) => {
@@ -434,7 +456,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
     },
     'p300': {
       pageNumber: 0,
-      pageSize:10,
+      pageSize: 10,
       totalPages: 999
     }
   }

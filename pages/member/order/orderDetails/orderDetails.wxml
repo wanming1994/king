@@ -18,7 +18,7 @@
       <view class="left">快递单号</view>
       <view class="right">{{details.shippings[0].deliveryCorp}}{{details.shippings[0].trackingNo}}</view>
     </view>
-    <view wx:if="{{details.orderInfo.order_type==2}}">
+    <view>
       <view class="lineItem border_none">
         <view class="classname">联系人：{{details.orderInfo.consignee}}({{details.orderInfo.mobile}})</view>
       </view>
@@ -105,7 +105,8 @@
     <block wx:if="{{details.orderInfo.order_status == '0'}}">
       <!-- <view data-type="refund" data-info="{{details.id}}" catchtap="methodBtn">取消订单</view> -->
       <form bindsubmit="formSubmit" report-submit bindreset="formReset" style='margin:auto 0;'>
-        <button data-type="waitpay" class="confirmBtn" form-type="submit" data-info="{{details.orderInfo.id}}" style="border:1px solid #d9d9d9;line-height:1.6;margin-left:20rpx;margin-right:0;font-size:32rpx;">立即支付</button>
+      <button data-type="delete" catchtap="methodBtn" class="confirmBtn" data-info="{{item.id}}" style="border:1px solid #000;line-height:1.6;font-size:32rpx;margin:10px 10px;float:right;background:#fff;color:#000;">删除订单</button>
+        <button data-type="waitpay" class="confirmBtn" form-type="submit" data-info="{{details.orderInfo.id}}" style="border:1px solid #d9d9d9;line-height:1.6;font-size:32rpx;margin:10px 10px;float:right;">立即支付</button>
       </form>
     </block>
     <block wx:elif="{{details.orderInfo.order_status == 'unconfirmed'}}">

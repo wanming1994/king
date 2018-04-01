@@ -29,7 +29,7 @@ Page(Object.assign({}, swiperAutoHeight, {
   //邀请
   joinUs: function () {
     new member(function (res) {
-      if (res.data.userIsMember >= 1) {
+      if (res.data.userIsMember == 1) {
         util.navigateTo({
           url: '/pages/member/share/share'
         })

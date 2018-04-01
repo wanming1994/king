@@ -10,17 +10,24 @@
   </view>
 
   <view class="memberRadius lineItem flex f14">
-    <view class="flex-item lineItem lineItem_access" style='border-right:1px solid #c8c8cd;' bindtap='goExchange'>
-      <view>
-        <view>积分兑换</view>
+    <view class="flex-item lineItem  tc"  bindtap='goExchange'>
+      <view class='tc'>
         <view>{{memberInfo.bonus}}</view>
+        <view>积分兑换</view>
       </view>
       <view class="right"></view>
     </view>
-    <view class="flex-item lineItem lineItem_access" bindtap='toMyInfluence'>
-      <view>
-        <view>我的影响力</view>
+    <view class="flex-item lineItem  tc"  bindtap='goCoupon'>
+      <view class='tc'>
+        <view>{{memberInfo.bonus}}</view>
+        <view>优惠券</view>
+      </view>
+      <view class="right"></view>
+    </view>
+    <view class="flex-item lineItem  tc" bindtap='toMyInfluence'>
+      <view class='tc'>
         <view>{{memberInfo.influence}}</view>
+        <view>我的影响力</view>
       </view>
       <view class="right"></view>
     </view>

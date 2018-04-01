@@ -11,7 +11,9 @@ page {
   background: #fff;
   box-sizing: border-box;
 }
-
+.flex-item{
+  display: block;
+}
 .head {
   height: 211rpx;
   border-right: 1px solid #848484;

@@ -166,5 +166,5 @@ scroll-view {
 .confirmBtn {
   background: #d9141e;
   color: #fff;
-  border: 1px solid #d9141e !important;
+  border: 1px solid #d9141e;
 }

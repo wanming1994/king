@@ -291,6 +291,28 @@ Page(Object.assign({}, actionsheet, payTemp, {
           }
         })
         break;
+      case 'delete'://删除订单
+        wx.showModal({
+          title: '提示',
+          content: '是否确认删除该订单，删除后不可恢复',
+          success: function (res) {
+            if (res.confirm) {
+              new Order((data) => {
+                wx.showToast({
+                  title: '签收成功',
+                  icon: 'success',
+                  duration: 1000
+                })
+                paging(that, sTypeList[index], 'up')
+              }).confirm({
+                orderId: info
+              })
+            } else if (res.cancel) {
+
+            }
+          }
+        })
+        break;
       case 'remind'://提醒卖家发货/退货
         new Order((data) => {
           wx.showToast({
