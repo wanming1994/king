@@ -243,7 +243,8 @@ Page(Object.assign({}, actionsheet, {
           }).submit({
             addressId: that.data.orderInfo.address.id,
             userScore: that.data.userScoreInput,
-            orderType: 0
+            orderType: 0,
+            memo:that.data.memo
           })
         }
       } else {
