@@ -46,6 +46,16 @@ Page(Object.assign({}, swiperAutoHeight, {
     return false;
   },
   onLoad: function (options) {
+    if (app.globalData.LOGIN_STATUS) {
+      this.getData(options)
+    } else {
+      app.loginOkCallbackList.push(() => {
+        this.getData(options)
+      })
+    }
+
+  },
+  getData(options){
     let that = this;
     let id = options.id;
     this.data.id = id;
@@ -60,12 +70,12 @@ Page(Object.assign({}, swiperAutoHeight, {
         introduction: res.data.info.goods_desc,
         productList: res.data.productList,
         selectData: {
-          id: res.data.productList[0]?res.data.productList[0].id:'',
-          number: res.data.productList[0]?res.data.productList[0].goods_number:'',
-          goodsid: res.data.productList[0]?res.data.productList[0].goods_id:'',
-          value: res.data.productList[0]?res.data.productList[0].goods_specification_value:'',
+          id: res.data.productList[0] ? res.data.productList[0].id : '',
+          number: res.data.productList[0] ? res.data.productList[0].goods_number : '',
+          goodsid: res.data.productList[0] ? res.data.productList[0].goods_id : '',
+          value: res.data.productList[0] ? res.data.productList[0].goods_specification_value : '',
           count: 1,
-          retail_price: res.data.productList[0]?res.data.productList[0].retail_price:'',
+          retail_price: res.data.productList[0] ? res.data.productList[0].retail_price : '',
         }
       })
 

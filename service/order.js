@@ -120,6 +120,17 @@ module.exports = class Order extends Ajax {
 
 
   /**
+   * 删除订单
+   * orderId
+   */
+  deleteOrder(data) {
+    super.get({
+      url: "order/deleteOrder",
+      data: data
+    });
+  }
+
+  /**
    * 支付详情页面
    * orderId
    */
@@ -131,9 +142,9 @@ module.exports = class Order extends Ajax {
   }
 
 
-  
 
-  
+
+
 
 
 

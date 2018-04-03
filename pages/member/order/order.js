@@ -373,7 +373,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
                   duration: 1000
                 })
                 paging(that, sTypeList[index], 'up')
-              }).confirm({
+              }).deleteOrder({
                 orderId: info
               })
             } else if (res.cancel) {

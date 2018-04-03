@@ -45,7 +45,7 @@ module.exports = class Tenant extends Ajax {
      */
     productCategoryTree(data) {
         super.get({
-            url:  'applet/productCategoryTenant/alll.jhtml',
+            url:  'https://dev.tiaohuo.com/applet/productCategoryTenant/alll.jhtml',
             data: data
         });
     }

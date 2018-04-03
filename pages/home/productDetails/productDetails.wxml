@@ -26,6 +26,7 @@
     <view class="lineItem padding0" style='border-top:1px solid #cfcfcf;border-bottom:1px solid #cfcfcf;'>
       <view class="left lineH_two" style='align-items:center;width:100%;position:relative;'>
         <text class="clr_orange f20 bold fl" style='margin-left:2vw;'>￥{{productData.info.retail_price}}</text>
+        <image src='/resources/images/product/huiyuan1.png' style='width:32rpx;height:32rpx;margin-left:40rpx;'></image><text class='f14'>￥200</text>
         <text class="clr_lightGray fr f14" style='position:absolute;right:2vw;display:block;top:1vw;'>推荐官专属价</text>
       </view>
       <view class="center"></view>

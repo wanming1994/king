@@ -1,0 +1,138 @@
+/*搜索  */
+@import '/template/search/search.wxss';
+
+page {
+  height: 100%;
+  overflow: hidden;
+  color: #333;
+  background: #fff;
+}
+
+.container {
+  display: flex;
+  position: absolute;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.leftScrollTips {
+  position: absolute;
+  /* 90*index+20  */
+  top: 20rpx;
+  left: 0;
+  width: 5rpx;
+  height: 50rpx;
+  background: #CFB682;
+  transition: top 1s;
+}
+
+.leftScroll {
+  width: 170rpx;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  border-right: 1px solid #d9d9d9;
+  position: relative;
+}
+
+.leftScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.rightScroll {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  top: -200%;
+  transition: top 1s;
+}
+
+.leftItem {
+  width: 100%;
+  height: 90rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  transition: all 0.2s;
+}
+
+.leftItem.active {
+  font-size: 32rpx;
+  color: #CFB682;
+}
+
+.rightItem {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.rightItemAd {
+  width: 100%;
+  padding: 0 2%;
+  box-sizing: border-box;
+}
+
+.rightItemTitleLine {
+  width: 40%;
+  position: absolute;
+  height: 1px;
+  background: #f4f4f4;
+  left: 30%;
+  top: 50%;
+  z-index: 5;
+}
+
+.rightItemTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  position: relative;
+  line-height: 90rpx;
+}
+
+.rightItemTitle text {
+  position: relative;
+  z-index: 6;
+  padding: 0 20rpx;
+  background: #fff;
+}
+
+.rightItemContentList {
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.rightItemContent {
+  text-align: center;
+  width: 33.33%;
+  padding: 2%;
+  box-sizing: border-box;
+}
+
+.rightItemContent view {
+  line-height: 60rpx;
+  width: 100%;
+}
+
+.rightItemContent .imgWrap {
+  width: 70%;
+  margin: 0 auto;
+  position: relative;
+  height: 0;
+  padding-top: 70%;
+}
+
+.rightItemContent image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

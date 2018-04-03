@@ -20,6 +20,8 @@ page {
   margin-top: 5%;
   box-shadow: 5px 5px 5px #ddd;
   overflow: hidden;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 2vw;
 }
 
 .table>view {
@@ -33,4 +35,20 @@ page {
   width: 30rpx;
   height: 30rpx;
   vertical-align: middle;
+}
+
+.member{
+  border-bottom: 1px solid #efefef;
+}
+.member .left{
+  width: 16vw;
+  height: 16vw;
+}
+.member .left image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.member .center{
+  margin-left: 3vw;
 }

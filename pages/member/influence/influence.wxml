@@ -7,7 +7,8 @@
   <view class="table f14">
     <view class="border_right">
       <view class="border_bottom"></view>
-      <view><image class="iconImg" src="../../../resources/images/icon/member.png"></image> 普通会员</view>
+      <view>
+        <image class="iconImg" src="../../../resources/images/icon/member.png"></image> 普通会员</view>
     </view>
     <view class="border_right">
       <view class="border_bottom">我的好友</view>
@@ -22,4 +23,38 @@
       <view>{{data.thirdCount}}人</view>
     </view>
   </view>
+
+  <view class="lineItem member">
+    <view class="left">
+      <image src="/resources/images/usernone.png" ></image>
+    </view>
+    <view class="center">
+      <view>Traxad</view>
+    </view>
+  </view>
+  <view class="lineItem member">
+    <view class="left">
+      <image src="/resources/images/usernone.png" ></image>
+    </view>
+    <view class="center">
+      <view>Traxad</view>
+    </view>
+  </view>
+  <view class="lineItem member">
+    <view class="left">
+      <image src="/resources/images/usernone.png" ></image>
+    </view>
+    <view class="center">
+      <view>Traxad</view>
+    </view>
+  </view>
+  <view class="lineItem member">
+    <view class="left">
+      <image src="/resources/images/usernone.png" ></image>
+    </view>
+    <view class="center">
+      <view>Traxad</view>
+    </view>
+  </view>
+
 </view>
