@@ -64,11 +64,11 @@
 }
 
 .word .left {
-  width: 60%;
+  width: 30%;
 }
 
 .word .center {
-  width: 40%;
+  width: 70%;
   margin-left: auto;
 }
 
