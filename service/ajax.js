@@ -34,9 +34,11 @@ module.exports = class Ajax {
         } else if (res.data.errno == '1' || res.data.errno == '400') {
           _this.errFn(res.data)
           !options.hideErrorTip ? util.errShow(res.data.errmsg) : ''
-        } else if(res.data.message.type=='success'){
-          _this.fn(res.data)
-        }else{
+        }
+        //  else if(res.data.message.type=='success'){
+        //   _this.fn(res.data)
+        // }
+        else{
           _this.errFn(res)
           !options.hideErrorTip ? util.errShow('服务器错误') : ''
         }

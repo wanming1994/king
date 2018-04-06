@@ -1,6 +1,7 @@
 let app = getApp(),
   util = require("../../utils/util.js"),
-  member = require("../../service/member.js")
+  member = require("../../service/member.js"),
+  coupon = require("../../service/coupon.js")
 Page({
   data: {
     memberInfo: app.globalData.memberInfo
@@ -32,6 +33,14 @@ Page({
         memberInfo: data.data
       })
     }).view()
+
+    //优惠券数量
+    new coupon(function(data){
+      that.setData({
+        couponLength:data.data.length
+      })
+    }).list()
+
     if (!wx.getStorageSync("isGetUserInfo")) {
       wx.getUserInfo({
         success: function (res) {
@@ -79,7 +88,12 @@ Page({
   //积分兑换
   goExchange: function () {
     util.navigateTo({
-      url: 'exchange/exchange',
+      url: 'member/exchange/exchange',
+    })
+  },
+  goCoupon:function(){
+    util.navigateTo({
+      url: 'coupon/list',
     })
   },
   //我的影响力

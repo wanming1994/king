@@ -19,7 +19,7 @@
     </view>
     <view class="flex-item lineItem  tc"  bindtap='goCoupon'>
       <view class='tc'>
-        <view>{{memberInfo.bonus}}</view>
+        <view>{{couponLength}}</view>
         <view>优惠券</view>
       </view>
       <view class="right"></view>

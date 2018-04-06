@@ -9,7 +9,7 @@ module.exports = class coupon extends Ajax {
      */
     list(data) {
         super.get({
-            url:"applet/member/coupon/list.jhtml",
+            url:"coupon/list",
             data: data,
             success: this.fn
         });
