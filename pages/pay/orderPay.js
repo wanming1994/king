@@ -133,7 +133,6 @@ Page(Object.assign({}, actionsheet, {
           defaultDiscount: 'coupon'
         })
       }
-      console.log(this.data.selectDiscount)
       that.calcPointMoney(that.data.totalAmount, data.data.userBonus)
     }).orderCon({})
 
