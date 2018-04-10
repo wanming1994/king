@@ -84,6 +84,17 @@
       -￥{{details.orderInfo.full_cut_price}}元
     </view>
   </view>
+  <view class="lineItem title border_none f16" wx:if="{{details.orderInfo.coupon_price}}">
+    <view class="left">
+      <text class="iconfont icon-round_quan_fill clr_purple f20"></text>
+    </view>
+    <view class="center">
+      优惠券抵扣
+    </view>
+    <view class="right">
+      -￥{{details.orderInfo.coupon_price}}元
+    </view>
+  </view>
   <!-- <view class="lineItem title border_none f16">
     <view class="left">
       <text class="iconfont icon-jifen clr_orange f18"></text>

@@ -64,15 +64,37 @@
 }
 
 .word .left {
-  width: 30%;
+  width: 40%;
 }
 
 .word .center {
-  width: 70%;
+  width: 60%;
   margin-left: auto;
 }
 
 .word input {
+  display: block;
+  width: 100%;
+}
+
+.memo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2%;
+  box-sizing: border-box;
+  padding: 2%;
+}
+
+.memo .left {
+  width: 30%;
+}
+
+.memo .center {
+  width: 70%;
+  margin-left: auto;
+}
+
+.memo input {
   display: block;
   width: 100%;
 }
@@ -171,4 +193,83 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 1001;
   box-sizing: border-box;
+}
+
+.couponSelect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+}
+
+.couponSelect .border_bottom::after {
+  bottom: 0;
+}
+
+.couponSelect .couponmask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1002;
+}
+
+.couponSelect .couponContent {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 1003;
+}
+
+.couponContent .couponSelectTitle {
+  background: #efeff4;
+  text-align: center;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.couponContent .couponSelectTitle image {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 25rpx;
+  right: 25rpx;
+}
+
+.couponContent .couponList {
+  max-height: 50vh;
+  background: #fff;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+.couponContent .couponList>view {
+  padding: 4%;
+}
+
+.couponContent .couponOp>view {
+  text-align: center;
+  flex: 1;
+  color: white;
+  padding: 20rpx;
+}
+
+.payStyleTitle{
+  padding: 2%;
+}
+.radio-group{
+  padding: 3% 0;
+  background: #fff;
+  border-bottom: 1px solid #ececec;
+}
+.radio-group label{
+  margin: 0 20rpx;
+}
+radio .wx-radio-input{
+  width: 38rpx;
+  height: 38rpx;
 }

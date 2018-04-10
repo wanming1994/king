@@ -16,7 +16,12 @@ Page(Object.assign({}, actionsheet, {
     memo: '',
     addressIsGet: true,
     usePoint: true,
-    getAddressCount: 10
+    getAddressCount: 10,
+    selectDiscount: [],
+    selectCoupon: {
+      name: '未使用',
+      code: ''
+    },
   },
   //收货地址
   chooseAddress: function () {
@@ -66,63 +71,104 @@ Page(Object.assign({}, actionsheet, {
   },
 
   onLoad: function (options) {
-    if (options.shelvesNo) {
-      this.setData({
-        shelvesNo: options.shelvesNo,
-        express: true,
-        since: true,
-        freight: true,
-        showMemo: false,
-        isSelfGet: true
-      })
-    }
     var that = this;
-    if (options.payType) {
-      this.data.isSelfGet = true
-      this.setData({
-        isSelfGet: this.data.isSelfGet,
-        express: true,
-        since: true,
-        freight: true
-      })
-    }
     this.getAddress();
   },
 
   getAddress(fn) {
     var that = this
     this.data.addressIsGet = false
-    new cart(function (data) {
+    new cart((data) => {
       that.data.addressIsGet = true
       that.setData({
         orderInfo: data.data,
         receiver: data.data.address,
         order: data.data.checkedGoodsList,
         totalAmount: data.data.orderTotalPrice,
-        scoreMax: data.data.userBonus
+        scoreMax: data.data.userBonus,
+        couponList: data.data.couponList
       })
+      //判断优惠券的数量
+
+      if (data.data.couponList.length > 0 && data.data.userBonus > 0) {
+        this.setData({
+          selectDiscount: [
+            {
+              name: "使用优惠券",
+              type: "coupon"
+            }, {
+              name: "使用积分",
+              type: "score"
+            }, {
+              name: "不使用优惠",
+              type: "none"
+            }
+          ],
+          defaultDiscount: 'coupon'
+        })
+      } else if (data.data.userBonus > 0 && data.data.couponList.length == 0) {
+        this.setData({
+          selectDiscount: [
+            {
+              name: "使用积分",
+              type: "score"
+            }, {
+              name: "不使用优惠",
+              type: "none"
+            }
+          ],
+          defaultDiscount: 'score'
+        })
+      } else if (data.data.userBonus <= 0 && data.data.couponList.length > 0) {
+        this.setData({
+          selectDiscount: [
+            {
+              name: "使用优惠券",
+              type: "coupon"
+            }, {
+              name: "不使用优惠",
+              type: "none"
+            }
+          ],
+          defaultDiscount: 'coupon'
+        })
+      }
+      console.log(this.data.selectDiscount)
       that.calcPointMoney(that.data.totalAmount, data.data.userBonus)
-      // that.calcu()
     }).orderCon({})
 
   },
 
   //计算价格方法
-  calcu: function () {
+  calcu: function (couponAmount) {
     var that = this;
-    // new order(function (data) {
-    //   that.setData({
-    //     calcuPrice: data.data.trades,
-    //     amount: data.data.amountPayable,
-    //     discount: data.data.discount
-    //   })
-    // }).calculate({
-    //   paymentMethodId: that.data.paymentMethodId,
-    //   shippingMethodId: that.data.shippingMethodId,
-    //   codes: that.data.codes
-    // })
+    that.setData({
+      trueAmount: that.data.totalAmount - couponAmount
+    })
   },
 
+  //显示
+  toogleCouponSelect() {
+    this.setData({
+      showCouponSelect: !this.data.showCouponSelect
+    })
+  },
+  //选择优惠券
+  selectCoupon(e) {
+    let couponId = e.currentTarget.dataset.id,
+      name = e.currentTarget.dataset.name,
+      couponAmout = e.currentTarget.dataset.amount;
+    this.setData({
+      selectCoupon: {
+        couponId: couponId ? couponId : '',
+        name: name ? name : (couponId ? '已使用' : '未使用')
+      },
+      showCouponSelect: false,
+      couponId: couponId,
+      couponAmout: couponAmout
+    })
+    this.calcu(couponAmout)
+  },
 
   //买家留言
   inputMemo: function (e) {
@@ -208,6 +254,23 @@ Page(Object.assign({}, actionsheet, {
     })
   },
 
+
+  //单选按钮选择配送方式
+  radioChange: function (e) {
+    var that = this;
+    // console.log(e.detail.value);
+    this.setData({
+      defaultDiscount: e.detail.value
+    })
+    if(e.detail.value=='score'){
+      that.calcPointMoney(that.data.totalAmount, that.data.canusePoint)
+    }else if(e.detail.value=='coupon'){
+      that.calcPointMoney(that.data.totalAmount, 0)
+    } else if (e.detail.value == 'none') {
+      that.calcPointMoney(that.data.totalAmount, 0)
+    }
+  },
+
   //确认下单提交
   formSubmit: function (e) {
     var formId = e.detail.formId;
@@ -224,7 +287,7 @@ Page(Object.assign({}, actionsheet, {
       if (res.data.userIsMember >= 1) {
         if (!that.data.receiver.id) {
           util.errShow('请选择收货地址');
-        }else{
+        } else {
           //创建订单submit
           new order(function (res) {
             wx.hideLoading();
@@ -242,9 +305,10 @@ Page(Object.assign({}, actionsheet, {
             })
           }).submit({
             addressId: that.data.orderInfo.address.id,
-            userScore: that.data.userScoreInput,
+            userScore: that.data.defaultDiscount=='score'?that.data.userScoreInput:0,
             orderType: 0,
-            memo:that.data.memo
+            couponId: that.data.defaultDiscount == 'coupon' ? that.data.couponId:'',
+            memo: that.data.memo
           })
         }
       } else {
@@ -265,7 +329,7 @@ Page(Object.assign({}, actionsheet, {
         })
       }
     }).view()
-    
+
   },
 
   //去付款

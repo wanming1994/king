@@ -76,6 +76,12 @@
 					"name": "个人中心影响力",
 					"pathName": "pages/member/influence/influence",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "付款页",
+					"pathName": "pages/pay/orderPay",
+					"query": ""
 				}
 			]
 		}
