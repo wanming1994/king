@@ -13,7 +13,7 @@
     <view class="flex-item lineItem  tc"  bindtap='goExchange'>
       <view class='tc'>
         <view>{{memberInfo.bonus}}</view>
-        <view>积分兑换</view>
+        <view>我的积分</view>
       </view>
       <view class="right"></view>
     </view>

@@ -11,7 +11,8 @@ Page({
     var that=this;
     new member(function(data){
       that.setData({
-        data: data.data.userRecommend
+        data: data.data.userRecommend,
+        memberList: data.data.directUserRecommend
       })
     }).userRecommend()
   },

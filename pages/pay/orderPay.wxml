@@ -103,7 +103,10 @@
     <view class="nextTitle">实付金额:</view>
     <view>{{payorderInfo.actual_price}}元</view>
   </view>
-  <view bindtap="toBuyConfirm" class="nextBtn f16">去付款</view>
+  <view style='display:flex'>
+    <view bindtap="toggleMaskPay" class="nextBtn f16" style='flex:1;margin-right:20rpx;background:#fff;color:#000;border:1px solid #333;'>改价</view>
+    <view bindtap="toBuyConfirm" class="nextBtn f16" style='flex:1'>付款</view>
+  </view>
 </view>
 <view class="actionMask" catchtouchmove="catchActionMask" hidden="{{!showPayDetail}}"></view>
 

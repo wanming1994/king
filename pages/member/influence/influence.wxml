@@ -24,37 +24,15 @@
     </view>
   </view>
 
+  
+  <block wx:for="{{memberList}}" wx:key='*this'  wx:for-item="item">
   <view class="lineItem member">
     <view class="left">
-      <image src="/resources/images/usernone.png" ></image>
+      <image src="{{item.userFollowAvatar?item.userFollowAvatar:'/resources/images/usernone.png'}}" ></image>
     </view>
     <view class="center">
-      <view>Traxad</view>
+      <view>{{item.userFollowNickname}}</view>
     </view>
   </view>
-  <view class="lineItem member">
-    <view class="left">
-      <image src="/resources/images/usernone.png" ></image>
-    </view>
-    <view class="center">
-      <view>Traxad</view>
-    </view>
-  </view>
-  <view class="lineItem member">
-    <view class="left">
-      <image src="/resources/images/usernone.png" ></image>
-    </view>
-    <view class="center">
-      <view>Traxad</view>
-    </view>
-  </view>
-  <view class="lineItem member">
-    <view class="left">
-      <image src="/resources/images/usernone.png" ></image>
-    </view>
-    <view class="center">
-      <view>Traxad</view>
-    </view>
-  </view>
-
+  </block>
 </view>

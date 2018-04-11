@@ -88,7 +88,7 @@ Page({
   //积分兑换
   goExchange: function () {
     util.navigateTo({
-      url: 'member/exchange/exchange',
+      url: 'exchange/exchange',
     })
   },
   goCoupon:function(){

@@ -15,7 +15,7 @@
             <text class="pri-b">{{item.type_money}}</text>
           </view>
           <text class="pri-span">优惠券</text>
-          <text class="pri-p">消费满{{item.min_amount}}元使用</text>
+          <text class="pri-p">消费满{{item.min_goods_amount}}元使用</text>
         </view>
       </view>
     </view>
