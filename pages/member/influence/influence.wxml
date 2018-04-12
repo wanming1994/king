@@ -24,7 +24,6 @@
     </view>
   </view>
 
-  
   <block wx:for="{{memberList}}" wx:key='*this'  wx:for-item="item">
   <view class="lineItem member">
     <view class="left">

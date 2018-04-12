@@ -82,6 +82,12 @@
 					"name": "付款页",
 					"pathName": "pages/pay/orderPay",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "积分首页",
+					"pathName": "pages/member/point/index",
+					"query": ""
 				}
 			]
 		}
