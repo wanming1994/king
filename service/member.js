@@ -97,4 +97,15 @@ module.exports = class Member extends Ajax {
     })
   }
 
+  /**
+     * 获取用户积分列表
+     *  recommendUserId
+     */
+  getUserName(data) {
+    super.get({
+      url: "Billflow/getBillList",
+      data: data
+    })
+  }
+
 }

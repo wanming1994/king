@@ -77,7 +77,7 @@ Page({
     var that = this;
     new Product((res)=>{
       that.setData({
-        goodsList: res.data.goodsList,
+        goodsList: res.data.data,
       });
     }).categoryList({
       categoryId: that.data.id, 

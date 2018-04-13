@@ -142,10 +142,10 @@ Page(Object.assign({}, actionsheet, payTemp, {
     this.data.endTouches = e.changedTouches[0]
     if (Y > 50 && X < 200) {
       if (wx.startPullDownRefresh) {
-        wx.startPullDownRefresh()
-        paging(this, sTypeList[index], 'up', function () {
-          wx.stopPullDownRefresh()
-        })
+        // wx.startPullDownRefresh()
+        // paging(this, sTypeList[index], 'up', function () {
+        //   wx.stopPullDownRefresh()
+        // })
       } else {
         wx.showLoading({
           title: '加载中...',
@@ -157,6 +157,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
     }
   },
   onPullDownRefresh() {
+    console.log(11)
     let index = this.data.currentTab,
       sTypeList = this.data.sType
     paging(this, sTypeList[index], 'up', function () {
@@ -174,6 +175,8 @@ Page(Object.assign({}, actionsheet, payTemp, {
   },
   onLoad: function (options) {//页面加载
     var that = this;
+    
+    console.log(app.globalData.memberInfo)
     var id = options.id ? options.id : 0
     var systemInfo = wx.getSystemInfoSync()
     this.ActionsheetSet({
