@@ -175,10 +175,14 @@ Page(Object.assign({}, actionsheet, payTemp, {
   },
   onLoad: function (options) {//页面加载
     var that = this;
-    
-    console.log(app.globalData.memberInfo)
     var id = options.id ? options.id : 0
     var systemInfo = wx.getSystemInfoSync()
+    new Member((res)=>{
+      console.log(res)
+    }).getBillList({
+      page:1,
+      size:10
+    })
     this.ActionsheetSet({
       item: [
         {

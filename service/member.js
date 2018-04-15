@@ -99,9 +99,10 @@ module.exports = class Member extends Ajax {
 
   /**
      * 获取用户积分列表
-     *  recommendUserId
+     *  getBillList
+     * page size
      */
-  getUserName(data) {
+  getBillList(data) {
     super.get({
       url: "Billflow/getBillList",
       data: data
