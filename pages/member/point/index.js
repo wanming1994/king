@@ -89,6 +89,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
     this.data.scroll[index] = e.detail.scrollTop
   },
   lower: function () {
+    console.log('lower')
     var index = this.data.currentTab
     var sTypeList = this.data.sType
     paging(this, sTypeList[index], 'down')
