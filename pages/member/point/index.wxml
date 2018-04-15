@@ -13,24 +13,17 @@
     <view class="f14 swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-type="p1" data-current="1" bindtap="swichNav">兑换记录</view>
   </view>
   <swiper current="{{currentTab}}" bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove' class="swiper-box" duration="0" style="height:{{winHeight - 190}}px;" bindchange="bindChange">
-    <swiper-item>
-      <view class="bill_wrapper">
+    <swiper-item> 
+      <view class="bill_wrapper"  scroll-y bindscroll="scroll" bindscrolltolower="lower" bindscrolltoupper="upper">
         <view class="bill_bd" wx:for="{{billList}}" wx:key="id" wx:for-item="item">
           <view class="bill_type">
-            <view class="" wx:if="{{item.type=='withdraw'}}">提现</view>
-            <view class="" wx:elif="{{item.type=='recharge'}}">充值</view>
-            <view class="" wx:elif="{{item.type=='payment'}}">购物</view>
-            <view class="" wx:elif="{{item.type=='receipts'}}">货款</view>
-            <view class="" wx:elif="{{item.type=='profit'}}">分润</view>
-            <view class="" wx:elif="{{item.type=='rebate'}}">佣金</view>
-            <view class="" wx:elif="{{item.type=='cashier'}}">收款</view>
-            <view class="" wx:elif="{{item.type=='income'}}">收入</view>
-            <view class="" wx:elif="{{item.type=='outcome'}}">支出</view>
-            <view class="" wx:elif="{{item.type=='coupon'}}">红包</view>
+            <view class="" wx:if="{{item.type==0}}">分润</view>
+            <view class="" wx:elif="{{item.type==1}}">消费</view>
           </view>
           <view class="bill_date">
-            <view style="word-wrap:break-word;word-break:break-all;">{{item.memo}}</view>
-            <view style="font-size:24rpx;color:#666;">{{item.create_date}}</view>
+            <view style="word-wrap:break-word;word-break:break-all;" wx:if="{{item.type==0}}">{{item.buyerNickName}}会员购物获得积分</view>
+            <view style="word-wrap:break-word;word-break:break-all;" wx:elif="{{item.type==1}}">{{item.buyerNickName}}兑换商品消费积分</view>
+            <view style="font-size:24rpx;color:#666;">{{item.createTime}}</view>
           </view>
           <view class="bill_amount">
             <!-- <view style="color:#ffa73d;">{{item.amount>=0?"+"+item.amount:item.amount}}</view> -->

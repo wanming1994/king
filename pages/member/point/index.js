@@ -19,88 +19,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
     p300Tips: '下拉刷新',
     sType: ["p0", "p1"],
     scroll: [0, 0],
-    billList:[
-      {
-        "id": 23919,
-        "type": "payment",
-        "status": "complete",
-        "credit": 0,
-        "debit": 0.01,
-        "balance": 997899.96,
-        "memo": "用钱包给会员卡充值 单号:2018041183130",
-        "create_date": "2018-04-11 17:50:56"
-      },
-      {
-        "id": 23918,
-        "type": "payment",
-        "status": "complete",
-        "credit": 0,
-        "debit": 0.01,
-        "balance": 997899.97,
-        "memo": "用钱包给会员卡充值 单号:2018041183129",
-        "create_date": "2018-04-11 17:48:12"
-      },
-      {
-        "id": 23917,
-        "type": "payment",
-        "status": "complete",
-        "credit": 0,
-        "debit": 0.01,
-        "balance": 997899.98,
-        "memo": "用钱包给会员卡充值 单号:2018041183128",
-        "create_date": "2018-04-11 17:46:44"
-      },
-      {
-        "id": 23916,
-        "type": "payment",
-        "status": "complete",
-        "credit": 0,
-        "debit": 0.01,
-        "balance": 997899.99,
-        "memo": "用钱包给会员卡充值 单号:2018041183127",
-        "create_date": "2018-04-11 17:46:11"
-      },
-      {
-        "id": 23915,
-        "type": "payment",
-        "status": "complete",
-        "credit": 0,
-        "debit": 200,
-        "balance": 997900,
-        "memo": "用钱包给会员卡充值 单号:2018041183126",
-        "create_date": "2018-04-11 17:41:50"
-      },
-      {
-        "id": 23912,
-        "type": "payment",
-        "status": "complete",
-        "credit": 0,
-        "debit": 1200,
-        "balance": 998100,
-        "memo": "用钱包给会员卡充值 单号:2018041183116",
-        "create_date": "2018-04-11 15:02:03"
-      },
-      {
-        "id": 23909,
-        "type": "payment",
-        "status": "complete",
-        "credit": 0,
-        "debit": 600,
-        "balance": 999300,
-        "memo": "用钱包给会员卡充值 单号:2018041182921",
-        "create_date": "2018-04-11 10:34:46"
-      },
-      {
-        "id": 23904,
-        "type": "payment",
-        "status": "complete",
-        "credit": 0,
-        "debit": 100,
-        "balance": 999900,
-        "memo": "用钱包给会员卡充值 单号:2018041082416",
-        "create_date": "2018-04-10 15:55:52"
-      }
-    ]
+    billList:[]
   },
 
   //goPointShop
@@ -147,6 +66,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
         //   wx.stopPullDownRefresh()
         // })
       } else {
+        console.log
         wx.showLoading({
           title: '加载中...',
         })
@@ -178,7 +98,9 @@ Page(Object.assign({}, actionsheet, payTemp, {
     var id = options.id ? options.id : 0
     var systemInfo = wx.getSystemInfoSync()
     new Member((res)=>{
-      console.log(res)
+      this.setData({
+        billList:res.data
+      })
     }).getBillList({
       page:1,
       size:10
