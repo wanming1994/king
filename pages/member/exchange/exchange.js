@@ -72,7 +72,10 @@ Page({
         success: function (res) {
           if (res.confirm) {
             new order(function (res) {
-
+              wx.showToast({
+                title: '兑换成功',
+                duration: 1000
+              })
             }).submit({
               goodsId: id,
               goodsAmount: 1,

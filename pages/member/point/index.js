@@ -125,7 +125,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
         page: ++pageModel.pageNumber
       });
     } else if (this.data.currentTab == 1) { //兑换订单
-      var index = this.data.currentTab
+      var index = 0
       var sTypeList = this.data.sType
       paging(this, sTypeList[index], 'down')
     }
@@ -156,11 +156,7 @@ Page(Object.assign({}, actionsheet, payTemp, {
       size: 10
     })
 
-    new Member(function (data) {
-      that.setData({
-        balanceScore: data.data.bonus
-      })
-    }).view()
+    
 
     this.ActionsheetSet({
       item: [
@@ -200,6 +196,11 @@ Page(Object.assign({}, actionsheet, payTemp, {
         paging(that, that.data.sType[i], 'up')
       }
     })
+    new Member(function (data) {
+      that.setData({
+        balanceScore: data.data.bonus
+      })
+    }).view()
   },
   PayTempSuccess(val) {
     var that = this
