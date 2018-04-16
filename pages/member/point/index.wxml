@@ -2,7 +2,7 @@
 
   <view class='viewPoint tc '>
     <view class='f14 title'>可用积分</view>
-    <view class='f20 clr-white'>1200</view>
+    <view class='f20 clr-white'>{{balanceScore}}</view>
     <view class='f14 store' bindtap='goPointShop'>积分商城
       <text class='iconfont icon-icon f14'></text>
     </view>
@@ -14,7 +14,7 @@
   </view>
   <swiper current="{{currentTab}}" class="swiper-box" duration="0" style="height:{{winHeight - 190}}px;" bindchange="bindChange">
     <swiper-item>
-      <scroll-view class="bill_wrapper" scroll-y bindscroll="scroll" bindscrolltolower="lower">
+      <scroll-view class="bill_wrapper scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower" bindscrolltoupper="upper">
         <view class="bill_bd" wx:for="{{billList}}" wx:key="id" wx:for-item="item">
           <view class="bill_type">
             <view class="" wx:if="{{item.type==0}}">分润</view>

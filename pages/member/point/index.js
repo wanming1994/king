@@ -19,11 +19,11 @@ Page(Object.assign({}, actionsheet, payTemp, {
     p300Tips: '下拉刷新',
     sType: ["p0", "p1"],
     scroll: [0, 0],
-    billList:[]
+    billList: []
   },
 
   //goPointShop
-  goPointShop(){
+  goPointShop() {
     util.navigateTo({
       url: '../exchange/exchange',
     })
@@ -77,9 +77,17 @@ Page(Object.assign({}, actionsheet, payTemp, {
     }
   },
   onPullDownRefresh() {
-    console.log(11)
     let index = this.data.currentTab,
       sTypeList = this.data.sType
+    new Member((res) => {
+      this.setData({
+        billList: res.data.data,
+        pageModelBill: res.data.pageModel
+      })
+    }).getBillList({
+      page: 1,
+      size: 10
+    })
     paging(this, sTypeList[index], 'up', function () {
       wx.stopPullDownRefresh()
     })
@@ -90,22 +98,70 @@ Page(Object.assign({}, actionsheet, payTemp, {
   },
   lower: function () {
     console.log('lower')
-    var index = this.data.currentTab
-    var sTypeList = this.data.sType
-    paging(this, sTypeList[index], 'down')
+    //积分账单
+    if (this.data.currentTab == 0) {
+      var that = this;
+      wx.showNavigationBarLoading();
+      var pageModel = this.data.pageModelBill;
+      var billList = this.data.billList;
+      new Member(function (data) {
+        wx.hideNavigationBarLoading() //完成停止加载
+        if (data.data.pageModel.totalPages < data.data.pageModel.pageNumber) {
+          that.setData({
+            tips: '没有更多啦~',
+            showtips: false
+          })
+        } else {
+          billList = billList.concat(data.data.data)
+          that.setData({
+            billList: billList,
+            loading: false,
+            tips: '努力加载中',
+            showtips: false
+          })
+        }
+      }).getBillList({
+        size: 10,
+        page: ++pageModel.pageNumber
+      });
+    } else if (this.data.currentTab == 1) { //兑换订单
+      var index = this.data.currentTab
+      var sTypeList = this.data.sType
+      paging(this, sTypeList[index], 'down')
+    }
+
+  },
+  upper: function () {
+    new Member((res) => {
+      this.setData({
+        billList: res.data.data,
+        pageModelBill: res.data.pageModel
+      })
+    }).getBillList({
+      page: 1,
+      size: 10
+    })
   },
   onLoad: function (options) {//页面加载
     var that = this;
     var id = options.id ? options.id : 0
     var systemInfo = wx.getSystemInfoSync()
-    new Member((res)=>{
+    new Member((res) => {
       this.setData({
-        billList:res.data
+        billList: res.data.data,
+        pageModelBill: res.data.pageModel
       })
     }).getBillList({
-      page:1,
-      size:10
+      page: 1,
+      size: 10
     })
+
+    new Member(function (data) {
+      that.setData({
+        balanceScore: data.data.bonus
+      })
+    }).view()
+
     this.ActionsheetSet({
       item: [
         {
