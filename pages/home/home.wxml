@@ -42,7 +42,7 @@
   <!-- <video id="myVideo" src="https://www.sincereglobe.com/VIDEO/tianshi.mp4" poster="https://www.sincereglobe.com/VIDEO/tianshi.png">>
   </video> -->
 
-   <view class='breakTop' style='height:2vw;background:#fff'></view> 
+  <view class='breakTop' style='height:2vw;background:#fff'></view>
   <view class='imageOne productList'>
     <image src='../../resources/images/home/pic1.png' mode="widthFix"></image>
     <view class='word tc' bindtap='joinUs'>
