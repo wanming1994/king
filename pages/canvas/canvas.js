@@ -30,7 +30,9 @@ Page({
         wx.downloadFile({
           url: 'http://cdn.tiaohuo.com/upload/image/201707/e75ca5f6-3f14-463d-a8ee-9887f3e02ec9.png@262w_262h_1e_1c_100Q',
           success: function (res) {
-            var res2 = res.tempFilePath//商品图片码
+            // var res2 = res.tempFilePath//商品图片码
+            var res1 = '/resources/images/member/poster_bg.png'
+            var res2 = '/resources/images/member/poster_bg2.png'
             wx.getSystemInfo({
               success: function (res) {
                 var w = res.windowWidth;
@@ -38,42 +40,52 @@ Page({
                 const ctx = wx.createCanvasContext('myCanvas')
                 ctx.setFillStyle('rgb(255, 255, 255)')
                 ctx.fillRect(0, 0, w, h)
-                ctx.drawImage(res2, (w - 180) / 2, 25, 180, 180)//商品图
+                ctx.drawImage(res1, 0, 0, w, h)//背景图大
+                ctx.drawImage(res2, 0.06*w, 0.07*h, 0.87*w, 0.84*h)//背景白色透明
+                ctx.drawImage(res3, 0.11*w, 60, 0.77*w, 0.59*w)//580x440小图片
+
                 ctx.setTextAlign('center')
-                ctx.setFillStyle('rgb(43, 43, 43)')
                 ctx.setFontSize(18)
-                ctx.fillText('测试是是his', w / 2, 230)
-                ctx.setFillStyle('rgb(255, 0, 0)')
-                ctx.setFontSize(18)
-                ctx.fillText('￥85', w / 2, 255)
-                ctx.drawImage(res3, (w - 110) / 2, 325, 110, 110)//小程序二维码
+                ctx.setFillStyle('rgb(0, 0, 0)')
+                ctx.fillText('大王邀请您走向发家致富之路', w / 2, 0.59 * w+90)
+
+                ctx.drawImage(res3, 0.12 * w, 0.59 * w + 125, 0.15 * w, 0.15 * w)//小程序二维码
+
+                ctx.setTextAlign('left')
                 ctx.setFillStyle('rgb(43, 43, 43)')
                 ctx.setFontSize(14)
-                ctx.fillText('扫码查看详情', w / 2, 450)
+                ctx.fillText('我是知晓', (w / 2) - 70, 0.59 * w + 140)
+                ctx.setFillStyle('rgb(137, 110, 87)')
+                ctx.setFontSize(16)
+                ctx.fillText('邀请您加入大王', (w / 2) - 70, (w - 70) * 22 / 29 + 165)
+
+                ctx.drawImage(res3, 0.19*w, (w - 70) * 22 / 29 + 190, 0.28 * w, 0.28 * w)//小程序二维码
+                ctx.drawImage(res3, 0.54*w, (w - 70) * 22 / 29 + 190, 0.28 * w, 0.28 * w)//小程序二维码
+
                 ctx.draw();
-              //  setTimeout(function(){
-              //    wx.canvasToTempFilePath({
-              //      //通过id 指定是哪个canvas
-              //      canvasId: 'myCanvas',
-              //      success(res) {
-              //        //成功之后保存到本地
-              //        console.log(res)
-              //        wx.saveImageToPhotosAlbum({
-              //          filePath: res.tempFilePath,
-              //          success: function (res) {
-              //            wx.showToast({
-              //              title: '保存成功',
-              //              icon: 'success',
-              //              duration: 2000
-              //            })
-              //          },
-              //          fail: function (res) {
-              //            console.log(res)
-              //          }
-              //        })
-              //      }
-              //    })
-              //  },3000)
+                 setTimeout(function(){
+                   wx.canvasToTempFilePath({
+                     //通过id 指定是哪个canvas
+                     canvasId: 'myCanvas',
+                     success(res) {
+                       //成功之后保存到本地
+                       console.log(res)
+                       wx.saveImageToPhotosAlbum({
+                         filePath: res.tempFilePath,
+                         success: function (res) {
+                           wx.showToast({
+                             title: '保存成功',
+                             icon: 'success',
+                             duration: 2000
+                           })
+                         },
+                         fail: function (res) {
+                           console.log(res)
+                         }
+                       })
+                     }
+                   })
+                 },5000)
               }, fail: function (e) {
                 console.log(e)
               }

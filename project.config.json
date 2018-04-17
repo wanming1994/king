@@ -54,22 +54,10 @@
 					"query": ""
 				},
 				{
-					"id": 18,
-					"name": "成为会员",
-					"pathName": "pages/home/join/join",
-					"query": ""
-				},
-				{
 					"id": 4,
 					"name": "购物车",
 					"pathName": "pages/home/home",
 					"query": "&extension=90"
-				},
-				{
-					"id": -1,
-					"name": "影响力",
-					"pathName": "pages/influence/influence",
-					"query": ""
 				},
 				{
 					"id": -1,
@@ -79,14 +67,14 @@
 				},
 				{
 					"id": -1,
-					"name": "付款页",
-					"pathName": "pages/pay/orderPay",
+					"name": "积分首页",
+					"pathName": "pages/member/point/index",
 					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "积分首页",
-					"pathName": "pages/member/point/index",
+					"name": "pages/canvas/canvas",
+					"pathName": "pages/canvas/canvas",
 					"query": ""
 				}
 			]
