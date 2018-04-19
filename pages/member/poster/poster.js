@@ -45,9 +45,6 @@ Page(Object.assign({}, {
           },
           success: function (res) {
             console.log(res);
-            that.setData({
-              code: res.data
-            })
           }
         })
       }
@@ -94,7 +91,7 @@ Page(Object.assign({}, {
         ctx.setFontSize(16)
         ctx.fillText('邀请您加入大王', 0.20 * h, 0.63 * h)
 
-        ctx.drawImage(that.data.code, 0.15 * h, 0.68 * h, 0.24 * w, 0.24 * w)//小程序二维码
+        ctx.drawImage(that.data.avatarUrl, 0.15 * h, 0.68 * h, 0.24 * w, 0.24 * w)//小程序二维码
         ctx.draw();
         // setTimeout(function () {
         //   wx.canvasToTempFilePath({
