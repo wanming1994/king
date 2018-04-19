@@ -41,13 +41,13 @@ Page({
                 ctx.setFillStyle('rgb(255, 255, 255)')
                 ctx.fillRect(0, 0, w, h)
                 ctx.drawImage(res1, 0, 0, w, h)//背景图大
-                ctx.drawImage(res2, 0.06 * w, 0.07 * h, 0.87 * w, 0.84 * h)//背景白色透明
-                ctx.drawImage(res3, 0.11 * w, 60, 0.77 * w, 0.59 * w)//580x440小图片
+                // ctx.drawImage(res2, 0.06 * w, 0.07 * h, 0.87 * w, 0.84 * h)//背景白色透明
+                // ctx.drawImage(res3, 0.11 * w, 60, 0.77 * w, 0.59 * w)//580x440小图片
 
-                ctx.setTextAlign('center')
-                ctx.setFontSize(18)
-                ctx.setFillStyle('rgb(0, 0, 0)')
-                ctx.fillText('大王邀请您走向发家致富之路', w / 2, 0.59 * w + 90)
+                // ctx.setTextAlign('center')
+                // ctx.setFontSize(18)
+                // ctx.setFillStyle('rgb(0, 0, 0)')
+                // ctx.fillText('大王邀请您走向发家致富之路', w / 2, 0.59 * w + 90)
 
                 ctx.save();
                 ctx.beginPath()
@@ -67,33 +67,33 @@ Page({
                 ctx.setFontSize(16)
                 ctx.fillText('邀请您加入大王', (w / 2) - 70, (w - 70) * 22 / 29 + 165)
 
-                ctx.drawImage(res3, 0.19 * w, (w - 70) * 22 / 29 + 190, 0.28 * w, 0.28 * w)//小程序二维码
-                ctx.drawImage(res3, 0.54 * w, (w - 70) * 22 / 29 + 190, 0.28 * w, 0.28 * w)//小程序二维码
+                ctx.drawImage(res3, 0.23 * w, (w - 70) * 22 / 29 + 180, 0.24 * w, 0.24 * w)//小程序二维码
+                // ctx.drawImage(res3, 0.54 * w, (w - 70) * 22 / 29 + 190, 0.28 * w, 0.28 * w)//小程序二维码
 
                 ctx.draw();
-                setTimeout(function () {
-                  wx.canvasToTempFilePath({
-                    //通过id 指定是哪个canvas
-                    canvasId: 'myCanvas',
-                    success(res) {
-                      //成功之后保存到本地
-                      console.log(res)
-                      wx.saveImageToPhotosAlbum({
-                        filePath: res.tempFilePath,
-                        success: function (res) {
-                          wx.showToast({
-                            title: '保存成功',
-                            icon: 'success',
-                            duration: 2000
-                          })
-                        },
-                        fail: function (res) {
-                          console.log(res)
-                        }
-                      })
-                    }
-                  })
-                }, 5000)
+                // setTimeout(function () {
+                //   wx.canvasToTempFilePath({
+                //     //通过id 指定是哪个canvas
+                //     canvasId: 'myCanvas',
+                //     success(res) {
+                //       //成功之后保存到本地
+                //       console.log(res)
+                //       wx.saveImageToPhotosAlbum({
+                //         filePath: res.tempFilePath,
+                //         success: function (res) {
+                //           wx.showToast({
+                //             title: '保存成功',
+                //             icon: 'success',
+                //             duration: 2000
+                //           })
+                //         },
+                //         fail: function (res) {
+                //           console.log(res)
+                //         }
+                //       })
+                //     }
+                //   })
+                // }, 5000)
               }, fail: function (e) {
                 console.log(e)
               }
