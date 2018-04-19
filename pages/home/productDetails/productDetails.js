@@ -56,6 +56,7 @@ Page(Object.assign({}, swiperAutoHeight, {
 
   },
   getData(options){
+    console.log(app.globalData.LOGIN_STATUS)
     let that = this;
     let id = options.id;
     this.data.id = id;

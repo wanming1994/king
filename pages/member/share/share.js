@@ -27,7 +27,11 @@ Page({
   onShow: function () {
 
   },
-
+  makePoster(){
+    wx.navigateTo({
+      url: '../poster/poster',
+    })
+  },
   //分享
   onShareAppMessage: function (res) {
     var that = this;
