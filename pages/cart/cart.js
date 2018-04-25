@@ -178,7 +178,6 @@ Page({
   },
   getCartDataWhenLogin() {
     var that = this
-    console.log(1111)
     new Cart(function (data) {
       // if (!data.data.tenants || data.data.tenants.length == 0) {
       //   that.setData({

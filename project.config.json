@@ -42,10 +42,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "兑换历史",
-					"pathName": "pages/member/exchange/history",
-					"query": ""
+					"pathName": "pages/home/join/join",
+					"query": "extension=529"
 				},
 				{
 					"id": -1,

@@ -12,46 +12,38 @@ Page({
 
   },
   clickImg: function () {
-    var that = this;
-    new order(function (res) {
-      // var orderId = res.data.orderInfo.id;
-      // new order(function (data) {
-      //   wx.requestPayment({
-      //     'timeStamp': data.data.timeStamp,
-      //     'nonceStr': data.data.nonceStr,
-      //     'package': data.data.package,
-      //     'signType': 'MD5',
-      //     'paySign': data.data.paySign,
-      //     'success': function (res) {
-      wx.showToast({
-        title: '加入成功',
-        icon: 'success',
-        duration: 1000
-      })
-      setTimeout(function () {
-        wx.switchTab({
-          url: '/pages/home/home',
-        })
-      }, 1500)
-
-      //     'fail': function (res) {
-      //     }
-      //   })
-      // }).goPay({
-      //   orderId: orderId,
-      //   userScore: 0,
-      // })
-    }, function (err) {
-      if (err.errno == 1 && err.errmsg == '你已经是会员了') {
-        setTimeout(function () {
-          wx.switchTab({
-            url: '/pages/home/home',
+    var that=this
+    wx.showModal({
+      title: '提示',
+      content: '确认成为“' + that.data.recommendUser+'”的会员',
+      success: function (res) {
+        if (res.confirm) {
+          var that = this;
+          new order(function (res) {
+            wx.showToast({
+              title: '加入成功',
+              icon: 'success',
+              duration: 1000
+            })
+            setTimeout(function () {
+              wx.switchTab({
+                url: '/pages/home/home',
+              })
+            }, 1500)
+          }, function (err) {
+            if (err.errno == 1 && err.errmsg == '你已经是会员了') {
+              setTimeout(function () {
+                wx.switchTab({
+                  url: '/pages/home/home',
+                })
+              }, 500)
+            }
+          }).submit({
+            orderType: 3,
+            recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
           })
-        }, 500)
+        }
       }
-    }).submit({
-      orderType: 3,
-      recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
     })
   },
   /**

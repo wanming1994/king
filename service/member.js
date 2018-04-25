@@ -37,6 +37,17 @@ module.exports = class Member extends Ajax {
   }
 
   /**
+   * 更新用户基本信息
+   */
+  createUserQRCode(data) {
+    super.get({
+      url: 'user/createUserQRCode',
+      hideErrorTip: true,
+      data: data
+    })
+  }
+
+  /**
  * 影响力接口
  */
   userRecommend(data) {
