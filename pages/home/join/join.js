@@ -11,41 +11,89 @@ Page({
   data: {
 
   },
-  clickImg: function () {
-    var that=this
-    wx.showModal({
-      title: '提示',
-      content: '确认成为“' + that.data.recommendUser+'”的会员',
-      success: function (res) {
-        if (res.confirm) {
-          var that = this;
-          new order(function (res) {
-            wx.showToast({
-              title: '加入成功',
-              icon: 'success',
-              duration: 1000
-            })
-            setTimeout(function () {
-              wx.switchTab({
-                url: '/pages/home/home',
-              })
-            }, 1500)
-          }, function (err) {
-            if (err.errno == 1 && err.errmsg == '你已经是会员了') {
-              setTimeout(function () {
-                wx.switchTab({
-                  url: '/pages/home/home',
+  bindgetuserinfo(e) {
+    let that = this
+    console.log(e)
+    if (e.detail.errMsg.indexOf('fail') > -1) {
+      wx.showToast({
+        title: '请授权用户信息!',
+        icon: 'none'
+      })
+    } else {
+      new member(res => {
+        wx.showModal({
+          title: '提示',
+          content: '确认成为“' + that.data.recommendUser + '”的会员',
+          success: function (res) {
+            if (res.confirm) {
+              var that = this;
+              new order(function (res) {
+                wx.showToast({
+                  title: '加入成功',
+                  icon: 'success',
+                  duration: 1000
                 })
-              }, 500)
+                setTimeout(function () {
+                  wx.switchTab({
+                    url: '/pages/home/home',
+                  })
+                }, 1500)
+              }, function (err) {
+                if (err.errno == 1 && err.errmsg == '你已经是会员了') {
+                  // setTimeout(function () {
+                  //   wx.switchTab({
+                  //     url: '/pages/home/home',
+                  //   })
+                  // }, 500)
+                }
+              }).submit({
+                orderType: 3,
+                recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
+              })
             }
-          }).submit({
-            orderType: 3,
-            recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
-          })
-        }
-      }
-    })
+          }
+        })
+      }).updateView({
+        userInfo: e.detail.userInfo
+      })
+    }
   },
+  // clickImg: function () {
+  //   var that = this
+  //   console.log(app.globalData.memberInfo)
+  //   wx.showModal({
+  //     title: '提示',
+  //     content: '确认成为“' + that.data.recommendUser + '”的会员',
+  //     success: function (res) {
+  //       if (res.confirm) {
+  //         var that = this;
+  //         new order(function (res) {
+  //           wx.showToast({
+  //             title: '加入成功',
+  //             icon: 'success',
+  //             duration: 1000
+  //           })
+  //           setTimeout(function () {
+  //             wx.switchTab({
+  //               url: '/pages/home/home',
+  //             })
+  //           }, 1500)
+  //         }, function (err) {
+  //           if (err.errno == 1 && err.errmsg == '你已经是会员了') {
+  //             // setTimeout(function () {
+  //             //   wx.switchTab({
+  //             //     url: '/pages/home/home',
+  //             //   })
+  //             // }, 500)
+  //           }
+  //         }).submit({
+  //           orderType: 3,
+  //           recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
+  //         })
+  //       }
+  //     }
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -71,6 +119,9 @@ Page({
     }).getUserName({
       userId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
     })
+    new member(res => {
+
+    }).getscoreProductt()
   },
 
   goHome: function () {
@@ -117,13 +168,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

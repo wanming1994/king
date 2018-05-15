@@ -1,1 +1,1 @@
-<canvas bindtap='showhaibao' canvas-id="myCanvas" style="width:{{canvasw}};height:{{canvash}};"/>
+<canvas  bindlongtap='bindlongtap' canvas-id="myCanvas" style="width:{{canvasw}};height:{{canvash}};"/>

@@ -120,4 +120,16 @@ module.exports = class Member extends Ajax {
     })
   }
 
+
+  /**
+     * 获取积分商品
+     */
+  getscoreProductt(data) {
+    super.get({
+      url: "goods/getSepcialGoods",
+      data: data
+    })
+  }
+
+
 }

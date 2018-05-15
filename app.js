@@ -19,38 +19,18 @@ App({
     wx.login({
       success(data) {
         // 用户登陆成功
-        wx.getUserInfo({
-          withCredentials: true,
-          fail: function (err) {
-            if (err.errMsg.indexOf('auth') > -1) {
-              wx.showModal({
-                title: '提示',
-                content: '未授予用户信息权限，部分功能会受到限制，是否前往设置',
-                success: function (res) {
-                  if (res.confirm) {
-                    wx.openSetting()
-                  }
-                }
-              })
-            }
-          },
-          complete: function (info) {
-            tryLogin(data.code, info, extension, (res) => {
-              if (that.loginOkCallbackList.length > 0) {
-                for (let i = 0; i < that.loginOkCallbackList.length; i++) {
-                  if (typeof that.loginOkCallbackList[i] === 'function') {
-                    that.loginOkCallbackList[i]()
-                  }
-                  continue
-                }
+        tryLogin(data.code, extension, (res) => {
+          if (that.loginOkCallbackList.length > 0) {
+            for (let i = 0; i < that.loginOkCallbackList.length; i++) {
+              if (typeof that.loginOkCallbackList[i] === 'function') {
+                that.loginOkCallbackList[i]()
               }
-              that.globalData.LOGIN_STATUS = true;
-              that.globalData.memberInfo = res.data
-            })
+              continue
+            }
           }
+          that.globalData.LOGIN_STATUS = true;
+          that.globalData.memberInfo = res.data
         })
-
-
       }
     })
   }
@@ -60,7 +40,7 @@ App({
 var tryLogin = (function () {
   let count = 0
   var that = this
-  return function (code, info, extension, fn) {
+  return function (code, extension, fn) {
     if (count >= config.LOGIN_ERROR_TRY_COUNT) {
       util.errShow('登陆超时')
       return
@@ -80,7 +60,6 @@ var tryLogin = (function () {
     }).login({
       code: code,
       userId: 43,
-      userInfo: info
     })
   }
 })()

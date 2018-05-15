@@ -77,28 +77,11 @@ Page(Object.assign({}, {
                   ctx.drawImage(that.data.qrcode, 0.15 * h, 0.68 * h, 0.24 * w, 0.24 * w)//小程序二维码
                   ctx.draw();
                   setTimeout(function () {
-                    wx.canvasToTempFilePath({
-                      //通过id 指定是哪个canvas
-                      canvasId: 'myCanvas',
-                      success(res) {
-                        //成功之后保存到本地
-                        // console.log(res)
-                        wx.saveImageToPhotosAlbum({
-                          filePath: res.tempFilePath,
-                          success: function (res) {
-                            wx.showToast({
-                              title: '图片已保存相册',
-                              icon: 'success',
-                              duration: 2000
-                            })
-                          },
-                          fail: function (res) {
-                            console.log(res)
-                          }
-                        })
-                      }
+                    wx.showModal({
+                      title: '提示',
+                      content: '长按可保存海报至相册，再去分享朋友圈',
                     })
-                  }, 1000)
+                  }, 500)
                 }, fail: function (e) {
                   console.log(e)
                 }
@@ -110,11 +93,29 @@ Page(Object.assign({}, {
         }
       })
     }).createUserQRCode()
-
-
-
-
-
+  },
+  bindlongtap() {
+    wx.canvasToTempFilePath({
+      //通过id 指定是哪个canvas
+      canvasId: 'myCanvas',
+      success(res) {
+        //成功之后保存到本地
+        // console.log(res)
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success: function (res) {
+            wx.showToast({
+              title: '图片已保存相册',
+              icon: 'success',
+              duration: 2000
+            })
+          },
+          fail: function (res) {
+            console.log(res)
+          }
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
