@@ -66,11 +66,19 @@ Page({
           icon: 'success',
           duration: 2000,
           success: function () {
+            if (that.data.where && that.data.where == 'member') {
+              new Member(res => {
+                wx.redirectTo({
+                  url: '../../home/productDetails/productDetails?id=' + res.data.id,
+                })
+              }).getscoreProductt()
+            } else {
               setTimeout(function () {
                 wx.navigateBack({
                   delta: 1
                 })
               }, 1000)
+            }
           }
         })
       }).bindPhone({

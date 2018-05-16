@@ -94,7 +94,7 @@ function getVersion() {
 function errShow(text, duration = 1000, callback = function () { }) {
   const SDKVersion = wx.getSystemInfoSync().SDKVersion || '1.0.0'
   const [MAJOR, MINOR, PATCH] = SDKVersion.split('.').map(Number)
-  if (MAJOR >= 1 && MINOR >= 1) {//兼容处理
+  if ((MAJOR === 1 && MINOR >= 1) || MAJOR > 1) {//兼容处理
     wx.showToast({
       title: text,
       icon: 'error',

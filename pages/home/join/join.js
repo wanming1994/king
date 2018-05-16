@@ -28,23 +28,36 @@ Page({
             if (res.confirm) {
               var that = this;
               new order(function (res) {
-                wx.showToast({
-                  title: '加入成功',
-                  icon: 'success',
-                  duration: 1000
-                })
-                setTimeout(function () {
-                  wx.switchTab({
-                    url: '/pages/home/home',
-                  })
-                }, 1500)
+                new member(res => {
+                  if (res.data.mobile) {
+                    new member(res => {
+                      wx.navigateTo({
+                        url: '../productDetails/productDetails?id=' + res.data.id,
+                      })
+                    }).getscoreProductt()
+                  } else {
+                    util.navigateTo({
+                      url: '../../member/bind/bind?where=member',
+                    })
+                  }
+                }).view()
+                // wx.showToast({
+                //   title: '加入成功',
+                //   icon: 'success',
+                //   duration: 1000
+                // })
+                // setTimeout(function () {
+                //   wx.switchTab({
+                //     url: '/pages/home/home',
+                //   })
+                // }, 1500)
               }, function (err) {
                 if (err.errno == 1 && err.errmsg == '你已经是会员了') {
-                  // setTimeout(function () {
-                  //   wx.switchTab({
-                  //     url: '/pages/home/home',
-                  //   })
-                  // }, 500)
+                  setTimeout(function () {
+                    wx.switchTab({
+                      url: '/pages/home/home',
+                    })
+                  }, 500)
                 }
               }).submit({
                 orderType: 3,
@@ -54,9 +67,10 @@ Page({
           }
         })
       }).updateView({
-        userInfo: e.detail.userInfo
+        avatarUrl: e.detail.userInfo.avatarUrl,
+        nickName: e.detail.userInfo.nickName/*  */
       })
-    }
+    }      
   },
   // clickImg: function () {
   //   var that = this
