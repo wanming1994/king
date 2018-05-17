@@ -26,10 +26,11 @@ Page(Object.assign({}, {
 
   },
   getData() {
+    console.log(app.globalData.memberInfo)
     var that = this;
     this.setData({
-      nickName: app.globalData.memberInfo.userInfo.nickName,
-      avatarUrl: app.globalData.memberInfo.userInfo.avatarUrl
+      nickName: app.globalData.memberInfo.nickName,
+      avatarUrl: app.globalData.memberInfo.avatarUrl
     })
     var res1 = '/resources/images/member/poster_bg.png'
     var headImg = '';
@@ -69,7 +70,7 @@ Page(Object.assign({}, {
                   ctx.setTextAlign('left')
                   ctx.setFillStyle('rgb(43, 43, 43)')
                   ctx.setFontSize(14)
-                  ctx.fillText('我是' + app.globalData.memberInfo.userInfo.nickName, 0.20 * h, 0.60 * h)
+                  ctx.fillText('我是' + app.globalData.memberInfo.nickName, 0.20 * h, 0.60 * h)
                   ctx.setFillStyle('rgb(137, 110, 87)')
                   ctx.setFontSize(16)
                   ctx.fillText('邀请您加入大王', 0.20 * h, 0.63 * h)

@@ -20,16 +20,22 @@ App({
       success(data) {
         // 用户登陆成功
         tryLogin(data.code, extension, (res) => {
-          if (that.loginOkCallbackList.length > 0) {
-            for (let i = 0; i < that.loginOkCallbackList.length; i++) {
-              if (typeof that.loginOkCallbackList[i] === 'function') {
-                that.loginOkCallbackList[i]()
-              }
-              continue
+          new Member(res => {
+            that.globalData.LOGIN_STATUS = true;
+            that.globalData.memberInfo = res.data
+            wx.setStorageSync('memberInfo', res.data)
+            if (that.loginOkCallback) {
+              that.loginOkCallback()
             }
-          }
-          that.globalData.LOGIN_STATUS = true;
-          that.globalData.memberInfo = res.data
+            if (that.loginOkCallbackList.length > 0) {
+              for (let i = 0; i < that.loginOkCallbackList.length; i++) {
+                if (typeof that.loginOkCallbackList[i] === 'function') {
+                  that.loginOkCallbackList[i]()
+                }
+                continue
+              }
+            }
+          }).view()
         })
       }
     })
@@ -51,7 +57,7 @@ var tryLogin = (function () {
         fn ? fn(res) : ''
       } else {
         setTimeout(function () {
-          tryLogin(code)
+          tryLogin(code, res)
           count++
         }, config.LOGIN_ERROR_TRY_TIMEOUT)
       }
