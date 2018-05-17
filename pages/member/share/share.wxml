@@ -5,5 +5,5 @@
   </view>
 </view>
 <button class='radiusBtn bold' open-type='share'>点击分享</button>
-<button class='radiusBtn bold' bindtap='makePoster'>生成专属海报</button>
+<button class='radiusBtn bold'  open-type='getUserInfo' bindgetuserinfo="bindgetuserinfo">生成专属海报</button>
 <!-- <view class='clr_mediumGray tc f14 desc'>推荐10个人即可领取免费试用装</view> -->

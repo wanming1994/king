@@ -96,7 +96,7 @@ Page(Object.assign({}, swiperAutoHeight, {
     this.data.moveTouches = e.changedTouches[0]
   },
   touchEnd(e) {
-    if (!this.data.isShow) return
+    // if (!this.data.isShow) return
     // console.log(e)
     let startTouch = this.data.startTouches,
       Y = e.changedTouches[0].pageY - startTouch.pageY,

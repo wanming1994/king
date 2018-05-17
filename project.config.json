@@ -48,10 +48,10 @@
 					"query": "extension=529"
 				},
 				{
-					"id": -1,
-					"name": "视频",
-					"pathName": "pages/home/video/video",
-					"query": ""
+					"id": 2,
+					"name": "手机",
+					"pathName": "pages/member/bind/bind",
+					"query": "where=member"
 				},
 				{
 					"id": 4,
@@ -90,8 +90,8 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "pages/member/poster/poster",
+					"id": 9,
+					"name": "pages/home/join/join",
 					"pathName": "pages/home/join/join",
 					"query": ""
 				}

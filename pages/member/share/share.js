@@ -1,6 +1,7 @@
 // pages/home/home.js
 
-var   app = getApp(),
+var app = getApp(),
+  member = require("../../../service/member.js"),
   util = require("../../../utils/util.js")
 
 Page({
@@ -27,10 +28,29 @@ Page({
   onShow: function () {
 
   },
-  makePoster(){
-    wx.navigateTo({
-      url: '../poster/poster',
-    })
+  // makePoster() {
+  //   wx.navigateTo({
+  //     url: '../poster/poster',
+  //   })
+  // },
+
+  bindgetuserinfo(e) {
+    let that = this
+    if (e.detail.errMsg.indexOf('fail') > -1) {
+      wx.showToast({
+        title: '请授权用户信息!',
+        icon: 'none'
+      })
+    } else {
+      new member(res => {
+        util.navigateTo({
+          url: '../poster/poster',
+        })
+      }).updateView({
+        avatarUrl: e.detail.userInfo.avatarUrl,
+        nickName: e.detail.userInfo.nickName/*  */
+      })
+    }
   },
   //分享
   onShareAppMessage: function (res) {
@@ -40,7 +60,7 @@ Page({
       // 来自页面内转发按钮
       return {
         title: '邀请您加入大王纸尿裤',
-        imageUrl:'https://www.sincereglobe.com/IMAGE/share.jpg',
+        imageUrl: 'https://www.sincereglobe.com/IMAGE/share.jpg',
         path: '/pages/home/join/join?extension=' + app.globalData.memberInfo.userId,
         success: function (res) {
           console.log('/pages/home/home?extension=' + app.globalData.memberInfo.userId)
