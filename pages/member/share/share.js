@@ -55,7 +55,7 @@ Page({
   //分享
   onShareAppMessage: function (res) {
     var that = this;
-    console.log()
+    console.log(app.globalData.memberInfo.userId)
     if (res.from === 'button') {
       // 来自页面内转发按钮
       return {

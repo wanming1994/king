@@ -10,11 +10,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    size: 5
+    size: 5,
+    selectDataCount: 1,
+    showAction: false
   },
-  toHistory(){
+  toHistory() {
     util.navigateTo({
-      url:'./history'
+      url: './history'
     })
   },
 
@@ -39,13 +41,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that=this;
-    new member(function(data){
-      if (data.data.mobile){
+    var that = this;
+    new member(function (data) {
+      if (data.data.mobile) {
         that.setData({
-         canExc: true
-       })
-      }else{
+          canExc: true
+        })
+      } else {
         that.setData({
           canExc: false
         })
@@ -62,13 +64,36 @@ Page({
 
   //兑换提交
   goExchange: function (e) {
-    var that=this;
-    var id = e.currentTarget.dataset.id;
-    var price = e.currentTarget.dataset.price;
-    if (that.data.canExc){
+    console.log(e.currentTarget.dataset.index)
+    this.setData({
+      selectProduct: this.data.exchangeList[e.currentTarget.dataset.index],
+      selectId: e.currentTarget.dataset.id,
+      price: e.currentTarget.dataset.price,
+      showAction: true,
+      calcAmount: this.data.exchangeList[e.currentTarget.dataset.index].retail_price
+    })
+
+
+
+  },
+  catchActionMask(e) {
+    return false;
+  },
+  //弹出框toggle
+  toggleMask(t) {
+    this.setData({
+      showAction: false,
+    })
+  },
+  paySubmitSel(e) {
+    var that = this;
+    var price = parseInt(this.data.price);
+    var count = parseInt(this.data.selectDataCount);
+    var totalAmount = price * count
+    if (that.data.canExc) {
       wx.showModal({
         title: '兑换提示',
-        content: '确认花费' + price + '积分兑换商品吗?',
+        content: '确认花费' + totalAmount + '积分兑换商品吗?',
         success: function (res) {
           if (res.confirm) {
             new order(function (res) {
@@ -76,20 +101,23 @@ Page({
                 title: '兑换成功',
                 duration: 1000
               })
+              that.setData({
+                showAction: false
+              })
             }).submit({
-              goodsId: id,
-              goodsAmount: 1,
+              goodsId: that.data.selectId,
+              goodsAmount: that.data.selectDataCount,
               orderType: 1
             })
           }
         }
       })
-    }else{
+    } else {
       wx.showModal({
         title: '提示',
         content: '绑定手机后才可兑换商品，是否前去绑定',
-        cancelText:'取消',
-        confirmText:'立即前去',
+        cancelText: '取消',
+        confirmText: '立即前去',
         success: function (res) {
           if (res.confirm) {
             util.navigateTo({
@@ -101,10 +129,30 @@ Page({
         }
       })
     }
-   
-    
   },
 
+  //立即购买选择数量
+  revisenum(e) {
+    let stype = e.currentTarget.dataset.btype,
+      min = 0,
+      goodsAmount = parseInt(this.data.selectDataCount) || 0
+    switch (stype) {
+      case 'input':
+        goodsAmount = (e.detail.value < 1) ? 1 : e.detail.value
+        break;
+      case 'add':
+        goodsAmount = goodsAmount + 1
+        break;
+
+      case 'reduce':
+        goodsAmount = goodsAmount - 1 < 1 ? 1 : --goodsAmount
+        break;
+    }
+    this.setData({
+      "selectDataCount": goodsAmount,
+      calcAmount: goodsAmount * (this.data.price)
+    })
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */

@@ -70,7 +70,7 @@ Page({
         avatarUrl: e.detail.userInfo.avatarUrl,
         nickName: e.detail.userInfo.nickName/*  */
       })
-    }      
+    }
   },
   // clickImg: function () {
   //   var that = this
@@ -133,9 +133,19 @@ Page({
     }).getUserName({
       userId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
     })
-    new member(res => {
-
-    }).getscoreProductt()
+    new member(function (res) {
+      if (res.data.userIsMember != 1) {
+        //创建订单submit
+        return
+      } else {  
+        console.log(1111)
+        setTimeout(function(){
+          wx.switchTab({
+            url: '/pages/home/home',
+          })
+        },1)
+      }
+    }).view()
   },
 
   goHome: function () {
