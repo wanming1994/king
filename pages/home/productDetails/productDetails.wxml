@@ -26,7 +26,8 @@
     <view class="lineItem padding0" style='border-top:1px solid #cfcfcf;border-bottom:1px solid #cfcfcf;'>
       <view class="left lineH_two" style='align-items:center;width:100%;position:relative;'>
         <text class="clr_orange f20 bold fl" style='margin-left:2vw;'>￥{{productData.info.retail_price}}</text>
-        <image src='/resources/images/product/huiyuan1.png' style='width:32rpx;height:32rpx;margin-left:40rpx;'></image><text class='f14'>￥{{productData.info.member_price}}</text>
+        <image src='/resources/images/product/huiyuan1.png' style='width:32rpx;height:32rpx;margin-left:40rpx;'></image>
+        <text class='f14'>￥{{productData.info.member_price}}</text>
         <text class="clr_lightGray fr f14" style='position:absolute;right:2vw;display:block;top:1vw;'>推荐官专属价</text>
       </view>
       <view class="center"></view>
@@ -46,7 +47,7 @@
 
 <view class="tab">
   <view class="clr_lightGray f14 left">
-    <button open-type="contact"  hover-class="none" class="f14" session-from="weapp" send-message-title="亲！我正在看这个商品" send-message-path="/pages/home/productDetails/productDetails?id={{productData.id}}" show-message-card="true" style='border-radius:0;border-right:1px solid #cfcfcf;'>
+    <button open-type="contact" hover-class="none" class="f14" session-from="weapp" send-message-title="亲！我正在看这个商品" send-message-path="/pages/home/productDetails/productDetails?id={{productData.id}}" show-message-card="true" style='border-radius:0;border-right:1px solid #cfcfcf;'>
       <image src="/resources/images/icon/kefu.png"></image>
       <view class="">客服</view>
     </button>
@@ -126,4 +127,26 @@
     </view>
   </view>
   <view bindtap="toBuyConfirm" class="nextBtn f16">去付款</view>
+</view>
+
+
+<view class="actionMask" wx:if="{{showShortcut}}" bindtap="toggleshowShortcut"></view>
+<view class='shortcut f12' bindtap='openShortcut' wx:if="{{!showShortcut}}">
+  <view>分享</view>
+  <view>商品</view>
+</view>
+<view class='shortcut shortcutClose baseBg' bindtap='openShortcut' wx:if="{{showShortcut}}">
+  <text class='iconfont icon-quxiao f18'>X</text>
+</view>
+<view class='shortcutInfo f12'>
+  <view class="shortcutContent {{showShortcut&&'showShortcutContent'}}">
+    <view class='tr shortcutInfoList' bindtap='goHome'>
+      <text>分享好友</text>
+      <button open-type='share'><image src='/resources/images/product/friends.png'></image></button>
+    </view>
+    <view class='tr shortcutInfoList' bindtap='goFavorite' style='visibility :hidden'>
+      分享朋友圈
+      <image src='/resources/images/product/circle.png'></image>
+    </view>
+  </view>
 </view>

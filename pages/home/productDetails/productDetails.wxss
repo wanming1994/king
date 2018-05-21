@@ -168,7 +168,7 @@ page {
   justify-content: flex-start;
 }
 
-.actionNext input{
+.actionNext input {
   float: left;
   width: 40vw;
   height: 10vh;
@@ -191,7 +191,7 @@ page {
   min-width: 30vw;
 }
 
-.nextClose{
+.nextClose {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -199,14 +199,13 @@ page {
   right: 5%;
 }
 
-
 .actionTitle {
   padding: 0 20rpx;
 }
 
-view {
+/* view {
   overflow: visible;
-}
+} */
 
 .actionTitle .left image {
   width: 160rpx;
@@ -318,4 +317,87 @@ view {
 
 .defaultBtn {
   margin: 20rpx auto 60rpx;
+}
+
+.shortcut {
+  position: fixed;
+  bottom: 25vw;
+  right: 6vw;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  color: #fff;
+  width: 13vw;
+  height: 13vw;
+  /* padding: 2vw 0; *//* padding: 1.7vw 0 1.3vw; */
+  text-align: center;
+  z-index: 1002;
+}
+
+.shortcut view {
+  line-height: 5vw;
+}
+
+.shortcut view:first-child {
+  margin-top: 1.8vw;
+}
+
+.shortcut view:last-child {
+  margin-bottom: 1.8vw;
+}
+
+.shortcutClose {
+  width: 12vw;
+  height: 12vw;
+  line-height: 12vw;
+  padding: 0;
+}
+
+.shortcutInfo {
+  position: fixed;
+  height: 12vw;
+  right: 7vw;
+  bottom: 37vw;
+  color: #fff;
+  z-index: 1002;
+  overflow: hidden;
+}
+
+.shortcutContent {
+  margin-top: 50vw;
+  transition: 0.5s all;
+}
+
+.showShortcutContent {
+  margin-top: 0;
+}
+
+.shortcutInfoList {
+  height: 10vw;
+  line-height: 10vw;
+  margin-bottom: 2vw;
+  z-index: 99999;
+}
+
+.shortcutInfoList button {
+  padding: 0;
+  display: inline-block;
+  background: transparent;
+  overflow: visible;
+}
+
+.shortcutInfoList button::after,::before {
+  display: none;
+}
+
+.shortcutInfo text {
+  line-height: 10vw;
+  display: inline-block;
+}
+
+.shortcutInfo image {
+  width: 10vw;
+  height: 10vw;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2vw;
 }

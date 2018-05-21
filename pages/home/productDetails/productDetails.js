@@ -41,6 +41,7 @@ Page(Object.assign({}, swiperAutoHeight, {
     userScoreInput: 0,//付款使用积分
     scoreMax: 0,//可用积分
     selectData: {},//选中规格
+    showShortcut: false
   },
   catchActionMask(e) {
     return false;
@@ -98,18 +99,18 @@ Page(Object.assign({}, swiperAutoHeight, {
       selectData: this.data.selectData
     })
   },
+  //快捷导航点击事件
+  openShortcut: function () {
+    this.setData({
+      showShortcut: !this.data.showShortcut
+    })
+  },
   //弹出框toggle
   toggleMask(t) {
     this.setData({
       showAction: t === undefined || t.currentTarget ? !this.data.showAction : t,
       buyType: (t.currentTarget && t.currentTarget.dataset.type) || this.data.buyType
     })
-    // this.setData({
-
-
-
-    //   showAction: t === undefined || t.target ? !this.data.showAction : t
-    // })
   },
   //立即购买选择数量
   revisenum(e) {
@@ -168,7 +169,7 @@ Page(Object.assign({}, swiperAutoHeight, {
     }, function (err) {
       if (err.errmsg == '会员才能购买') {
         wx.hideToast()
-        
+
         wx.showModal({
           title: '提示',
           content: '成为会员才可购买商品，是否立即成为会员?',
@@ -280,26 +281,42 @@ Page(Object.assign({}, swiperAutoHeight, {
     })
   },
 
-  // onShareAppMessage: function (res) {
-  //   var that = this;
-  //   if (res.from === 'button') {
-  //     // 来自页面内转发按钮
-
-  //   }
-  //   return {
-  //     title: that.data.title,
-  //     path: 'pages/home/productDetails/productDetails?id=' + that.data.id + '&extension=' + app.globalData.memberInfo.userId,
-  //     success: function (res) {
-  //       // 转发成功
-  //       wx.showToast({
-  //         title: '转发成功',
-  //         icon: 'success'
-  //       })
-  //     },
-  //     fail: function (res) {
-  //       // 转发失败
-  //     }
-  //   }
-  // },
+  onShareAppMessage: function (res) {
+    var that = this;
+    this.setData({
+      showShortcut: !this.data.showShortcut
+    })
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      return {
+        title: that.data.title,
+        path: 'pages/home/productDetails/productDetails?id=' + that.data.id + '&extension=' + app.globalData.memberInfo.userId,
+        success: function (res) {
+          // 转发成功
+          wx.showToast({
+            title: '转发成功',
+            icon: 'success'
+          })
+        },
+        fail: function (res) {
+          // 转发失败
+        }
+      }
+    }
+    return {
+      title: that.data.title,
+      path: 'pages/home/productDetails/productDetails?id=' + that.data.id + '&extension=' + app.globalData.memberInfo.userId,
+      success: function (res) {
+        // 转发成功
+        wx.showToast({
+          title: '转发成功',
+          icon: 'success'
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
 
 }))

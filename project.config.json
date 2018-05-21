@@ -94,6 +94,12 @@
 					"name": "pages/home/join/join",
 					"pathName": "pages/home/join/join",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/home/productDetails/productDetails",
+					"pathName": "pages/home/productDetails/productDetails",
+					"query": "id=1181005"
 				}
 			]
 		}
