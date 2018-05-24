@@ -280,6 +280,12 @@ Page(Object.assign({}, swiperAutoHeight, {
       showShortcut: false
     })
   },
+  //海报分享
+  goShare(){
+    wx.navigateTo({
+      url: '',
+    })
+  },
 
   onShareAppMessage: function (res) {
     var that = this;

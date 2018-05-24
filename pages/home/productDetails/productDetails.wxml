@@ -142,10 +142,12 @@
   <view class="shortcutContent {{showShortcut&&'showShortcutContent'}}">
     <view class='tr shortcutInfoList' bindtap='goHome'>
       <text>分享好友</text>
-      <button open-type='share'><image src='/resources/images/product/friends.png'></image></button>
+      <button open-type='share'>
+        <image src='/resources/images/product/friends.png'></image>
+      </button>
     </view>
-    <view class='tr shortcutInfoList' bindtap='goFavorite' style='visibility :hidden'>
-      分享朋友圈
+    <view class='tr shortcutInfoList' bindtap='goShare'>
+      海报分享
       <image src='/resources/images/product/circle.png'></image>
     </view>
   </view>

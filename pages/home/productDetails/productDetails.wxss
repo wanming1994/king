@@ -354,7 +354,7 @@ page {
 
 .shortcutInfo {
   position: fixed;
-  height: 12vw;
+  height: 24vw;
   right: 7vw;
   bottom: 37vw;
   color: #fff;

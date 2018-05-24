@@ -17,7 +17,7 @@
       <scroll-view class="bill_wrapper scrollWrap" scroll-y bindscroll="scroll" bindscrolltolower="lower" bindscrolltoupper="upper">
         <view class="bill_bd" wx:for="{{billList}}" wx:key="id" wx:for-item="item">
           <view class="bill_type">
-            <view class="" wx:if="{{item.type==0}}">分润</view>
+            <view class="" wx:if="{{item.type==0}}">口碑红包</view>
             <view class="" wx:elif="{{item.type==1}}">消费</view>
           </view>
           <view class="bill_date">
@@ -87,7 +87,7 @@
       <view>(含运费
         <text class="clr_orange">￥{{item.shipping_fee}}</text>)</view>
     </view>
-    <view class="method f14">
+    <!-- <view class="method f14">
       <block wx:if="{{item.order_status == '0'}}">
         <view data-type="refund" data-info="{{item.id}}" catchtap="methodBtn">取消订单</view>
         <form bindsubmit="formSubmit" report-submit bindreset="formReset">
@@ -104,6 +104,6 @@
       <block wx:elif="{{item.order_status == '301'}}">
         <view data-type="evaluate" data-info="{{item.id}}" class="confirmBtn" catchtap="methodBtn">立即评价</view>
       </block>
-    </view>
+    </view> -->
   </view>
 </template>

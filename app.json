@@ -10,6 +10,7 @@
     "pages/influence/influence",
     "pages/home/productList/productList",
     "pages/home/productDetails/productDetails",
+    "pages/home/productDetails/poster/poster",
     "pages/pay/success",
     "pages/pay/pay",
     "pages/pay/orderPay",
