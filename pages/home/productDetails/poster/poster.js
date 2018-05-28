@@ -31,7 +31,8 @@ Page(Object.assign({}, {
     var that = this;
     new product(res => {
       this.setData({
-        productImg: res.data.info.list_pic_url
+        productImg: res.data.info.list_pic_url,
+        id: id
       })
     }).view({
       id: id
@@ -39,7 +40,7 @@ Page(Object.assign({}, {
 
     var res1 = '/resources/images/product/poster.png'
     var headImg = '', picImg = '';
-    new member((res) => {
+    new product((res) => {
       wx.downloadFile({
         url: res.data,
         success: function (res) {
@@ -65,7 +66,7 @@ Page(Object.assign({}, {
                   ctx.save();
                   ctx.beginPath()
 
-                
+
                   // ctx.arc(0.15 * w + 0.15 * w / 2, 0.56 * h + 0.15 * w / 2, 0.15 * w / 2, 0, 2 * Math.PI);
                   // ctx.setStrokeStyle('#ffffff')
                   // ctx.clip();
@@ -84,12 +85,12 @@ Page(Object.assign({}, {
                   ctx.drawImage(picImg, 0.3 * w, 0.2 * h, 0.4 * w, 0.4 * w)//小程序二维码
                   ctx.drawImage(that.data.qrcode, 0.25 * w, 0.62 * h, 0.5 * w, 0.5 * w)//小程序二维码
                   ctx.draw();
-                  // setTimeout(function () {
-                  //   wx.showModal({
-                  //     title: '提示',
-                  //     content: '长按可保存海报至相册，再去分享朋友圈',
-                  //   })
-                  // }, 500)
+                  setTimeout(function () {
+                    wx.showModal({
+                      title: '提示',
+                      content: '长按可保存海报至相册，再去分享朋友圈',
+                    })
+                  }, 500)
                 }, fail: function (e) {
                   console.log(e)
                 }
@@ -100,7 +101,9 @@ Page(Object.assign({}, {
 
         }
       })
-    }).createUserQRCode()
+    }).createUserQRCode({
+      goodsId: options.id
+    })
   },
   bindlongtap() {
     wx.canvasToTempFilePath({

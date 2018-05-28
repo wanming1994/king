@@ -281,9 +281,9 @@ Page(Object.assign({}, swiperAutoHeight, {
     })
   },
   //海报分享
-  goShare(){
+  goShare() {
     wx.navigateTo({
-      url: '',
+      url: 'poster/poster?id=' + this.data.id,
     })
   },
 

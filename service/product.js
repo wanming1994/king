@@ -1,7 +1,7 @@
 let Ajax = require('./ajax.js')
 
 module.exports = class Product extends Ajax {
-  
+
 
   /**
   * 商品热销列表
@@ -37,7 +37,7 @@ module.exports = class Product extends Ajax {
       data: data
     });
   }
-  
+
 
   /**
    * 商品详情页分享
@@ -99,8 +99,17 @@ module.exports = class Product extends Ajax {
       data: data
     });
   }
-  
-  
 
-  
+
+  /**
+   * 生成二维码
+   */
+  createUserQRCode(data) {
+    super.get({
+      url: 'goods/createGoodsQRCode',
+      hideErrorTip: true,
+      data: data
+    })
+  }
+
 }
