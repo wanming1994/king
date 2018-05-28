@@ -35,9 +35,9 @@ Page({
     }).view()
 
     //优惠券数量
-    new coupon(function(data){
+    new coupon(function (data) {
       that.setData({
-        couponLength:data.data.length
+        couponLength: data.data.length
       })
     }).list()
 
@@ -91,7 +91,7 @@ Page({
       url: 'point/index',
     })
   },
-  goCoupon:function(){
+  goCoupon: function () {
     util.navigateTo({
       url: 'coupon/list',
     })
@@ -126,5 +126,30 @@ Page({
     util.navigateTo({
       url: 'order/order?id=' + id,
     })
-  }
+  },
+  bindgetuserinfo(e) {
+    let that = this
+    console.log(e)
+    if (e.detail.errMsg.indexOf('fail') > -1) {
+      wx.showToast({
+        title: '请授权用户信息!',
+        icon: 'none'
+      })
+    } else {
+      new member(res => {
+        wx.showToast({
+          title: '授权成功',
+          icon: 'none'
+        })
+        new member(function (data) {
+          that.setData({
+            memberInfo: data.data
+          })
+        }).view()
+      }).updateView({
+        avatarUrl: e.detail.userInfo.avatarUrl,
+        nickName: e.detail.userInfo.nickName/*  */
+      })
+    }
+  },
 })

@@ -1,23 +1,23 @@
 <view class="container">
   <view class="head f16" style="">
-    <view class="headImg">
-      <image src="{{memberInfo.avatarUrl?memberInfo.avatarUrl:'../../resources/images/usernone.png'}}"></image>
-    </view>
+    <button class="headImg" open-type='getUserInfo' bindgetuserinfo="bindgetuserinfo">
+      <open-data type="userAvatarUrl" style="overflow: hidden;" class="image"></open-data>
+    </button>
     <view class="details">
-      <view class='f14'>{{memberInfo.nickName}}</view>
+      <view class='f14'><open-data type="userNickName" class="userName overone clr_white f14"></open-data></view>
       <view class='f12' style='margin-top:12rpx'>{{memberInfo.userIsMember==1?'会员':'非会员'}}</view>
     </view>
   </view>
 
   <view class="memberRadius lineItem flex f14">
-    <view class="flex-item lineItem  tc"  bindtap='goExchange'>
+    <view class="flex-item lineItem  tc" bindtap='goExchange'>
       <view class='tc'>
         <view>{{memberInfo.bonus}}</view>
         <view>我的积分</view>
       </view>
       <view class="right"></view>
     </view>
-    <view class="flex-item lineItem  tc"  bindtap='goCoupon'>
+    <view class="flex-item lineItem  tc" bindtap='goCoupon'>
       <view class='tc'>
         <view>{{couponLength}}</view>
         <view>优惠券</view>
@@ -54,7 +54,7 @@
       <image class="iconImg" src="../../resources/images/member/unshipped.png"></image>
       <view>待发货</view>
     </view>
-    <view class="flex-item" data-current="3" bindtap="toOrder" >
+    <view class="flex-item" data-current="3" bindtap="toOrder">
       <image class="iconImg" src="../../resources/images/member/unreceived.png"></image>
       <view>待收货</view>
     </view>
@@ -80,10 +80,10 @@
     <view class=" lineItem lineItem_access borderA" bindtap='bindPhone'>
       <view class="center">绑定手机号</view>
       <view class="clr_lightGray f12" wx:if="{{memberInfo.mobile}}">{{memberInfo.mobile}}</view>
-       <view class="clr_lightGray f12" wx:if="{{!memberInfo.mobile}}">未绑定</view>
+      <view class="clr_lightGray f12" wx:if="{{!memberInfo.mobile}}">未绑定</view>
       <view class="right"></view>
     </view>
-     <view class="lineItem lineItem_access ">
+    <view class="lineItem lineItem_access ">
       <view class="center">当前版本</view>
       <view class="right clr_lightGray f12">V1.1</view>
     </view>

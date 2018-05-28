@@ -11,9 +11,11 @@ page {
   background: #fff;
   box-sizing: border-box;
 }
-.flex-item{
+
+.flex-item {
   display: block;
 }
+
 .head {
   height: 211rpx;
   border-right: 1px solid #848484;
@@ -48,6 +50,11 @@ page {
   overflow: hidden;
   border-radius: 50%;
   margin: auto 0;
+  padding: 0;
+}
+
+.headImg::after, ::before {
+  display: none;
 }
 
 .headImg image {
