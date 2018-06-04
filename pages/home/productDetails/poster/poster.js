@@ -32,6 +32,8 @@ Page(Object.assign({}, {
     new product(res => {
       this.setData({
         productImg: res.data.info.list_pic_url,
+        name: res.data.info.name,
+        price: res.data.info.retail_price,
         id: id
       })
     }).view({
@@ -75,15 +77,20 @@ Page(Object.assign({}, {
                   // ctx.closePath();
                   // ctx.restore();
 
-                  // ctx.setTextAlign('left')
+                  ctx.setTextAlign('center')
+                  ctx.setFillStyle('rgb(255, 255, 255)')
+                  ctx.setFontSize(20)
+                  ctx.fillText('￥' + that.data.price, w / 2, 0.56 * h)
+
+                  ctx.setTextAlign('center')
                   // ctx.setFillStyle('rgb(43, 43, 43)')
                   // ctx.setFontSize(14)
                   // ctx.fillText('我是' + that.data.nickName, 0.20 * h, 0.60 * h)
-                  // ctx.setFillStyle('rgb(137, 110, 87)')
-                  // ctx.setFontSize(16)
-                  // ctx.fillText('邀请您加入大王', 0.20 * h, 0.63 * h)
-                  ctx.drawImage(picImg, 0.3 * w, 0.2 * h, 0.4 * w, 0.4 * w)//小程序二维码
-                  ctx.drawImage(that.data.qrcode, 0.25 * w, 0.62 * h, 0.5 * w, 0.5 * w)//小程序二维码
+                  ctx.setFillStyle('rgb(0, 0, 0)')
+                  ctx.setFontSize(18)
+                  ctx.fillText(that.data.name, w / 2, 0.63 * h)
+                  ctx.drawImage(picImg, 0.19 * w, 0.11 * h, 0.62 * w, 0.60 * w)//小程序二维码
+                  ctx.drawImage(that.data.qrcode, 0.35 * w, 0.70 * h, 0.3 * w, 0.3 * w)//小程序二维码
                   ctx.draw();
                   setTimeout(function () {
                     wx.showModal({

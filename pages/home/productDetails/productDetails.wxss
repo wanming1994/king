@@ -350,6 +350,11 @@ page {
   height: 12vw;
   line-height: 12vw;
   padding: 0;
+  background: transparent;
+}
+.shortcutClose image{
+  width: 12vw;
+  height: 12vw;
 }
 
 .shortcutInfo {

@@ -135,8 +135,8 @@
   <view>分享</view>
   <view>商品</view>
 </view>
-<view class='shortcut shortcutClose baseBg' bindtap='openShortcut' wx:if="{{showShortcut}}">
-  <text class='iconfont icon-quxiao f18'>X</text>
+<view class='shortcut shortcutClose' bindtap='openShortcut' wx:if="{{showShortcut}}">
+  <image src='/resources/images/product/close.png'></image>
 </view>
 <view class='shortcutInfo f12'>
   <view class="shortcutContent {{showShortcut&&'showShortcutContent'}}">
