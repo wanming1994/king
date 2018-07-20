@@ -28,6 +28,12 @@ Page(Object.assign({}, actionsheet, payTemp, {
       url: '../exchange/exchange',
     })
   },
+  //goPointCash
+  goPointCash () {
+    util.navigateTo({
+      url: '../cash/index',
+    })
+  },
   bindChange: function (e) {//滑动选项卡
     var that = this;
     that.setData({ currentTab: e.detail.current });

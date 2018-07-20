@@ -6,6 +6,9 @@
     <view class='f14 store' bindtap='goPointShop'>积分商城
       <text class='iconfont icon-icon f14'></text>
     </view>
+    <view class='f14 store'style='margin-left:10rpx;' bindtap='goPointCash'>积分提现
+      <text class='iconfont icon-icon f14'></text>
+    </view>
   </view>
   <!-- <loading wx:if="{{loading}}">加载中</loading> -->
   <view class="swiper-tab top">

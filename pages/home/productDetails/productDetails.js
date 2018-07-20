@@ -62,6 +62,9 @@ Page(Object.assign({}, swiperAutoHeight, {
     let id = options.id;
     this.data.id = id;
     var extension = options.extension;
+    if (options.extension) {
+      wx.setStorageSync('extension', options.extension)
+    }
     new Product((res) => {
       wx.setNavigationBarTitle({
         title: res.data.info.name
