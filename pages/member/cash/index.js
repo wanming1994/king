@@ -36,9 +36,9 @@ Page({
         title: '超出可提现金额',
         icon: 'none'
       })
-    } else if (this.data.cashAmount==0){
+    } else if (this.data.cashAmount<10){
       wx.showToast({
-        title: '金额不能为0',
+        title: '最少提现金额为10元',
         icon: 'none'
       })
     }else {

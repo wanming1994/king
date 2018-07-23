@@ -13,9 +13,10 @@
 
 <view class='padding4 clr_lightGray f14'>提现说明</view>
 <view class='padding2 explain f14 clr_mediumGray'>
-  <view>1、提现会直接到个人微信钱包；</view>
-  <view>2、1到2个工作日到账。如遇假期，顺延；</view>
-  <view>3、用户提现，微信会收取0.6%手续费。</view>
+  <view>1、最少提现金额为10元；</view>
+  <view>2、提现会直接到个人微信钱包；</view>
+  <view>3、1到2个工作日到账，如遇假期，顺延；</view>
+  <view>4、提现微信会收取0.6%手续费。</view>
 </view>
 
 
