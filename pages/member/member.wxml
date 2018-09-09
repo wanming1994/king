@@ -39,7 +39,7 @@
     <view class="right"></view>
   </view> -->
 
-  <view class="memberRadius lineItem lineItem_access f14" style='padding:3%;' bindtap='goShare'>
+  <view class="memberRadius lineItem lineItem_access f14" style='padding:3%;' bindtap='goShare' wx:if="{{memberInfo.share}}">
     <view class="center">分享推广</view>
     <view class="clr_lightGray">您的口碑价值百万</view>
     <view class="right"></view>
