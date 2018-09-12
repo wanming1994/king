@@ -19,7 +19,7 @@ page {
 
 .cetagory_btn.active {
   color: #fff;
-  background: #ffa73d;
+  background: #fc8583;
 }
 
 .cetagory_btn {
@@ -242,7 +242,7 @@ page {
 }
 
 .actionItemBtn text.active {
-  background: #ffa73d !important;
+  background: #fc8583 !important;
   color: #fff !important;
 }
 

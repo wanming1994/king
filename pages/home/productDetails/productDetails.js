@@ -1,5 +1,6 @@
 let swiperAutoHeight = require("../../../template/swiperProduct/swiper.js"),
   Cart = require("../../../service/cart.js"),
+  Member = require("../../../service/member.js"),
   Product = require("../../../service/product.js"),
   order = require("../../../service/order.js"),
   WxParse = require('../../wxParse/wxParse.js'),
@@ -159,41 +160,41 @@ Page(Object.assign({}, swiperAutoHeight, {
   },
   paySubmitSel() {
     if (!this.data.selectData.count) return
-
-    new Cart(res => {
-      if (this.data.buyType === 'buy') {
-        util.navigateTo({
-          url: '/pages/pay/orderPay',
-        })
-      } else {
-        this.toggleMask(false);
-        wx.showToast({
-          title: '加入成功',
-          duration: 1000
-        })
-      }
-    }, function(err) {
-      if (err.errmsg == '会员才能购买') {
-        wx.hideToast()
-
+    new Member(res => {
+      if (!res.data.mobile) {
         wx.showModal({
           title: '提示',
-          content: '成为会员才可购买商品，是否立即成为会员?',
+          content: '您还未绑定手机，绑定后即可购物?',
           success: function(res) {
             if (res.confirm) {
               wx.navigateTo({
-                url: '../join/join',
+                url: '../../member/bind/bind',
               })
             }
           }
         })
+      } else {
+        new Cart(res => {
+          if (this.data.buyType === 'buy') {
+            util.navigateTo({
+              url: '/pages/pay/orderPay',
+            })
+          } else {
+            this.toggleMask(false);
+            wx.showToast({
+              title: '加入成功',
+              duration: 1000
+            })
+          }
+        }).add({
+          productId: this.data.selectData.goodsid,
+          speid: this.data.selectData.id,
+          count: this.data.selectData.count,
+          type: this.data.buyType,
+        })
       }
-    }).add({
-      productId: this.data.selectData.goodsid,
-      speid: this.data.selectData.id,
-      count: this.data.selectData.count,
-      type: this.data.buyType,
-    })
+    }).view()
+
   },
   //立即购买确认按钮
   paySubmit: function() {

@@ -2,7 +2,7 @@
 var app = getApp()
 var Member = require("../../../service/member.js")
 var util = require("../../../utils/util")
-var countdown = util.countdown//验证码计时
+var countdown = util.countdown //验证码计时
 Page({
   data: {
     tips: '验证码',
@@ -12,7 +12,7 @@ Page({
       code: '',
     },
   },
-  onLoad: function (info) {
+  onLoad: function(info) {
     var that = this;
     var where = info.where;
     that.setData({
@@ -21,13 +21,13 @@ Page({
 
   },
 
-  onShow: function () {
+  onShow: function() {
 
   },
 
 
   //输入框变化
-  bindChange: function (e) {
+  bindChange: function(e) {
     var form = this.data.formContent;
     form[e.currentTarget.id] = e.detail.value.trim();
     this.setData({
@@ -36,13 +36,13 @@ Page({
   },
 
   //发送验证码
-  getcode: function () {
+  getcode: function() {
     var that = this;
 
     if (!(/^1\d{10}$/.test(that.data.formContent.phone))) {
       util.errShow('手机号格式错误');
     } else {
-      new Member(function () {
+      new Member(function() {
         countdown(that);
       }).sendMsgToBindPhone({
         phone: that.data.formContent.phone
@@ -52,40 +52,52 @@ Page({
   },
 
 
-  submit: function () {//提交
+  bindgetuserinfo(e) {
+    let that = this
     var form = this.data.formContent
-    var that = this
-    if (!(/^1[34578]\d{9}$/.test(form.phone))) {
-      util.errShow('手机号格式错误')
-    } else if (form.code == '') {
-      util.errShow('请输入验证码')
+    if (e.detail.errMsg.indexOf('fail') > -1) {
+      wx.showToast({
+        title: '请授权用户信息!',
+        icon: 'none'
+      })
     } else {
-      new Member(function (res) {
-        wx.showToast({
-          title: '绑定手机号成功',
-          icon: 'success',
-          duration: 2000,
-          success: function () {
-            if (that.data.where && that.data.where == 'member') {
-              new Member(res => {
-                wx.redirectTo({
-                  url: '../../home/productDetails/productDetails?id=' + res.data.id,
-                })
-              }).getscoreProductt()
-            } else {
-              setTimeout(function () {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }, 1000)
-            }
-          }
-        })
-      }).bindPhone({
-        smsCode: form.code,
-        phone: form.phone
+      new Member(res => {
+        if (!(/^1[34578]\d{9}$/.test(form.phone))) {
+          util.errShow('手机号格式错误')
+        } else if (form.code == '') {
+          util.errShow('请输入验证码')
+        } else {
+          new Member(function(res) {
+            wx.showToast({
+              title: '绑定手机号成功',
+              icon: 'success',
+              duration: 2000,
+              success: function() {
+                if (that.data.where && that.data.where == 'member') {
+                  new Member(res => {
+                    wx.redirectTo({
+                      url: '../../home/productDetails/productDetails?id=' + res.data.id,
+                    })
+                  }).getscoreProductt()
+                } else {
+                  setTimeout(function() {
+                    wx.navigateBack({
+                      delta: 1
+                    })
+                  }, 1000)
+                }
+              }
+            })
+          }).bindPhone({
+            smsCode: form.code,
+            phone: form.phone
+          })
+        }
+      }).updateView({
+        avatarUrl: e.detail.userInfo.avatarUrl,
+        nickName: e.detail.userInfo.nickName /*  */
       })
     }
   }
-})
 
+})

@@ -58,7 +58,7 @@
     </view>
   </view>
   <view class="clr-white f14 right">
-    <view style="background:#feae31;" data-type="cart" bindtap="toggleMask">
+    <view style="background:#fc8583;" data-type="cart" bindtap="toggleMask">
       加入购物车
     </view>
     <!-- <view style="background:#ff666a;" data-type="buy" bindtap="toggleMask">
@@ -104,7 +104,7 @@
       <button data-btype="add" data-id="{{selectData.id}}" bindtap="revisenum">+</button>
     </view>
   </view>
-  <button class="defaultBtn " bindtap="paySubmitSel">确认</button>
+  <button class="defaultBtn" style='background:#fc8583;' bindtap="paySubmitSel">确认</button>
 </view>
 
 <view class="actionNext f22" hidden="{{!showBuyDetail}}">

@@ -18,7 +18,7 @@
       </view>
     </view>
 
-    <button type="primary" class="submit baseBg" bindtap="submit">绑定</button>
+    <button type="primary" class="submit baseBg" open-type='getUserInfo' bindgetuserinfo="bindgetuserinfo">绑定</button>
 
   </view>
 </view>
