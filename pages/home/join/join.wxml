@@ -1,6 +1,6 @@
 <view class="container">
   <image class='bgimg' src='../../../resources/images/home/recom.png'></image>
-  <button class='wrapBtn' open-type='getUserInfo' bindgetuserinfo="bindgetuserinfo">
+  <button class='wrapBtn' open-type='getUserInfo' bindgetuserinfo="bindgetuserinfo" style='opacity:0;'>
     <image class='imgBtn' src='../../../resources/images/home/joinBtn.png' mode="widthFix" bindtap='clickImg'></image>
   </button>
   <image class='goHome' src='../../../resources/images/home/gogo.png' mode="widthFix" bindtap='goHome'></image>

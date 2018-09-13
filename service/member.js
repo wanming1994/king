@@ -48,8 +48,8 @@ module.exports = class Member extends Ajax {
   }
 
   /**
- * 影响力接口
- */
+   * 影响力接口
+   */
   userRecommend(data) {
     super.get({
       url: 'user/userRecommend',
@@ -109,10 +109,10 @@ module.exports = class Member extends Ajax {
   }
 
   /**
-     * 获取用户积分列表
-     *  getBillList
-     * page size
-     */
+   * 获取用户积分列表
+   *  getBillList
+   * page size
+   */
   getBillList(data) {
     super.get({
       url: "Billflow/getBillList",
@@ -122,8 +122,8 @@ module.exports = class Member extends Ajax {
 
 
   /**
-     * 获取积分商品
-     */
+   * 获取积分商品
+   */
   getscoreProductt(data) {
     super.get({
       url: "goods/getSepcialGoods",
@@ -131,16 +131,16 @@ module.exports = class Member extends Ajax {
     })
   }
 
-    /**
-     * 提现发起
-     * money金额
-     */
-    getscoreProductt(data) {
-        super.post({
-            url: "Withdraw/withDrawMoney",
-            data: data
-        })
-    }
+  /**
+   * 提现发起
+   * money金额
+   */
+  withDrawMoney(data) {
+    super.post({
+      url: "Withdraw/withDrawMoney",
+      data: data
+    })
+  }
 
 
 }

@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.98",
 	"appid": "wxd32c6f0a8ce28e23",
-	"projectname": "tt",
+	"projectname": "%E5%A4%A7%E7%8E%8B%E5%95%86%E5%9F%8E%E5%AD%A6%E4%B9%A0%E6%A8%A1%E6%9D%BF",
 	"svr": "",
 	"client": "",
 	"qcloudRoot": "",
@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 12,
 			"list": [
 				{
 					"id": 0,
@@ -106,6 +106,11 @@
 					"name": "pages/home/productDetails/poster/poster",
 					"pathName": "pages/home/productDetails/poster/poster",
 					"query": "id=1181006"
+				},
+				{
+					"id": -1,
+					"name": "pages/home/join/join",
+					"pathName": "pages/home/join/join"
 				}
 			]
 		}
