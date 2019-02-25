@@ -29,7 +29,7 @@
 
 .wrapBtn {
   position: absolute;
-  top: 52vh;
+  top: 45vh;
   width: 80%;
   left: 10%;
   background: transparent;

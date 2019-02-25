@@ -36,12 +36,12 @@ Page({
         title: '超出可提现金额',
         icon: 'none'
       })
-    } else if (this.data.cashAmount<10){
+    } else if (this.data.cashAmount < 10) {
       wx.showToast({
         title: '最少提现金额为10元',
         icon: 'none'
       })
-    }else {
+    } else {
       new member(res => {
         wx.showToast({
           title: '提现成功',
@@ -52,7 +52,7 @@ Page({
             delta: 1
           })
         }, 1500)
-      }).getscoreProductt({
+      }).withDrawMoney({
         money: this.data.cashAmount
       })
     }
