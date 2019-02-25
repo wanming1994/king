@@ -24,14 +24,17 @@
     </view>
   </view>
 
-  <block wx:for="{{memberList}}" wx:key='*this'  wx:for-item="item">
-  <view class="lineItem member">
-    <view class="left">
-      <image src="{{item.userFollowAvatar?item.userFollowAvatar:'/resources/images/usernone.png'}}" ></image>
+  <block wx:for="{{memberList}}" wx:key='*this' wx:for-item="item">
+    <view class="lineItem member">
+      <view class="left">
+        <image src="{{item.userFollowAvatar?item.userFollowAvatar:'/resources/images/usernone.png'}}"></image>
+      </view>
+      <view class="center">
+        <view>{{item.userFollowNickname}}</view>
+      </view>
+      <view class='right f14'>
+        <view>下线数：{{followCnt}}</view>
+      </view>
     </view>
-    <view class="center">
-      <view>{{item.userFollowNickname}}</view>
-    </view>
-  </view>
   </block>
 </view>

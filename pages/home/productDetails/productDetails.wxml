@@ -58,12 +58,12 @@
     </view>
   </view>
   <view class="clr-white f14 right">
-    <view style="background:#fc8583;" data-type="cart" bindtap="toggleMask">
+    <view style="background:#ffa73d;" data-type="cart" bindtap="toggleMask">
       加入购物车
     </view>
-    <!-- <view style="background:#ff666a;" data-type="buy" bindtap="toggleMask">
+    <view style="background:#fc8583;" data-type="buy" bindtap="toggleMask">
       立即购买
-    </view> -->
+    </view>
   </view>
 </view>
 
