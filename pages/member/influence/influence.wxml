@@ -33,7 +33,7 @@
         <view>{{item.userFollowNickname}}</view>
       </view>
       <view class='right f14'>
-        <view>下线数：{{followCnt}}</view>
+        <view>下线数：{{item.followCnt}}</view>
       </view>
     </view>
   </block>
