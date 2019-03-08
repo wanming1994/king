@@ -135,6 +135,7 @@
   <view>分享</view>
   <view>商品</view>
 </view>
+<image class='goHome' src='../../../resources/images/home/gogo.png' mode="widthFix" bindtap='goHome'></image>
 <view class='shortcut shortcutClose' bindtap='openShortcut' wx:if="{{showShortcut}}">
   <image src='/resources/images/product/close.png'></image>
 </view>

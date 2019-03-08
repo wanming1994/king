@@ -4,7 +4,9 @@
       <open-data type="userAvatarUrl" style="overflow: hidden;" class="image"></open-data>
     </button>
     <view class="details">
-      <view class='f14'><open-data type="userNickName" class="userName overone clr_white f14"></open-data></view>
+      <view class='f14'>
+        <open-data type="userNickName" class="userName overone clr_white f14"></open-data>
+      </view>
       <view class='f12' style='margin-top:12rpx'>{{memberInfo.userIsMember==1?'会员':'非会员'}}</view>
     </view>
   </view>
@@ -14,6 +16,13 @@
       <view class='tc'>
         <view>{{memberInfo.bonus}}</view>
         <view>我的积分</view>
+      </view>
+      <view class="right"></view>
+    </view>
+    <view class="flex-item lineItem  tc" bindtap='goExchange'>
+      <view class='tc'>
+        <view>0</view>
+        <view>教育金</view>
       </view>
       <view class="right"></view>
     </view>
@@ -27,7 +36,7 @@
     <view class="flex-item lineItem  tc" bindtap='toMyInfluence'>
       <view class='tc'>
         <view>{{memberInfo.influence}}</view>
-        <view>我的影响力</view>
+        <view>影响力</view>
       </view>
       <view class="right"></view>
     </view>
