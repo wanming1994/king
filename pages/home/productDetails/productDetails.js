@@ -330,5 +330,9 @@ Page(Object.assign({}, swiperAutoHeight, {
       }
     }
   },
-
+  goHome() {
+    wx.switchTab({
+      url: '/pages/home/home',
+    })
+  }
 }))
