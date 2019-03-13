@@ -235,7 +235,7 @@ page {
   display: inline-block;
   padding: 10rpx 20rpx;
   margin: 0 20rpx 20rpx 0;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   background: #efeff4;
   color: #999;
   border-radius: 12rpx;

@@ -12,6 +12,15 @@ App({
   },
   loginOkCallbackList: [],
   onLaunch(opData) {
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.navigateTo({
+            url: '/pages/member/scope/index',
+          })
+        }
+      }
+    })
     let that = this
     const extension = opData.query.extension;
     // console.log(1111111)
@@ -43,25 +52,25 @@ App({
 })
 
 //登陆，获取token
-var tryLogin = (function () {
+var tryLogin = (function() {
   let count = 0
   var that = this
-  return function (code, extension, fn) {
+  return function(code, extension, fn) {
     if (count >= config.LOGIN_ERROR_TRY_COUNT) {
       util.errShow('登陆超时')
       return
     }
-    new Member(function (res) {
+    new Member(function(res) {
       if (res.data.token) {
         wx.setStorageSync('token', res.data.token);
         fn ? fn(res) : ''
       } else {
-        setTimeout(function () {
+        setTimeout(function() {
           tryLogin(code, res)
           count++
         }, config.LOGIN_ERROR_TRY_TIMEOUT)
       }
-    }, function (err) {
+    }, function(err) {
       util.errShow('登陆失败', 1000)
     }).login({
       code: code,
