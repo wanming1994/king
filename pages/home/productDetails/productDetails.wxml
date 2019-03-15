@@ -141,7 +141,7 @@
 </view>
 <view class='shortcutInfo f12'>
   <view class="shortcutContent {{showShortcut&&'showShortcutContent'}}">
-    <view class='tr shortcutInfoList' bindtap='goHome'>
+    <view class='tr shortcutInfoList'>
       <text>分享好友</text>
       <button open-type='share'>
         <image src='/resources/images/product/friends.png'></image>

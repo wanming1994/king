@@ -298,23 +298,23 @@ Page(Object.assign({}, swiperAutoHeight, {
     this.setData({
       showShortcut: !this.data.showShortcut
     })
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      return {
-        title: that.data.title,
-        path: 'pages/home/productDetails/productDetails?id=' + that.data.id + '&extension=' + app.globalData.memberInfo.userId,
-        success: function(res) {
-          // 转发成功
-          wx.showToast({
-            title: '转发成功',
-            icon: 'success'
-          })
-        },
-        fail: function(res) {
-          // 转发失败
-        }
-      }
-    }
+    // if (res.from === 'button') {
+    //   // 来自页面内转发按钮
+    //   return {
+    //     title: that.data.title,
+    //     path: 'pages/home/productDetails/productDetails?id=' + that.data.id + '&extension=' + app.globalData.memberInfo.userId,
+    //     success: function(res) {
+    //       // 转发成功
+    //       wx.showToast({
+    //         title: '转发成功',
+    //         icon: 'success'
+    //       })
+    //     },
+    //     fail: function(res) {
+    //       // 转发失败
+    //     }
+    //   }
+    // }
     return {
       title: that.data.title,
       path: 'pages/home/productDetails/productDetails?id=' + that.data.id + '&extension=' + app.globalData.memberInfo.userId,

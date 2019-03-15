@@ -362,7 +362,7 @@ page {
   position: fixed;
   height: 24vw;
   right: 7vw;
-  bottom: 45vw;
+  bottom: 50vw;
   color: #fff;
   z-index: 1002;
   overflow: hidden;
