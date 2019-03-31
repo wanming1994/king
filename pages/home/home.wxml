@@ -7,7 +7,7 @@
   </view>
   <view class='timeLimit_list '>
     <block wx:for="{{limitsell}}" wx:key="id">
-      <view class='lineItem ' data-id='{{item.goodsId}} ' bindtap='goProductDeatil '>
+      <view class='lineItem ' data-id='{{item.goodsId}} ' bindtap='goProductDeatil'>
         <view class='left '>
           <image style='width:27vw;height:27vw;' lazy-load src="{{item.goodsPic ? item.goodsPic:'/resources/images/noneimg.png '}}"></image>
         </view>
