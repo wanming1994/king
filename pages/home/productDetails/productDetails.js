@@ -105,7 +105,8 @@ Page(Object.assign({}, swiperAutoHeight, {
         })
       }, 200)
     }).view({
-      id: id
+      id: id,
+      promotionId: that.data.promotionId
     })
   },
   checkout(e) {
