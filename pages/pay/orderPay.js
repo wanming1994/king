@@ -22,6 +22,7 @@ Page(Object.assign({}, actionsheet, {
       name: '未使用',
       code: ''
     },
+    activityOrder: false
   },
   //收货地址
   chooseAddress: function() {
@@ -74,7 +75,8 @@ Page(Object.assign({}, actionsheet, {
     var that = this;
     if (options.promotionId) {
       that.setData({
-        promotionId: options.promotionId
+        promotionId: options.promotionId,
+        activityOrder: true
       })
     }
     this.getAddress();
