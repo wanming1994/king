@@ -198,6 +198,7 @@ Page(Object.assign({}, swiperAutoHeight, {
           speid: this.data.selectData.id,
           count: this.data.selectData.count,
           type: this.data.buyType,
+          promotionId: that.data.promotionId ? that.data.promotionId : ''
         })
       }
     }).view()
