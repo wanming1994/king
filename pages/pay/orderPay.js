@@ -92,6 +92,7 @@ Page(Object.assign({}, actionsheet, {
         receiver: data.data.address,
         order: data.data.checkedGoodsList,
         totalAmount: data.data.orderTotalPrice,
+        trueAmount: data.data.orderTotalPrice,
         scoreMax: data.data.userBonus,
         couponList: data.data.couponList
       })
@@ -122,6 +123,9 @@ Page(Object.assign({}, actionsheet, {
           }],
           defaultDiscount: 'score'
         })
+        if (!that.data.activityOrder) {
+          that.calcPointMoney(that.data.totalAmount, data.data.userBonus)
+        }
       } else if (data.data.userBonus <= 0 && data.data.couponList.length > 0) {
         this.setData({
           selectDiscount: [{
@@ -134,8 +138,8 @@ Page(Object.assign({}, actionsheet, {
           defaultDiscount: 'coupon'
         })
       }
-      that.calcPointMoney(that.data.totalAmount, data.data.userBonus)
-    }).orderCon({})
+
+    }).orderCon()
 
   },
 
@@ -263,7 +267,7 @@ Page(Object.assign({}, actionsheet, {
       defaultDiscount: e.detail.value
     })
     if (e.detail.value == 'score') {
-      that.calcPointMoney(that.data.totalAmount, that.data.canusePoint)
+      that.calcPointMoney(that.data.totalAmount, that.data.scoreMax)
     } else if (e.detail.value == 'coupon') {
       that.calcPointMoney(that.data.totalAmount, 0)
     } else if (e.detail.value == 'none') {

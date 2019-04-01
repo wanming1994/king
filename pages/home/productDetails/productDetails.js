@@ -67,6 +67,8 @@ Page(Object.assign({}, swiperAutoHeight, {
       this.setData({
         activityProduct: true
       })
+    } else {
+      this.data.promotionId = ''
     }
     let that = this;
     let id = options.id;
