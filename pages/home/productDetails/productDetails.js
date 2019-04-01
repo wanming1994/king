@@ -42,7 +42,8 @@ Page(Object.assign({}, swiperAutoHeight, {
     userScoreInput: 0, //付款使用积分
     scoreMax: 0, //可用积分
     selectData: {}, //选中规格
-    showShortcut: false
+    showShortcut: false,
+    activityProduct: false
   },
   catchActionMask(e) {
     return false;
@@ -61,7 +62,12 @@ Page(Object.assign({}, swiperAutoHeight, {
     this.setData({
       memberInfo: app.globalData.memberInfo
     })
-    console.log(app.globalData.LOGIN_STATUS)
+    if (options.promotionId) {
+      this.data.promotionId = options.promotionId
+      this.setData({
+        activityProduct: true
+      })
+    }
     let that = this;
     let id = options.id;
     this.data.id = id;
@@ -159,6 +165,7 @@ Page(Object.assign({}, swiperAutoHeight, {
 
   },
   paySubmitSel() {
+    var that = this
     if (!this.data.selectData.count) return
     new Member(res => {
       if (!res.data.mobile) {
@@ -177,7 +184,7 @@ Page(Object.assign({}, swiperAutoHeight, {
         new Cart(res => {
           if (this.data.buyType === 'buy') {
             util.navigateTo({
-              url: '/pages/pay/orderPay',
+              url: '/pages/pay/orderPay?promotionId=' + that.data.promotionId,
             })
           } else {
             this.toggleMask(false);

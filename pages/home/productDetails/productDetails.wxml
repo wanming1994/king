@@ -58,7 +58,7 @@
     </view>
   </view>
   <view class="clr-white f14 right">
-    <view style="background:#ffa73d;" data-type="cart" bindtap="toggleMask">
+    <view style="background:#ffa73d;" data-type="cart" bindtap="toggleMask" wx:if="{{!activityProduct}}">
       加入购物车
     </view>
     <view style="background:#fc8583;" data-type="buy" bindtap="toggleMask">

@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "妈达人品牌推荐官"
+  "navigationBarTitleText": "妈达人品牌推荐官",
+  "enablePullDownRefresh": true
 }

@@ -72,6 +72,11 @@ Page(Object.assign({}, actionsheet, {
 
   onLoad: function(options) {
     var that = this;
+    if (options.promotionId) {
+      that.setData({
+        promotionId: options.promotionId
+      })
+    }
     this.getAddress();
   },
 
@@ -333,7 +338,7 @@ Page(Object.assign({}, actionsheet, {
           }).submit({
             addressId: that.data.orderInfo.address.id,
             userScore: that.data.defaultDiscount == 'score' ? that.data.userScoreInput : 0,
-            orderType: 0,
+            orderType: that.data.promotionId ? 2 : 0,
             couponId: that.data.defaultDiscount == 'coupon' ? that.data.couponId : '',
             memo: that.data.memo
           })
