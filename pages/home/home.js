@@ -83,15 +83,15 @@ Page(Object.assign({}, swiperAutoHeight, {
         productHotList: data.data.hotGoodsList
       })
       var len = data.data.promotionList.length
-      // if (len == 0) {
-      //   that.setData({
-      //     limitLength: true
-      //   })
-      // } else {
-      //   that.setData({
-      //     limitLength: false
-      //   })
-      // }
+      if (len == 0) {
+        that.setData({
+          limitLength: true
+        })
+      } else {
+        that.setData({
+          limitLength: false
+        })
+      }
 
       function time1() {
         var limitsell = data.data.promotionList
