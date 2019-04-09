@@ -13,63 +13,66 @@ Page({
   },
   bindgetuserinfo(e) {
     let that = this
-    if (e.detail.errMsg.indexOf('fail') > -1) {
-      wx.showToast({
-        title: '请授权用户信息!',
-        icon: 'none'
-      })
-    } else {
-      new member(res => {
-        wx.showModal({
-          title: '提示',
-          content: '确定接受' + that.data.recommendUser + '”的邀请',
-          success: function(res) {
-            if (res.confirm) {
-              var that = this;
-              new order(function(res) {
-                // new member(res => {
-                //   if (res.data.mobile) {
-                //     new member(res => {
-                //       wx.navigateTo({
-                //         url: '../productDetails/productDetails?id=' + res.data.id,
-                //       })
-                //     }).getscoreProductt()
-                //   } else {
-                //     util.navigateTo({
-                //       url: '../../member/bind/bind?where=member',
-                //     })
-                //   }
-                // }).view()
-                wx.showToast({
-                  title: '成功',
-                  icon: 'success',
-                  duration: 1000
-                })
-                setTimeout(function() {
-                  wx.switchTab({
-                    url: '/pages/home/home',
-                  })
-                }, 1500)
-              }, function(err) {
-                if (err.errno == 1 && err.errmsg == '你已经是会员了') {
-                  setTimeout(function() {
-                    wx.switchTab({
-                      url: '/pages/home/home',
-                    })
-                  }, 500)
-                }
-              }).submit({
-                orderType: 3,
-                recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
+    // if (e.detail.errMsg.indexOf('fail') > -1) {
+    //   wx.showToast({
+    //     title: '请授权用户信息!',
+    //     icon: 'none'
+    //   })
+    // } else {
+    // new member(res => {
+    wx.showModal({
+      title: '提示',
+      content: '确定接受' + that.data.recommendUser + '”的邀请',
+      success: function(res) {
+        if (res.confirm) {
+          var that = this;
+          new order(function(res) {
+            // new member(res => {
+            //   if (res.data.mobile) {
+            //     new member(res => {
+            //       wx.navigateTo({
+            //         url: '../productDetails/productDetails?id=' + res.data.id,
+            //       })
+            //     }).getscoreProductt()
+            //   } else {
+            //     util.navigateTo({
+            //       url: '../../member/bind/bind?where=member',
+            //     })
+            //   }
+            // }).view()
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 1000
+            })
+            setTimeout(function() {
+              // wx.switchTab({
+              //   url: '/pages/home/home',
+              // })
+              wx.navigateBack({
+
               })
+            }, 1500)
+          }, function(err) {
+            if (err.errno == 1 && err.errmsg == '你已经是会员了') {
+              setTimeout(function() {
+                wx.switchTab({
+                  url: '/pages/home/home',
+                })
+              }, 500)
             }
-          }
-        })
-      }).updateView({
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        nickName: e.detail.userInfo.nickName /*  */
-      })
-    }
+          }).submit({
+            orderType: 3,
+            recommendUserId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
+          })
+        }
+      }
+    })
+    // }).updateView({
+    //   avatarUrl: e.detail.userInfo.avatarUrl,
+    //   nickName: e.detail.userInfo.nickName /*  */
+    // })
+    // }
   },
   // clickImg: function () {
   //   var that = this
@@ -129,6 +132,9 @@ Page({
       that.setData({
         recommendUser: data.data.userName
       })
+      setTimeout(function() {
+        that.bindgetuserinfo()
+      }, 1500)
     }).getUserName({
       userId: wx.getStorageSync('extension') ? wx.getStorageSync('extension') : ''
     })
@@ -145,6 +151,8 @@ Page({
         }, 1)
       }
     }).view()
+
+
   },
 
   goHome: function() {

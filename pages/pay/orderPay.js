@@ -351,10 +351,11 @@ Page(Object.assign({}, actionsheet, {
         }
       } else {
         wx.showModal({
-          title: '提示',
-          content: '您还不是会员，成为会员后才可下单',
-          cancelText: '取消',
-          confirmText: '立即成为',
+          title: '温馨提示',
+          content: '需经推荐官推荐才可以购买',
+          showCancel: false,
+          // cancelText: '取消',
+          confirmText: '绑推荐人',
           success: function(res) {
             if (res.confirm) {
               util.navigateTo({
