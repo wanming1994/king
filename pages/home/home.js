@@ -77,6 +77,7 @@ Page(Object.assign({}, swiperAutoHeight, {
     })
   },
   onPullDownRefresh() {
+    var that = this
     new Product(function(data) {
       wx.stopPullDownRefresh()
       that.setData({
