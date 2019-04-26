@@ -1,1 +1,2 @@
-<canvas  bindlongtap='bindlongtap' canvas-id="myCanvas" style="width:{{canvasw}};height:{{canvash}};"/>
+<canvas bindlongtap='bindlongtap' canvas-id="myCanvas" style="width:{{canvasw}};height:{{canvash}};" />
+<cover-image src='/resources/images/home/gogo.png' bindtap='goHome'></cover-image>
