@@ -1,0 +1,45 @@
+/* pages/member/educationalFund/course/index.wxss */
+
+page {
+  background: #fff;
+}
+
+.title {
+  padding: 4% 3%;
+}
+
+.classList .lineItem {
+  padding: 3%;
+}
+
+.classList {
+  border-bottom: 2vw solid #f4f4f4;
+}
+
+.classList:last-child {
+  border-bottom: 0;
+}
+
+.classList .lineItem .left {
+  width: 168rpx;
+  height: 200rpx;
+}
+
+.classList .lineItem .left image {
+  width: 100%;
+  height: 100%;
+}
+
+.classList .lineItem  .center {
+  justify-content: space-between;
+  margin-left: 2vw;
+}
+
+.classList .lineItem  .center .optBtn text {
+  display: inline-block;
+  color: #4a91fa;
+  border: 1px solid #4a91fa;
+  margin-right: 4vw;
+  padding: 4rpx 20rpx;
+  border-radius: 8rpx;
+}

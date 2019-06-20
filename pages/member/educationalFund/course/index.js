@@ -1,4 +1,4 @@
-// pages/home/video/video.js
+// pages/member/educationalFund/course/index.js
 Page({
 
   /**
@@ -14,19 +14,7 @@ Page({
   onLoad: function (options) {
 
   },
-  StartPlay: function (e) {
-    console.log(e)
-    var ind = e.currentTarget.dataset.id
-    if (ind == "1") {
-      var v = "video" + "2"
-      // this.videoContext = wx.createVideoContext('video2')
-    } else {
-      var v = "video" + "1"
-      // this.videoContext = wx.createVideoContext('video1')
-    }
-    this.videoContext = wx.createVideoContext(v)
-    this.videoContext.pause()
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

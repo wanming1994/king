@@ -1,0 +1,1 @@
+<image wx:for="{{imgData}}" bindtap="previewImg" wx:key="*this" src="{{item}}" data-src="{{item}}" mode="widthFix" style="width:750rpx;display:block;"></image>

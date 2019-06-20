@@ -1,0 +1,89 @@
+<!--pages/member/exchange/index.wxml-->
+<view class='lineItem memberInfo'>
+  <view class='left'>
+    <open-data type="userAvatarUrl" style="overflow: hidden;" class="image"></open-data>
+  </view>
+  <view class='center f14'>
+    <open-data type="userNickName" class="userName overone bold f14"></open-data>
+    <view class='clr_lightGray'>教育白石头</view>
+  </view>
+  <view class='right'>
+    <view>50 ►</view>
+    <view class='clr_lightGray f14'>可用教育金</view>
+  </view>
+</view>
+<image src='/resources/images/member/jiaoyu.png' mode='widthFix' style='margin:2% 0 4% 3%;display:block;' bindtap='trainingCamp'></image>
+<view class='flex tc f14 tab'>
+  <view class='flex-item' bindtap='myGroup'>
+    <image src='/resources/images/member/tab_1.png' mode='widthFix'></image>
+    早教交流群
+  </view>
+  <view class='flex-item'>
+    <image src='/resources/images/member/tab_2.png' mode='widthFix'></image>
+    赚教育金
+  </view>
+  <view class='flex-item' bindtap='myCourse'>
+    <image src='/resources/images/member/tab_3.png' mode='widthFix'></image>
+    我的课程
+  </view>
+</view>
+<!-- <block wx:for="useData">
+
+</block> -->
+<scroll-view scroll-x scroll-with-animation scroll-into-view="{{topScrollId}}" style="width:100%;height:68rpx;background:#fff;margin:0 0 20rpx 0" wx:if="{{channelList.length>0 }}">
+  <view class="headerScroll">
+    <view bindtap="topBindtap" class="f14" id="top{{item.id}}" data-name="{{item.name}}" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{useData}}" wx:key="id">
+      <text class='{{topAcIndex==index?"active":""}}'>{{item.name}}</text>
+    </view>
+  </view>
+</scroll-view>
+<view class='list'>
+  <view class='list_item'>
+    <image src='/resources/images/member/headBg.jpg'></image>
+    <view class='bold f16 overone'>数字艺术</view>
+    <view class='f14 clr_lightGray overone'>要求控制8个字以内</view>
+    <view class='f14 overone clr_red'>50教育金</view>
+  </view>
+  <view class='list_item'>
+    <image src='/resources/images/member/headBg.jpg'></image>
+    <view class='bold f16 overone'>数字艺术</view>
+    <view class='f14 clr_lightGray overone'>要求控制8个字以内</view>
+    <view class='f14 overone clr_red'>50教育金</view>
+  </view>
+  <view class='list_item'>
+    <image src='/resources/images/member/headBg.jpg'></image>
+    <view class='bold f16 overone'>数字艺术</view>
+    <view class='f14 clr_lightGray overone'>要求控制8个字以内</view>
+    <view class='f14 overone clr_blue'>50教育金</view>
+  </view>
+  <view class='list_item'>
+    <image src='/resources/images/member/headBg.jpg'></image>
+    <view class='bold f16 overone'>数字艺术</view>
+    <view class='f14 clr_lightGray overone'>要求控制8个字以内</view>
+    <view class='f14 overone clr_blue'>50教育金</view>
+  </view>
+  <view class='list_item'>
+    <image src='/resources/images/member/headBg.jpg'></image>
+    <view class='bold f16 overone'>数字艺术</view>
+    <view class='f14 clr_lightGray overone'>要求控制8个字以内</view>
+    <view class='f14 overone clr_blue'>50教育金</view>
+  </view>
+  <view class='list_item'>
+    <image src='/resources/images/member/headBg.jpg'></image>
+    <view class='bold f16 overone'>数字艺术</view>
+    <view class='f14 clr_lightGray overone'>要求控制8个字以内</view>
+    <view class='f14 overone clr_blue'>50教育金</view>
+  </view>
+  <view class='list_item'>
+    <image src='/resources/images/member/headBg.jpg'></image>
+    <view class='bold f16 overone'>数字艺术</view>
+    <view class='f14 clr_lightGray overone'>要求控制8个字以内</view>
+    <view class='f14 overone clr_blue'>50教育金</view>
+  </view>
+  <view class='list_item'>
+    <image src='/resources/images/member/headBg.jpg'></image>
+    <view class='bold f16 overone'>数字艺术</view>
+    <view class='f14 clr_lightGray overone'>要求控制8个字以内</view>
+    <view class='f14 overone clr_blue'>50教育金</view>
+  </view>
+</view>

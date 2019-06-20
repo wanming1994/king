@@ -1,0 +1,59 @@
+<view>
+  <view class='title f16 clr_lightGray'>
+    资源课
+  </view>
+  <view class='classList'>
+    <view class='lineItem'>
+      <view class='left'>
+        <image src='/resources/images/noneimg.png'></image>
+      </view>
+      <view class='center f14 '>
+        <view class='bold overone'>崔玉涛育儿视频（100节）</view>
+        <view class='f12 clr_lightGray overone'>包含喂养是的发动快速反</view>
+        <view class='f14 optBtn'>
+          <text>查看详情</text>
+          <text>分享</text>
+        </view>
+      </view>
+      <view class='right'>
+      </view>
+    </view>
+  </view>
+
+  <view class='title f16 clr_lightGray'>
+    试听课
+  </view>
+  <view class='classList'>
+    <view class='lineItem'>
+      <view class='left'>
+        <image src='/resources/images/noneimg.png'></image>
+      </view>
+      <view class='center f14 '>
+        <view class='bold overone'>崔玉涛育儿视频（100节）</view>
+        <view class='f12 clr_lightGray overone'>包含喂养是的发动快速反</view>
+        <view class='f14 optBtn'>
+          <text>查看详情</text>
+          <text>分享</text>
+        </view>
+      </view>
+      <view class='right'>
+      </view>
+    </view>
+    <view class='lineItem'>
+      <view class='left'>
+        <image src='/resources/images/noneimg.png'></image>
+      </view>
+      <view class='center f14 '>
+        <view class='bold overone'>崔玉涛育儿视频（100节）</view>
+        <view class='f12 clr_lightGray overone'>包含喂养是的发动快速反</view>
+        <view class='f14 optBtn'>
+          <text>查看详情</text>
+          <text>分享</text>
+        </view>
+      </view>
+      <view class='right'>
+      </view>
+    </view>
+  </view>
+
+</view>

@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 18,
 			"list": [
 				{
 					"id": 0,
@@ -112,7 +112,37 @@
 				{
 					"id": -1,
 					"name": "pages/member/poster/poster",
-					"pathName": "pages/member/poster/poster"
+					"pathName": "pages/member/poster/poster",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "教育金商城",
+					"pathName": "pages/member/exchange/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/member/educationalFund/trainingCamp",
+					"pathName": "pages/member/educationalFund/trainingCamp",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/member/educationalFund/course/index",
+					"pathName": "pages/member/educationalFund/course/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/member/educationalFund/group",
+					"pathName": "pages/member/educationalFund/group",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/home/join/join",
+					"pathName": "pages/home/join/join"
 				}
 			]
 		}

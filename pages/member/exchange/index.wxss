@@ -1,0 +1,96 @@
+/* pages/member/exchange/index.wxss */
+
+page {
+  background: #fff;
+}
+
+.memberInfo {
+  padding: 2% 4%;
+}
+
+.memberInfo .image {
+  width: 12vw;
+  height: 12vw;
+  border-radius: 50%;
+}
+
+.memberInfo .center {
+  margin-left: 2vw;
+}
+
+.tab .flex-item {
+  padding-bottom: 2vw;
+}
+
+.tab image {
+  display: block;
+  width: 12vw;
+  height: 12vw;
+  border-radius: 50%;
+  margin: 0 auto 2vw;
+}
+
+.headerScroll {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  height: 68rpx;
+  line-height: 48rpx;
+  background: #f2f2f2;
+  box-sizing: border-box;
+}
+
+scroll-view {
+  border-top: 2vw solid #f5f5f5;
+  border-bottom: 2px solid #f5f5f5;
+}
+
+.headerScroll .active {
+  color: #4a91fa;
+  border-bottom: 2px solid #4a91fa;
+  font-weight: 500;
+}
+
+.headerScroll view {
+  padding: 0 50rpx;
+  background: #fff;
+  /* margin: 0 5rpx; */
+}
+
+.headerScroll view text {
+  line-height: 64rpx;
+  display: block;
+}
+
+.list {
+  padding: 2% 4%;
+}
+
+.list .list_item {
+  float: left;
+  margin-bottom: 4vw;
+}
+
+.list .list_item:nth-child(2n-1) {
+  margin-right: 2vw;
+}
+
+.list .list_item>view {
+  padding: 3rpx 0;
+}
+
+.list .list_item image {
+  margin-bottom: 10rpx;
+  width: 45vw;
+  height: 25vw;
+  border-radius: 6rpx;
+  display: block;
+}
+
+.clr_red {
+  color: #ff4133;
+}
+
+.clr_blue {
+  color: #4c7bc9;
+}

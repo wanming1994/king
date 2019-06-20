@@ -1,5 +1,6 @@
 <view class="container">
   <view class="head f16" style="">
+    <image class='baseBg' src='/resources/images/member/headBg.jpg'></image>
     <button class="headImg" open-type='getUserInfo' bindgetuserinfo="bindgetuserinfo">
       <open-data type="userAvatarUrl" style="overflow: hidden;" class="image"></open-data>
     </button>

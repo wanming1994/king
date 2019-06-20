@@ -6,15 +6,16 @@
     "pages/category/category",
     "pages/catalog/catalog",
     "pages/home/join/join",
-    "pages/home/video/video",
     "pages/influence/influence",
-    "pages/home/productList/productList",
     "pages/home/productDetails/productDetails",
     "pages/home/productDetails/poster/poster",
     "pages/pay/success",
     "pages/pay/pay",
     "pages/pay/orderPay",
     "pages/member/member",
+    "pages/member/educationalFund/trainingCamp",
+    "pages/member/educationalFund/group",
+    "pages/member/educationalFund/course/index",
     "pages/member/point/index",
     "pages/member/cash/index",
     "pages/member/scope/index",
@@ -22,6 +23,7 @@
     "pages/member/bind/bind",
     "pages/member/coupon/list",
     "pages/member/exchange/exchange",
+    "pages/member/exchange/index",
     "pages/member/exchange/history",
     "pages/member/influence/influence",
     "pages/member/share/share",
@@ -45,8 +47,8 @@
       {
         "pagePath": "pages/catalog/catalog",
         "text": "分类",
-        "iconPath": "/resources/images/tabBar/category.png",
-        "selectedIconPath": "/resources/images/tabBar/category-sel.png"
+        "iconPath": "/resources/images/tabBar/category.jpg",
+        "selectedIconPath": "/resources/images/tabBar/category-sel.jpg"
       },
       {
         "pagePath": "pages/cart/cart",
